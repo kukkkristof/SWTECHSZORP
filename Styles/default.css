@@ -1,3 +1,60 @@
 body{
+    margin: 0 0 0 0;
     background-color: #643f29;
+    font-family: Bahnschrift;
+}
+
+#PageContainer
+{
+    aspect-ratio: 16 / 9;
+}
+
+#MemberContainer
+{
+    background-color: #00000080;
+    width: 80vh;
+    border-radius: 2vw;
+    aspect-ratio: 1;
+    margin: 2vh auto 2vh auto;
+    overflow: hidden;
+    display: block;
+}
+
+
+.MemberRow
+{
+    margin: 2.5% 0 2.5% 0;
+    height: 46.25%;
+    display: flex;
+}
+
+.Member
+{
+    margin: auto;
+    width: 30%;
+    height: 100%;
+    border-radius: 1vw;
+    text-align: center;
+    background-color: beige;
+    overflow: hidden;
+}
+
+.Member img
+{
+    border-bottom: 10vh blue;
+    object-fit: cover;
+    width: 100%;
+    aspect-ratio: 1;
+}
+.Member p
+{
+    font-size: 2.5vh;
+    color: black;
+}
+
+
+.Header
+{
+    height: 10vh;
+    background-color: navajowhite;
 }
