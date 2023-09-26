@@ -15,27 +15,31 @@
             <div class="MemberRow">
                 <div class="Member">
                     <img src="./Images/Kukk.jpg">
-                    <p>Neptun: P2MZHY</p>
-                    <p>Kukk Kristof</p>
+                    <p>NEPTUN: P2MZHY</p>
+                    <p>Kukk Kristóf</p>
                 </div>
                 <div class="Member">
                     <img src="./Images/Edina.JPG">
-                    <p>Neptun: GDVK5H</p>
-                    <p>Korik Edina</p>
+                    <p>NEPTUN: GDVK5H</p>
+                    <p>Kórik Edina</p>
                 </div>
                 <div class="Member">
-                    <img src="./Images/Kukk.jpg">
-                    <p>Neptun: TGH21X</p>
+                    <img src="./Images/Armand.jpg">
+                    <p>NEPTUN: TGH21X</p>
                     <p>Berecz Armand</p>
                 </div>
             </div>
             <div class="MemberRow">
                 <div class="Member">
-                    <img src="./Images/Kukk.jpg">
-                    <p>Neptun: JW8DEC</p>
-                    <p>Varga Oliver</p>
+                    <img src="./Images/Oliver.jpg">
+                    <p>NEPTUN: JW8DEC</p>
+                    <p>Varga Olivér</p>
                 </div>
-                <div class="Member"> </div>
+                <div class="Member">
+                    <img src="./Images/Noname.jpg">
+                    <p>NEPTUN: ------</p>
+                    <p>Bernáth Krisztián</p>
+                </div>
             </div>
         </div>
     </div>
