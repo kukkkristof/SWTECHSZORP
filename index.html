@@ -1,45 +1,98 @@
 <!doctype html>
-<html lang="hu">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Szorp</title>
     <link rel="stylesheet" href="Styles/default.css">
+    <script src="Scripts/DisplayScripts.js"> </script>
 </head>
 <body>
 
-    <div class="PageContainer">
+    <div id="PageContainer">
 
         <header class="Header"></header>
 
         <div id="MemberContainer">
+
+            <h1>CSAPATTAGOK</h1>
+
             <div class="MemberRow">
                 <div class="Member">
                     <img src="./Images/Kukk.jpg">
                     <p>NEPTUN: P2MZHY</p>
-                    <p>Kukk Kristóf</p>
+                    <p>Név: Kukk Kristóf</p>
                 </div>
                 <div class="Member">
                     <img src="./Images/Edina.JPG">
                     <p>NEPTUN: GDVK5H</p>
-                    <p>Kórik Edina</p>
+                    <p>Név: Kórik Edina</p>
                 </div>
                 <div class="Member">
                     <img src="./Images/Armand.jpg">
                     <p>NEPTUN: TGH21X</p>
-                    <p>Berecz Armand</p>
+                    <p>Név: Berecz Armand</p>
                 </div>
             </div>
             <div class="MemberRow">
                 <div class="Member">
                     <img src="./Images/Oliver.jpg">
                     <p>NEPTUN: JW8DEC</p>
-                    <p>Varga Olivér</p>
+                    <p>Név: Varga Olivér</p>
                 </div>
                 <div class="Member">
                     <img src="./Images/Noname.jpg">
                     <p>NEPTUN: ------</p>
-                    <p>Bernáth Krisztián</p>
+                    <p>Név: Reserved Space</p>
                 </div>
+            </div>
+
+        </div>
+        <div id="DetailContainer">
+            <h1>TEAMWORK STRUCTURE</h1>
+            <table id="WorkTable">
+                <tr>
+                    <td>Nev</td>
+                    <td>NEPTUN</td>
+                    <td>Munka%</td>
+                </tr>
+                <tr>
+                    <td>Kukk Kristof</td>
+                    <td>P2MZHY</td>
+                    <td>25%</td>
+                </tr>
+                <tr>
+                    <td>Korik Edina</td>
+                    <td>GDVK5H</td>
+                    <td>25%</td>
+                </tr>
+                <tr>
+                    <td>Berecz Armand</td>
+                    <td>TGH21X</td>
+                    <td>25%</td>
+                </tr>
+                <tr>
+                    <td>Varga Oliver</td>
+                    <td>JW8DEC</td>
+                    <td>25%</td>
+                </tr>
+                <tr>
+                    <td>Reserved Space</td>
+                    <td>------</td>
+                    <td>0%</td>
+                </tr>
+                <tr>
+                    <td>Osszesitett</td>
+                    <td style="background-color: #00000000;"></td>
+                    <td>100%</td>
+                </tr>
+            </table>
+            <h1>PROJECT STRUCTURE</h1>
+            <div id="ReferencesContainer">
+                <div id="ReferenceSlider">
+                    <div class="SliderElement"></div>
+                    <div class="SliderElement"></div>
+                </div>
+                <button onclick="flip()">ads</button>
             </div>
         </div>
     </div>

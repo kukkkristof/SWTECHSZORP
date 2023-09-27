@@ -1,44 +1,49 @@
 body{
+    display: flex;
     margin: 0 0 0 0;
     background-color: #643f29;
     font-family: Bahnschrift;
 }
-
 #PageContainer
 {
-    aspect-ratio: 16 / 9;
+    background-color: #00000080;
+    width: 100vw;
 }
-
 #MemberContainer
 {
+    padding: 1vw;
     background-color: #00000080;
     width: 80vh;
     border-radius: 2vw;
-    aspect-ratio: 1;
+    aspect-ratio: 1 / 1.1;
     margin: 2vh auto 2vh auto;
     overflow: hidden;
     display: block;
 }
-
-
+#MemberContainer h1
+{
+    text-align: center;
+    outline: black;
+    margin: 1vh 0 0 0;
+    font-size: 7vh;
+    color: white;
+}
 .MemberRow
 {
     margin: 2.5% 0 2.5% 0;
-    height: 46.25%;
+    height: 42%;
     display: flex;
 }
-
 .Member
 {
     margin: auto;
     width: 30%;
     height: 100%;
-    border-radius: 1vw;
+    border-radius: 0.75vw;
     text-align: center;
-    background-color: beige;
+    background-color: #f5f5dc60 ;
     overflow: hidden;
 }
-
 .Member img
 {
     border-bottom: 10vh blue;
@@ -51,10 +56,93 @@ body{
     font-size: 2.5vh;
     color: black;
 }
-
-
 .Header
 {
     height: 10vh;
     background-color: navajowhite;
+}
+#DetailContainer
+{
+    margin: 5% 0 1vh 5%;
+    background-color: #ffffff40;
+    border-radius: 1vw;
+    width: 90%;
+    aspect-ratio: 1 / 10;
+    padding-top: 0.4vh;
+}
+#DetailContainer h1
+{
+    font-size: 15vh;
+    text-align: center;
+    color: white;
+    filter: drop-shadow(-9px 10px 0 black);
+    font-weight: bolder;
+    letter-spacing: 1vw;
+}
+#WorkTable
+{
+    border-radius: 2vh;
+    width: 90%;
+    margin: auto;
+    aspect-ratio: 3 / 1;
+    border: #f5f5ff solid;
+    border-spacing: 0;
+
+}
+#WorkTable tr{
+    height: 10%;
+    text-align: center;
+}
+#WorkTable td{
+    font-size: 3vh;
+    width: 33%;
+}
+#WorkTable tr:nth-child(1) td
+{
+    border-bottom: 0.2vw solid white;
+}
+#WorkTable tr:nth-child(even)
+{
+    background-color: #000000a0;
+    color: white;
+}
+#WorkTable tr:nth-child(odd)
+{
+    background-color: #00000020;
+}
+#WorkTable tr:nth-child(1)
+{
+    font-weight: bolder;
+}
+#ReferencesContainer
+{
+    width: 100%;
+    height: 90vh;
+    border-top: 1vh dashed black;
+    overflow: hidden;
+    border-bottom: 1vh dashed black;
+}
+#ReferenceSlider
+{
+    display: flex;
+    position: relative;
+    height: 90%;
+    left: 0%;
+    background-color: #00000050;
+    width: 200%;
+    transition: all linear 0.5s;
+}
+
+.SliderElement
+{
+    width: 50%;
+    height: 100%;
+}
+.SliderElement:nth-child(1)
+{
+    background-color: #ff000020;
+}
+.SliderElement:nth-child(2)
+{
+    background-color: #00ff0020;
 }
