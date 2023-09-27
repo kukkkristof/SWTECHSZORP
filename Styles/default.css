@@ -1,21 +1,40 @@
 body{
     display: flex;
     margin: 0 0 0 0;
-    background-color: #643f29;
+    background-color: #3b2518;
     font-family: Bahnschrift;
+    user-select: none;
 }
 #PageContainer
 {
-    background-color: #00000080;
+    overflow: hidden;
     width: 100vw;
 }
+
+.Header
+{
+    z-index: -1;
+    height: 10vh;
+    background-color: navajowhite;
+}
+.Header #ChocolateFlow
+{
+    z-index: -1;
+    position: relative;
+    top: 100%;
+    width: 110%;
+    left: -5%;
+    height: 100%;
+    background-color: transparent;
+}
+
 #MemberContainer
 {
     padding: 1vw;
     background-color: #00000080;
     width: 80vh;
     border-radius: 2vw;
-    aspect-ratio: 1 / 1.1;
+    aspect-ratio: 1 / 1.12;
     margin: 2vh auto 2vh auto;
     overflow: hidden;
     display: block;
@@ -53,14 +72,11 @@ body{
 }
 .Member p
 {
+    margin-top: 0.4vh;
     font-size: 2.5vh;
     color: black;
 }
-.Header
-{
-    height: 10vh;
-    background-color: navajowhite;
-}
+
 #DetailContainer
 {
     margin: 5% 0 1vh 5%;
@@ -85,8 +101,9 @@ body{
     width: 90%;
     margin: auto;
     aspect-ratio: 3 / 1;
-    border: #f5f5ff solid;
+    border: 0.2vw solid navajowhite;
     border-spacing: 0;
+    background-color: #00000030;
 
 }
 #WorkTable tr{
@@ -95,20 +112,43 @@ body{
 }
 #WorkTable td{
     font-size: 3vh;
-    width: 33%;
+}
+#WorkTable td:nth-child(1)
+{
+    width: 20%;
+}
+#WorkTable td:nth-child(1)
+{
+    width: 20%;
+}
+#WorkTable tr:nth-child(7) td
+{
+    border-top: 1vh solid navajowhite;
+    border-right: none;
+}
+#WorkTable tr:nth-child(7) td:nth-child(1)
+{
+    text-align: center;
+    font-weight: bolder;
+    border-right: 1vh solid navajowhite;
+}
+#WorkTable tr td:nth-child(1)
+{
+    padding-left: 1vw;
+    text-align: left;
+}
+#WorkTable td:nth-child(3)
+{
+    border-right: 0.5vw solid navajowhite;
 }
 #WorkTable tr:nth-child(1) td
 {
-    border-bottom: 0.2vw solid white;
+    border-bottom: 0.2vw solid navajowhite;
 }
 #WorkTable tr:nth-child(even)
 {
     background-color: #000000a0;
     color: white;
-}
-#WorkTable tr:nth-child(odd)
-{
-    background-color: #00000020;
 }
 #WorkTable tr:nth-child(1)
 {
@@ -126,23 +166,51 @@ body{
 {
     display: flex;
     position: relative;
-    height: 90%;
+    height: 100%;
     left: 0%;
     background-color: #00000050;
-    width: 200%;
-    transition: all linear 0.5s;
+    width: 400%;
+    transition: all ease-in-out 0.3s;
 }
-
+.SliderButton{
+    background-color: transparent;
+    margin-top: 40vh;
+    position: absolute;
+    z-index: 2;
+    border: none;
+    height: 10vh;
+    text-align: center;
+    font-size: 5vh;
+    aspect-ratio: 1;
+    transition: all ease-in-out 0.25s;
+    color: white;
+}
+.SliderButtonLeft{
+    border-radius: 0 100% 100% 0;
+}
+.SliderButtonRight{
+    right: 5%;
+    border-radius: 100% 0 0 100%;
+}
+.SliderButton:hover
+{
+    background-color: #00000040;
+}
+.SliderButton:active
+{
+    background-color: #00000050;
+    transition: all ease-in-out 0.1s;
+}
 .SliderElement
 {
-    width: 50%;
+    width: 25%;
     height: 100%;
 }
-.SliderElement:nth-child(1)
+.SliderElement:nth-child(odd)
 {
     background-color: #ff000020;
 }
-.SliderElement:nth-child(2)
+.SliderElement:nth-child(even)
 {
     background-color: #00ff0020;
 }
