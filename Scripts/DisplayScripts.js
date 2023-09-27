@@ -1,24 +1,41 @@
 var sliderPosition = 0;
 var sliderMinimum = 0;
+var sliderMaximum;
 function SlideLeft()
 {
     if(sliderPosition != sliderMinimum) {
         sliderPosition += 100;
-        document.getElementById("ReferenceSlider").style = "left: " + sliderPosition + "%;re";
-
     }
+    else
+    {
+        sliderPosition = document.getElementById("ReferenceSlider").children.length * -100 +100;
+    }
+    document.getElementById("ReferenceSlider").style.left = sliderPosition + "%";
+    document.getElementById("ReferenceSlider").style.filter = "blur(0.2vw)";
+    setTimeout(()=>{
+        document.getElementById("ReferenceSlider").style.filter = "blur(0vw)"
+    }, 500);
 }
 
 function SlideRight()
 {
-    if(sliderPosition-100 != document.getElementById("ReferenceSlider").children.length * -100) {
+    if(sliderPosition-100 != sliderMaximum) {
         sliderPosition -= 100;
-        document.getElementById("ReferenceSlider").style = "left: " + sliderPosition + "%;re";
     }
+    else
+    {
+        sliderPosition = 0;
+    }
+    document.getElementById("ReferenceSlider").style.left = sliderPosition + "%";
+    document.getElementById("ReferenceSlider").style.filter = "blur(0.2vw)";
+    setTimeout(()=>{
+        document.getElementById("ReferenceSlider").style.filter = "blur(0vw)"
+    }, 500);
 }
 
 function drawChocolateWave()
 {
+    sliderMaximum = document.getElementById("ReferenceSlider").children.length * -100;
     var canvas = document.getElementById("ChocolateFlow");
     var ctx = canvas.getContext("2d");
     var width = ctx.canvas.width;
@@ -30,8 +47,8 @@ function drawChocolateWave()
 
     var x = 0;
     var y = 0;
-    var amplitude = 10;
-    var frequency = 6;
+    var amplitude = 40;
+    var frequency = 10;
     ctx.moveTo(x, y);
     while (x < width) {
         y = height/2 + amplitude * Math.sin(x/frequency);

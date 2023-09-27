@@ -7,14 +7,17 @@ body{
 }
 #PageContainer
 {
+    margin: auto;
     overflow: hidden;
-    width: 100vw;
+    width: min(1920px, 100vw);
+    border-left: 1vw solid navajowhite;
+    border-right: 1vw solid navajowhite;
 }
 
 .Header
 {
     z-index: -1;
-    height: 10vh;
+    height: 13vh;
     background-color: navajowhite;
 }
 .Header #ChocolateFlow
@@ -35,7 +38,7 @@ body{
     width: 80vh;
     border-radius: 2vw;
     aspect-ratio: 1 / 1.12;
-    margin: 2vh auto 2vh auto;
+    margin: 13vh auto 2vh auto;
     overflow: hidden;
     display: block;
 }
@@ -79,88 +82,59 @@ body{
 
 #DetailContainer
 {
-    margin: 5% 0 1vh 5%;
+    margin: 7% 0 3vh 5%;
     background-color: #ffffff40;
     border-radius: 1vw;
     width: 90%;
-    aspect-ratio: 1 / 10;
-    padding-top: 0.4vh;
+    height: fit-content;
+    padding-bottom: 3vh;
+    padding-top: 0.2vh;
 }
 #DetailContainer h1
 {
-    font-size: 15vh;
+    font-size: 11vh;
     text-align: center;
     color: white;
-    filter: drop-shadow(-9px 10px 0 black);
+    filter: drop-shadow(-0.3vw 0.3vw 0 black);
     font-weight: bolder;
     letter-spacing: 1vw;
 }
-#WorkTable
-{
-    border-radius: 2vh;
-    width: 90%;
-    margin: auto;
-    aspect-ratio: 3 / 1;
-    border: 0.2vw solid navajowhite;
-    border-spacing: 0;
-    background-color: #00000030;
 
-}
-#WorkTable tr{
-    height: 10%;
+#WorkTable{
+    width: 100%;
+    font-size: 1.2vw;
+    aspect-ratio: 1 / 0.4;
+    border-spacing: 0;
     text-align: center;
 }
-#WorkTable td{
-    font-size: 3vh;
-}
-#WorkTable td:nth-child(1)
+#WorkTable td:first-child
 {
-    width: 20%;
-}
-#WorkTable td:nth-child(1)
-{
-    width: 20%;
-}
-#WorkTable tr:nth-child(7) td
-{
-    border-top: 1vh solid navajowhite;
-    border-right: none;
-}
-#WorkTable tr:nth-child(7) td:nth-child(1)
-{
-    text-align: center;
-    font-weight: bolder;
-    border-right: 1vh solid navajowhite;
-}
-#WorkTable tr td:nth-child(1)
-{
-    padding-left: 1vw;
+    border-radius: 0 0 0 2vw;
     text-align: left;
+    padding-left: 1vw;
 }
-#WorkTable td:nth-child(3)
+#WorkTable td:last-child
 {
-    border-right: 0.5vw solid navajowhite;
+    border-radius: 0 2vw 0 0;
 }
-#WorkTable tr:nth-child(1) td
-{
-    border-bottom: 0.2vw solid navajowhite;
-}
-#WorkTable tr:nth-child(even)
-{
-    background-color: #000000a0;
+#WorkTable tr:nth-child(odd) td {
+    background-color: #00000050;
     color: white;
 }
-#WorkTable tr:nth-child(1)
-{
+#WorkTable tr:first-child td{
+    background-color: navajowhite;
     font-weight: bolder;
+    color: black;
 }
+
 #ReferencesContainer
 {
     width: 100%;
-    height: 90vh;
+    height: 70vh;
     border-top: 1vh dashed black;
     overflow: hidden;
     border-bottom: 1vh dashed black;
+    position: relative;
 }
 #ReferenceSlider
 {
@@ -168,17 +142,16 @@ body{
     position: relative;
     height: 100%;
     left: 0%;
-    background-color: #00000050;
     width: 400%;
-    transition: all ease-in-out 0.3s;
+    transition: all ease-in-out 1s;
 }
 .SliderButton{
     background-color: transparent;
-    margin-top: 40vh;
     position: absolute;
     z-index: 2;
+    top: 42.5%;
     border: none;
-    height: 10vh;
+    height: 15%;
     text-align: center;
     font-size: 5vh;
     aspect-ratio: 1;
@@ -189,7 +162,7 @@ body{
     border-radius: 0 100% 100% 0;
 }
 .SliderButtonRight{
-    right: 5%;
+    right: 0;
     border-radius: 100% 0 0 100%;
 }
 .SliderButton:hover
@@ -206,11 +179,38 @@ body{
     width: 25%;
     height: 100%;
 }
-.SliderElement:nth-child(odd)
-{
-    background-color: #ff000020;
+
+.SliderElement h2{
+    font-size: 7.5vh;
+    color: white;
+    width: fit-content;
+    margin: 3vh auto 6vh auto;
+    filter: drop-shadow(0.4vh 0.3vh 0 red)
+            drop-shadow(-0.4vh 0.3vh 0 cyan);
 }
-.SliderElement:nth-child(even)
-{
-    background-color: #00ff0020;
+
+.SliderElement ol{
+    margin: auto;
+    color: white;
+    width: 60%;
+    font-size: 2.5vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    background-color: #3b251830;
+    border-radius: 2vh;
+    border: 0.1vh solid black;
+    transition: all ease-in-out 0.2s;
+}
+.SliderElement ol:hover {
+    background-color: #3b251880;
+}
+.SliderElement .SideParagraph{
+    font-size: 200%;
+    text-align: justify;
+    margin: auto;
+    width: 40%;
+    background-color: transparent;
+    padding: 2vh 1vw 2vh 1vw;
+    border-top: 0.5vh solid black;
+    border-bottom: 0.5vh solid black;
 }
