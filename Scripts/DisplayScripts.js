@@ -1,62 +1,23 @@
-var sliderPosition = 0;
-var sliderMinimum = 0;
-var sliderMaximum;
-function SlideLeft()
+let slideMaximum, slideMinimum, slideCurrent;
+let slider;
+function Slide(dir)
 {
-    if(sliderPosition != sliderMinimum) {
-        sliderPosition += 100;
-    }
-    else
-    {
-        sliderPosition = document.getElementById("ReferenceSlider").children.length * -100 +100;
-    }
-    document.getElementById("ReferenceSlider").style.left = sliderPosition + "%";
-    document.getElementById("ReferenceSlider").style.filter = "blur(0.2vw)";
-    setTimeout(()=>{
-        document.getElementById("ReferenceSlider").style.filter = "blur(0vw)"
-    }, 500);
+    let slideTo = slideCurrent + dir;
+    slideTo = slideTo<slideMinimum?slideMaximum:slideTo;
+    slideTo = slideTo>slideMaximum?slideMinimum:slideTo;
+
+    slideCurrent = slideTo;
+
+    slideTo *= -100 / (slideMaximum+1);
+
+    slider.style = "transform: translateX("+ slideTo + "%);";
+
 }
 
-function SlideRight()
+function loadPage()
 {
-
-    sliderMaximum = document.getElementById("ReferenceSlider").children.length * -100;
-    if(sliderPosition-100 != sliderMaximum) {
-        sliderPosition -= 100;
-    }
-    else
-    {
-        sliderPosition = 0;
-    }
-    document.getElementById("ReferenceSlider").style.left = sliderPosition + "%";
-    document.getElementById("ReferenceSlider").style.filter = "blur(0.2vw)";
-    setTimeout(()=>{
-        document.getElementById("ReferenceSlider").style.filter = "blur(0vw)"
-    }, 500);
-}
-
-function drawChocolateWave()
-{
-    var canvas = document.getElementById("ChocolateFlow");
-    var ctx = canvas.getContext("2d");
-    var width = ctx.canvas.width;
-    var height = ctx.canvas.height;
-
-    ctx.beginPath();
-    ctx.lineWidth = 3;
-    ctx.fillStyle = "rgb(255, 222, 173)";
-
-    var x = 0;
-    var y = 0;
-    var amplitude = 20;
-    var frequency = 10;
-    ctx.moveTo(x, y);
-    while (x < width) {
-        y = height/2 + amplitude * Math.sin(x/frequency);
-        ctx.lineTo(x, y);
-        x = x + 1;
-    }
-    ctx.lineTo(width, 0)
-    ctx.fill();
-    ctx.restore();
+    slider = document.getElementById("ReferenceSlider");
+    slideMinimum = 0;
+    slideMaximum = slider.children.length-1;
+    slideCurrent = 0;
 }
