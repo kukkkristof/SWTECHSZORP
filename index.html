@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="Styles/default.css">
     <script src="Scripts/DisplayScripts.js"> </script>
 </head>
-<body onload="drawChocolateWave()">
+<body onload="loadPage()">
 
     <div id="PageContainer">
 
@@ -112,8 +112,8 @@
             </table>
             <h1>PROJECT STRUCTURE</h1>
             <div id="ReferencesContainer">
-                <button onclick="SlideLeft()" class="SliderButton SliderButtonLeft">⇐</button>
-                <button onclick="SlideRight()" class="SliderButton SliderButtonRight">⇒</button>
+                <button onclick="Slide(-1)" class="SliderButton SliderButtonLeft">⇐</button>
+                <button onclick="Slide(1)" class="SliderButton SliderButtonRight">⇒</button>
                 <div id="ReferenceSlider">
                     <div class="SliderElement">
                         <h2>
@@ -145,6 +145,21 @@
                             and for the version control
                             <a href="https://github.com/kukkkristof/SWTECHSZORP/tree/main" target="_blank">Git</a>.
                         </p>
+                    </div>
+                    <div class="SliderElement">
+                        <h2>
+                            DEVELOPMENT PLAN
+                        </h2>
+                        <ol>
+                            <li>2023. 09. 18. Team organization, discussion about the possible consultation appointments</li>
+                            <li>2023. 09. 29. Consultation about the beta version and its properties</li>
+                            <li>2023. 09. 29. Exact definition and distribution of the tasks </li>
+                            <li>2023. 10. 20. The making and testing of the beta version</li>
+                            <li>Consultation about the other possible functions and details of the program</li>
+                            <li>Making these as necessary, possible refinements in appearance</li>
+                            <li>Publishing the game, making a surface/giving contact information for giving feedback</li>
+                            <li>Development, bug fixing</li>
+                        </ol>
                     </div>
                 </div>
 
