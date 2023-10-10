@@ -19,6 +19,8 @@ function SlideLeft()
 
 function SlideRight()
 {
+
+    sliderMaximum = document.getElementById("ReferenceSlider").children.length * -100;
     if(sliderPosition-100 != sliderMaximum) {
         sliderPosition -= 100;
     }
@@ -35,7 +37,6 @@ function SlideRight()
 
 function drawChocolateWave()
 {
-    sliderMaximum = document.getElementById("ReferenceSlider").children.length * -100;
     var canvas = document.getElementById("ChocolateFlow");
     var ctx = canvas.getContext("2d");
     var width = ctx.canvas.width;
@@ -47,7 +48,7 @@ function drawChocolateWave()
 
     var x = 0;
     var y = 0;
-    var amplitude = 40;
+    var amplitude = 20;
     var frequency = 10;
     ctx.moveTo(x, y);
     while (x < width) {
