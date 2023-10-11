@@ -1,0 +1,71 @@
+#MemberContainer
+{
+    display: block;
+    width: 100%;
+    max-width: 1500px;
+    aspect-ratio: 2/1;
+    min-height: 500px;
+    max-height: 1000px;
+    margin: auto;
+    overflow: hidden;
+    background-color: #00000080;
+}
+
+#MemberContainer h1
+{
+    width: 100%;
+    text-align: center;
+    margin: 1% 0 1% 0;
+    font-size: clamp(3rem, 10vw, 7rem);
+}
+
+.MemberRowContainer
+{
+    display: flex;
+    width: fit-content;
+    animation: flow linear 60s infinite;
+    height: 80%;
+    overflow: hidden;
+}
+
+@keyframes flow {
+    from
+    {
+        transform: translateX(0%);
+    }
+    to
+    {
+        transform: translateX(-50%);
+    }
+}
+
+.MemberRow
+{
+    display: flex;
+    width: fit-content;
+    height: 100%;
+    overflow: hidden;
+}
+
+.Member
+{
+    overflow: hidden;
+    height: 100%;
+    aspect-ratio: 7/10;
+    min-width: 200px;
+    margin: 0 1% 0 1%;
+}
+
+.Member img
+{
+    width: 100%;
+    border-radius: 10% 10% 0 0;
+    aspect-ratio: 1;
+    object-fit: cover;
+}
+
+.Member p
+{
+    font-size: clamp(1.3rem,1.5vw,3rem);
+    text-align: center;
+}
