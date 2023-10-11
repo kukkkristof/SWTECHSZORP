@@ -16,8 +16,10 @@ function Slide(dir)
 
 function loadPage()
 {
-    slider = document.getElementById("ReferenceSlider");
+    slider = document.getElementById("Slider");
     slideMinimum = 0;
     slideMaximum = slider.children.length-1;
     slideCurrent = 0;
+
+
 }

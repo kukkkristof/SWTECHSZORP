@@ -1,0 +1,43 @@
+#WorkTable{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 0.1vw solid white;
+    padding: 0.5%;
+    font-size: clamp(0.8rem,2vw,4rem);
+    max-width: 1800px;
+    aspect-ratio: 1 / 0.35;
+    border-spacing: 0;
+    text-align: left;
+}
+#WorkTable td:first-child
+{
+    border-radius: 0 0 0 2vw;
+    padding-left: 1vw;
+}
+
+#WorkTable td:last-child
+{
+    border-radius: 0 2vw 0 0;
+    padding-left: 1vw;
+}
+
+#WorkTable td:nth-child(2)
+{
+    border-left: 0.1vw solid black;
+    border-right: 0.1vw solid black;
+    text-align: center;
+}
+
+#WorkTable tr:nth-child(odd) td {
+    background-color: #00000050;
+    color: white;
+}
+
+#WorkTable tr:first-child td{
+    background-color: navajowhite;
+    font-weight: bolder;
+    color: black;
+    text-align: center;
+    padding-right: 1vw;
+}
