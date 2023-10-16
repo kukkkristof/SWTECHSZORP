@@ -16,7 +16,7 @@
     overflow: hidden;
 
     width: 100%;
-    height: 60vh;
+    height: max-content;
 
     border-top: 0.4vw solid black;
     border-bottom: 0.4vw solid black;
@@ -25,18 +25,19 @@
     padding-bottom: 1vh;
 
     position: relative;
-    margin-bottom: 2vw;
+    margin-bottom: 1%;
 }
 
 .SliderButton
 {
-    font-size: 3rem;
+    color: white;
+    font-size: clamp(1rem, 2.5vw,3rem);
 
     position: absolute;
 
     bottom: 0;
     height: 20%;
-    aspect-ratio: 2/3;
+    aspect-ratio: 1;
 
     border: none;
 
@@ -56,7 +57,7 @@
 
 .SliderButton:active
 {
-    aspect-ratio: 1;
+    aspect-ratio: 2/3;
     background-color: #00000080;
     color: white;
 }
@@ -67,7 +68,6 @@
 
 #Slider
 {
-    width: 300%;
     height: 100%;
     display: flex;
     overflow: hidden;
@@ -85,7 +85,7 @@
 .SliderElement h2
 {
     margin-top: 0;
-    font-size: clamp(2rem, 3vw, 9rem);
+    font-size: clamp(2rem, 3vw, 6rem);
     border-bottom: solid navajowhite 0.2vw;
 }
 

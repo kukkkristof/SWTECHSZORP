@@ -1,0 +1,29 @@
+#DistributionTable
+{
+    margin: auto;
+    width: 90%;
+    aspect-ratio: 9/3;
+    background-color: #00000050;
+    text-align: center;
+    border-spacing: 0;
+    border-radius: 2vw;
+    overflow: hidden;
+    font-size: clamp(0.5rem,2vw,5rem);
+}
+#DistributionTable tr:last-child td
+{
+    border-top: 0.1vw solid white;
+}
+
+#DistributionTable tr:first-child td
+{
+    border-bottom: 0.1vw solid white;
+}
+#DistributionTable tr{
+    transition: all 0.5s ease-out;
+}
+#DistributionTable tr:hover
+{
+    background-color: #ffffff20;
+    transition: all 0.1s ease-in-out;
+}

@@ -10,15 +10,17 @@ function Slide(dir)
 
     slideTo *= -100 / (slideMaximum+1);
 
-    slider.style = "transform: translateX("+ slideTo + "%);";
+    slider.style.transform = "translateX("+ slideTo + "%)";
 
 }
 
 function loadPage()
 {
     slider = document.getElementById("Slider");
+
     slideMinimum = 0;
     slideMaximum = slider.children.length-1;
+    slider.style.width = (slideMaximum+1) * 100 + "%";
     slideCurrent = 0;
 
 

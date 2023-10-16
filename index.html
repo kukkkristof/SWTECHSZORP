@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="Styles/MainPageCSS/Member.css">
     <link rel="stylesheet" href="Styles/MainPageCSS/Worktable.css">
     <link rel="stylesheet" href="Styles/MainPageCSS/H1.css">
+    <link rel="stylesheet" href="Styles/MainPageCSS/Distribution.css">
+    <link rel="stylesheet" href="Styles/MainPageCSS/Documenttable.css">
+
     <script src="Scripts/DisplayScripts.js"> </script>
 </head>
 <body onload="loadPage()">
@@ -105,44 +108,44 @@
                     <td>RESPONSIBILITIES</td>
                 </tr>
                 <tr>
-                    <td>Kukk Kristof</td>
+                    <td>Kukk Kristóf</td>
                     <td>P2MZHY</td>
-                    <td>Leader, Webpage, Programming</td>
+                    <td>Webpage, Programming</td>
                 </tr>
                 <tr>
-                    <td>Korik Edina</td>
+                    <td>Kórik Edina</td>
                     <td>GDVK5H</td>
-                    <td>Storyboard, Documentation</td>
+                    <td>Story, Documentation</td>
                 </tr>
                 <tr>
                     <td>Berecz Armand</td>
                     <td>TGH21X</td>
-                    <td>Documentation</td>
+                    <td>Documentation, Planning</td>
                 </tr>
                 <tr>
-                    <td>Varga Oliver</td>
+                    <td>Varga Olivér</td>
                     <td>JW8DEC</td>
                     <td>Music, Programming</td>
                 </tr>
                 <tr>
                     <td>Balogh Dávid</td>
                     <td>HPQ9EO</td>
-                    <td>Nothing and everything</td>
+                    <td>Programming, Documentation</td>
                 </tr>
             </table>
             <h1>PROJECT STRUCTURE</h1>
             <div id="H1Container">
-                <button onclick="Slide(-1)" class="SliderButton SliderButtonLeft">⇐</button>
-                <button onclick="Slide(1)" class="SliderButton SliderButtonRight">⇒</button>
+                <button onclick="Slide(-1)" class="SliderButton SliderButtonLeft">◀</button>
+                <button onclick="Slide(1)" class="SliderButton SliderButtonRight">▶</button>
                 <div id="Slider">
 
                     <div class="SliderElement">
                         <h2>
                             DEVELOPMENT PLAN
                         </h2>
-                        <ol>
+                        <ul>
                             <li>
-                                Team organization, setting up weekly meetings, discussion about the basics of the project.
+                                Team organization, setting up weekly meetings, discussion about the basics of the project
                             </li>
 
                             <li>
@@ -150,9 +153,18 @@
                             </li>
 
                             <li>
-                                Welcoming the new teammates to the group, Dávid and Armand, and making them aware of the scopes the project has, and consultation about said project.
+                                Welcoming the new teammates to the group, Dávid and Armand, and making them aware of the scopes the project has, and consultation about said project
                             </li>
-                        </ol>
+
+                            <li>
+                                Starting to develop the game, creating basics (character controller, generic systems like inventory, etc.)
+                            </li>
+
+                            <li>
+                                Implementing new ideas, and continuing with the basics of the game
+                            </li>
+
+                        </ul>
                     </div>
 
                     <div class="SliderElement">
@@ -188,7 +200,126 @@
                         <h2>
                             WORK DISTRIBUTION TABLE
                         </h2>
+                        <table id="DistributionTable">
+                            <tr>
+                                <td>NAME</td>
+                                <td>H1</td>
+                                <td>H2</td>
+                                <td>H3</td>
+                                <td>H4</td>
+                                <td>H5</td>
+                            </tr>
+                            <tr>
+                                <td>Kukk Kristóf</td>
+                                <td>20%</td>
+                                <td>20%</td>
+                                <td>---</td>
+                                <td>---</td>
+                                <td>---</td>
+                            </tr>
+                            <tr>
+                                <td>Kórik Edina</td>
+                                <td>20%</td>
+                                <td>20%</td>
+                                <td>---</td>
+                                <td>---</td>
+                                <td>---</td>
+                            </tr>
+                            <tr>
+                                <td>Berecz Armand</td>
+                                <td>20%</td>
+                                <td>20%</td>
+                                <td>---</td>
+                                <td>---</td>
+                                <td>---</td>
+                            </tr>
+                            <tr>
+                                <td>Varga Olivér</td>
+                                <td>20%</td>
+                                <td>20%</td>
+                                <td>---</td>
+                                <td>---</td>
+                                <td>---</td>
+                            </tr>
+                            <tr>
+                                <td>Balogh Dávid</td>
+                                <td>20%</td>
+                                <td>20%</td>
+                                <td>---</td>
+                                <td>---</td>
+                                <td>---</td>
+                            </tr>
+                            <tr>
+                                <td>SUM</td>
+                                <td>100%</td>
+                                <td>100%</td>
+                                <td>100%</td>
+                                <td>100%</td>
+                                <td>100%</td>
+                            </tr>
+                        </table>
+                    </div>
 
+                    <div class="SliderElement">
+                        <h2>
+                            RESOURCES
+                        </h2>
+                        <p>
+                            The game got inspiration from the movie titled
+                            <a href="https://www.imdb.com/title/tt1790864/" target="_blank">"The Maze Runner"</a>
+                        </p>
+                        <p>
+                            C# =>
+                            <a href="https://learn.microsoft.com/en-us/dotnet/csharp/" target="_blank">The published documentation</a>
+                        </p>
+                        <p>
+                            Webpage =>
+                            <a href="https://www.w3schools.com/" target="_blank">W3Schools</a>,
+                            <a href="https://stackoverflow.com/" target="_blank">Stack Overflow</a>
+                        </p>
+                    </div>
+
+                    <div class="SliderElement">
+                        <h2>
+                            TESTING PHASE
+                        </h2>
+                        <p>
+                            Phase 1(Development testing): Only the developers of the game have access to the very early stages of the game
+                        </p>
+                        <p>
+                            Phase 2(Closed alpha testing): The people who were following the project get a copy of the game to try out and leave feedback from bugs, and missing features
+                        </p>
+                        <p>
+                            Pase 3(Open beta testing): We will release a publicly available demo of the game, where most features are unlocked, and anyone can try it out and leave feedback
+                        </p>
+                        <p>
+                            Pase 4(Release): Even after release there might be bugs which weren't noticed before, so we are eager to fix any problem that comes up with new updates or the base game itself
+                        </p>
+                    </div>
+
+                    <div class="SliderElement">
+                        <h2>
+                            DOCUMENTS
+                        </h2>
+                        <table id="DocumentTable">
+                            <tr>
+                                <td>
+                                    Release date
+                                </td>
+                                <td>
+                                    Document name
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    2023. 10. 19.
+                                </td>
+                                <td>
+                                    <a href="Other%20Pages/Vision.html" target="_blank">Vision document</a>
+                                </td>
+                            </tr>
+                        </table>
+                        <p>You can view the document by clicking on its name*</p>
                     </div>
 
                 </div>
