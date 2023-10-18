@@ -1,0 +1,108 @@
+#PageContainer{
+    padding-bottom: 1%;
+}
+
+h1
+{
+    transition: all 1s ease-out;
+    width: fit-content;
+    font-size: clamp(2.4rem,4vw,3.2rem);
+}
+
+h2
+{
+    margin-left: 2%;
+    transition: all 1s ease-out;
+    width: fit-content;
+    font-size: clamp(1.6rem,2.6vw,2.2rem);
+}
+
+h1:hover, h2:hover
+{
+    text-decoration: underline 0.1vw white;
+}
+.hidden
+{
+    opacity: 0;
+    transform: translateX(-10%);
+    filter: blur(5px);
+    transition: all 1s;
+}
+.show
+{
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateX(3%);
+    display: grid;
+
+}
+
+table
+{
+    margin-left: 6%;
+
+    width: fit-content;
+    max-width: 86%;
+
+    font-size: clamp(1rem, 1.4vw, 5rem);
+
+    border-spacing: 0;
+}
+tr:first-child td
+{
+    text-align: center;
+}
+td{
+    padding: 1vw;
+    border: 0.1vw solid white;
+}
+
+p
+{
+    margin-left: 6%;
+
+    width: 88%;
+
+    font-size: clamp(1rem, 1.4vw, 5rem);
+
+    text-align: justify;
+}
+
+li
+{
+    margin-left: 8%;
+
+    width: 84%;
+
+    font-size: clamp(1rem, 1.4vw, 5rem);
+
+    text-align: justify;
+}
+
+
+.wrapper
+{
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.5s ease-in-out;
+}
+
+.textContainer
+{
+    pointer-events: none;
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
+}
+
+.visible
+{
+    opacity: 1;
+    filter: blur(0px);
+}
+
+.invisible
+{
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateX(-100%);
+}
