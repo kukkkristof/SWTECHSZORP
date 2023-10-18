@@ -2,7 +2,7 @@
 {
     margin: auto;
     width: 90%;
-    font-size: clamp(0.5rem,2vw,5rem);
+    font-size: clamp(1rem,2vw,5rem);
     border-spacing: 1vw;
     text-align: center;
 }
