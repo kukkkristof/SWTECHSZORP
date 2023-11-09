@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SRS</title>
+
+    <script defer src="../Scripts/Vision.js"></script>
+
+    <link rel="stylesheet" href="../Styles/default.css" type="text/css">
+    <link rel="stylesheet" href="../Styles/H2/VisionTexts.css" type="text/css">
+
+</head>
+<body>
+<div id="PageContainer">
+    <div class="Header"></div>
+
+
+    <section class="hidden">
+        <h1 onclick="toggleElement('S1')">1. Introduction</h1>
+    </section>
+
+    <div class="wrapper">
+        <div class="invisible textContainer" id="S1">
+            <p>The SZÖRP game is a survival, story, and an adventure game in one. The player will be put in a field and will be required to survive and/or escape the maze surrounding the survival zone. It is set in an imaginary universe with a great story that will be immersive to all those who play it.</p>
+            <p>In this documentation the reader will get information about the process of making the game.</p>
+        </div>
+    </div>
+
+    <section class="hidden">
+        <h1 onclick="toggleElement('S2')">2. Overview</h1>
+    </section>
+
+    <div class="wrapper">
+        <div class="invisible textContainer" id="S2">
+            <p>The game will be available on PC, and Android. And will have different type of game modes to accompany every type of gamer. We chose this idea since not many if any games are made to be like this, so it will be quite a unique experience.</p>
+            <p>Content summary:</p>
+            <ul>
+                <li>Environment of the game</li>
+                <li>Most important functions</li>
+                <li>Users</li>
+                <li>Limitations</li>
+                <li>Dependencies</li>
+            </ul>
+        </div>
+    </div>
+
+
+
+    <section class="hidden">
+        <h1 onclick="toggleElement('S3')">3. Specific Requirements</h1>
+    </section>
+
+    <div class="wrapper">
+        <div class="invisible textContainer" id="S3">
+            <ol>
+                <p>For the game it is required that the player has Windows 7 (or newer) installed on their computer, or Android 10 (or newer) on their phone and it should be able to work at speeds that random generations won’t throttle the CPU to its limits for performance issues since there will not be lag spikes every ongoing in-game day.</p>
+            </ol>
+        </div>
+    </div>
+
+    <section class="hidden">
+
+
+       <h2 onclick="toggleElement('S3C1')">3.1. PC requirements</h2>
+
+       <div class="wrapper">
+           <div class="invisible textContainer" id="S3C1">
+               <ol>
+                   <li>Windows 7 or newer</li>
+                   <li>A processor with multiple threads, and at least 2 cores</li>
+                   <li>Regarding the GPU, integrated graphics is enough to play the game, however in custom game modes it might not be enough to render the map</li>
+                   <li>~200 MB of free space and 2 GB of RAM</li>
+               </ol>
+           </div>
+       </div>
+
+
+       <h2 onclick="toggleElement('S3C2')">3.2. Mobile requirements</h2>
+
+       <div class="wrapper">
+           <div class="invisible textContainer" id="S3C2">
+               <ol>
+                    <li>Android 10 or newer</li>
+                    <li>A 4 core 1.8 GHz processor</li>
+                    <li>At least 900 MHz GPU</li>
+                    <li>~ 100 MB of free space and 2 GB of RAM</li>
+               </ol>
+           </div>
+       </div>
+
+    </section>
+
+
+    <section class="hidden">
+        <h1>4. Usability</h1>
+    </section>
+
+    <section class="hidden">
+
+
+       <h2 onclick="toggleElement('S4C1')">4.1. Learning curve</h2>
+
+       <div class="wrapper">
+           <div class="invisible textContainer" id="S4C1">
+
+               <p>The game is easy to learn, so it should not take a long time to get to know the game a little better. The game begins with an optional tutorial which explains everything, after that there will always be an option to open a guide that writes down every property in detail.</p>
+
+           </div>
+       </div>
+
+        <h2 onclick="toggleElement('S4C2')">4.2. Game time</h2>
+
+        <div class="wrapper">
+            <div class="invisible textContainer" id="S4C2">
+
+                <p>It takes approximately 3 hours to finish a campaign on the default setting, although this time differs between game modes. On a rushed difficulty, and/or an experienced player it might only be 1 hour if they don’t complete every side objective.</p>
+
+            </div>
+        </div>
+
+        <h2 onclick="toggleElement('S4C3')">4.3. Other preferences</h2>
+
+        <div class="wrapper">
+            <div class="invisible textContainer" id="S4C3">
+
+                <p>We plan on making a forum for the players where they can put out their ideas for us to consider, the supporters on the other hand have the opportunity to change anything they want in the game.</p>
+
+            </div>
+        </div>
+
+        <h2 onclick="toggleElement('S4C4')">4.4. GUI</h2>
+
+        <div class="wrapper">
+            <div class="invisible textContainer" id="S4C4">
+
+                <p>The GUI will be made according to other top/down survival games, so it should be familiar to those who played in this type of genre. Hovering the cursor above elements on the screen will relay information about almost everything on the screen, this includes enemies, animals, crops. Said hover effect can be disabled in the settings.</p>
+
+            </div>
+        </div>
+
+    </section>
+
+
+    <section class="hidden">
+        <h1>5. Reliability</h1>
+    </section>
+
+    <section class="hidden">
+
+
+        <h2 onclick="toggleElement('S5C1')">5.1. Availability</h2>
+
+        <div class="wrapper">
+            <div class="invisible textContainer" id="S5C1">
+
+                <p>The application is a single player game so there is no need for a server to run, and anyone can play anytime as long as they have it downloaded on their computer. The game will be available on Steam, and Google Play so the initial download and updates are handled by those services. Since there are no online services involved inside the game there is no maintenance time and limited access.</p>
+
+            </div>
+        </div>
+
+
+        <h2 onclick="toggleElement('S5C2')">5.2. Bugs</h2>
+
+        <div class="wrapper">
+            <div class="invisible textContainer" id="S5C2">
+
+                <p>If at any point in the development, there is a bug which we did not see while making the game we are eager to fix it as soon as possible. We aim to fix any upcoming issues in a 1 – 24 hours range, so the MTTR comes out for about ~12 hours average.</p>
+
+            </div>
+        </div>
+
+        <h2 onclick="toggleElement('S5C3')">5.3. Updates</h2>
+
+        <div class="wrapper">
+            <div class="invisible textContainer" id="S5C3">
+
+                <p>We plan on regularly bringing out new updates (this includes smaller updates, like new variety tiles, or even larger ones like new game modes) once a month. We can say that optimally new bugs (errors) can only emerge at these times, so MTBF should be 1 month on average.</p>
+
+            </div>
+        </div>
+
+    </section>
+
+
+   <section class="hidden">
+       <h1>6. Performance</h1>
+   </section>
+
+    <section class="hidden">
+
+
+        <h2 onclick="toggleElement('S6C1')">6.1. Response times</h2>
+
+        <div class="wrapper">
+            <div class="invisible textContainer" id="S6C1">
+
+                <p>Some functions in the game operate in a timed environment. We use both a tick system and simple time-based events too. In both scenarios there is a delay since in the game time only passes between frames, so the response time depends on the FPS, but let’s say we play at 60 FPS, the time between frames is 1/60 seconds, so the worst case scenario is that a timed event just ended after a frame got called, so this way the delay is 1/60 seconds or 16.67 milliseconds.</p>
+
+            </div>
+        </div>
+
+
+        <h2 onclick="toggleElement('S6C2')">6.2. Multi-threaded operations</h2>
+
+        <div class="wrapper">
+            <div class="invisible textContainer" id="S6C2">
+
+                <p>While running the game multiple things happen at the same time, these already run parallel thanks to the engine we chose, but we can speed it up even more, by using separate threads to speed up for example the map generation process.</p>
+
+            </div>
+        </div>
+
+    </section>
+
+
+    <section class="hidden">
+        <h1 onclick="toggleElement('S7')">7. Supportability</h1>
+    </section>
+
+    <div class="wrapper">
+        <div class="invisible textContainer" id="S7">
+
+            <p>Creating the game we used well-known programming standards, such as camelCase and PascalCase which are coding norms for better to read code, and tried to avoid recursion where possible, to make it easier to follow the code in real time.</p>
+
+        </div>
+    </div>
+
+
+    <section class="hidden">
+        <h1>8. Design Constraints</h1>
+    </section>
+
+    <section class="hidden">
+
+
+        <h2 onclick="toggleElement('S8C1')">8.1. Hardware limitations</h2>
+
+        <div class="wrapper">
+            <div class="invisible textContainer" id="S8C1">
+
+                <p>There are some limitations that lessen our ability to create what we want, like for map generation the size, if we could make the tiles smaller while maintaining performance the game should look prettier and more detailed, so we worked hard to make a great middle ground.</p>
+
+            </div>
+        </div>
+
+
+        <h2 onclick="toggleElement('S8C2')">8.2. Language limitations</h2>
+
+        <div class="wrapper">
+            <div class="invisible textContainer" id="S8C2">
+
+                <p>In the game we used C# (With the Godot Engine C# API), which is a fast and reliable language with long term support, but it’s a heavily developed language, so the build times and execution of code snippets are slower than it’s predecessors like C++ which is one of the most regarded programming language for games. Not only this but there are certain things that C# cannot accomplish and relies on external libraries to be able to properly do a task.</p>
+
+            </div>
+        </div>
+
+        <h2 onclick="toggleElement('S8C3')">8.3. Used software</h2>
+
+        <div class="wrapper">
+            <div class="invisible textContainer" id="S8C3">
+
+                <p>We used IntelliJ Idea and Visual Studio Code for writing the code, but virtually any IDE can be used for the same purpose if there is an extension that provides the required tools to work with the project.</p>
+
+            </div>
+        </div>
+
+    </section>
+
+
+    <section class="hidden">
+        <h1 onclick="toggleElement('S9')">9. Third-party Components</h1>
+    </section>
+
+    <div class="wrapper">
+        <div class="invisible textContainer" id="S9">
+
+            <p>The game is created in Godot Engine, there are no other external-third-party components implemented yet, only those from the engine itself.</p>
+
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
