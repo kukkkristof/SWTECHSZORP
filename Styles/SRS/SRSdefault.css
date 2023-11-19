@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+body{
+
+    font-family: Roboto, sans-serif;
+
+    background-color: #332013;
+    margin: 0 5% 0 5%;
+
+    color: #E4D4C8;
+    text-align: justify;
+
+    user-select: none;
+
+}
+.Title
+{
+    color: #A47551;
+    font-size: 5rem;
+}
+
+.SubTitle
+{
+    color: #A47551;
+    font-size: 4rem;
+}
+.SubTitle2
+{
+    color: #A47551;
+    font-size: 3rem;
+}
+
+p
+{
+    margin: 2% 0 0 0;
+    font-size: 2.5rem;
+}
+
+.SubParagraph
+{
+    margin: 1% 0 1% 0;
+}
+
+.RightText
+{
+    float: right;
+}
+
+vName
+{
+    color: navajowhite;
+}
+
+vType
+{
+    color: orange;
+    font-size: 1rem;
+}
+
+.MethodName
+{
+    color: blueviolet;
+}
+
+.boxed
+{
+    margin-top: 20px;
+    border: 1px solid white;
+    padding: 10px;
+}
+
+.boxed .SubParagraph:not(:last-child)
+{
+    padding-bottom: 10px;
+    border-bottom: 1px solid white;
+}
+
+info
+{
+    color: chocolate;
+}
+
+num{
+    color: sandybrown;
+}
+
+warning
+{
+    color: palevioletred;
+}
+
+
+.WarningText
+{
+    color: palevioletred;
+}
+
+img
+{
+    float: right;
+    margin-left: 1%;
+    width: 30rem;
+    aspect-ratio: 1;
+    max-width: 90vw;
+}
+
+.TileTable
+{
+    height: 30rem;
+    aspect-ratio: 1;
+    border: none;
+}
+
+.TileTable td{
+    border: none;
+}
+
+.GrassTile
+{
+    background-color: green;
+}
+.SandTile
+{
+    background-color: sandybrown;
+}
+.WaterTile
+{
+    background-color: mediumaquamarine;
+}
+
+
+@media only screen and ( max-width: 1200px )
+{
+    img
+    {
+        float: none;
+    }
+}

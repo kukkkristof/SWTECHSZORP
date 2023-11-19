@@ -6,11 +6,11 @@ const observer = new IntersectionObserver((entries) => {
         }
         else
         {
-            entry.target.classList.remove('show');
+            if(anim) entry.target.classList.remove('show');
         }
     });
 });
-
+let anim = true;
 const hiddenElements = document.querySelectorAll('.hidden');
 hiddenElements.forEach((element) => observer.observe(element));
 
@@ -29,4 +29,11 @@ function toggleElement(id)
         el.classList.add('visible');
         el.classList.remove('invisible');
     }
+}
+
+function DRA(lang)
+{
+    anim = !anim;
+    if(lang=='en') document.getElementById("AnimButton").innerHTML = (anim?'Disable':'Enable') + ' Recurring Animations';
+    else document.getElementById("AnimButton").innerHTML = 'Visszatérő Animációk ' + (anim?'Kikapcsolása':'Bekapcsolása');
 }
