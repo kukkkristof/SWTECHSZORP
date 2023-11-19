@@ -1,71 +1,83 @@
-#MemberContainer
-{
-    display: block;
-    width: 100%;
-    max-width: 1500px;
-    aspect-ratio: 2/1;
-    min-height: 500px;
-    max-height: 1000px;
-    margin: auto;
-    overflow: hidden;
-    background-color: #00000080;
+:root {
+    --light-color: #ffdead;
+    --main-color : #3b2518;
+    --dark-color : #1d120c;
+
+    --basic-shadow: 0 0 0.5rem 0.25rem rgba(0, 0, 0, 0.5);
+    --basic-inner-shadow: inset 0 0 0.5rem 0.25rem rgba(0, 0, 0, 0.5);
+    --basic-text-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.5);
+
+    --font-color : #ddd;
 }
 
-#MemberContainer h1
+div.members {
+    padding: 1rem;
+    border-radius: 1rem;
+
+    overflow: hidden;
+
+    background-color: var(--dark-color);
+
+    box-shadow: var(--basic-inner-shadow);
+}
+div.members h1
 {
-    width: 100%;
+    font-size: 7rem;
     text-align: center;
-    margin: 1% 0 1% 0;
-    font-size: clamp(3rem, 10vw, 7rem);
 }
 
-.MemberRowContainer
-{
-    display: flex;
-    width: fit-content;
-    animation: flow linear 60s infinite;
-    height: 80%;
+div.slideshow {
     overflow: hidden;
+    width: calc((15rem + 1rem) * 5 * 4);
+
+    animation: slide 30s linear infinite;
 }
 
-@keyframes flow {
-    from
-    {
-        transform: translateX(0%);
+@keyframes slide {
+    0% {
+        transform: translateX(0);
     }
-    to
-    {
+    100% {
         transform: translateX(-50%);
     }
 }
 
-.MemberRow
-{
+div.member {
     display: flex;
-    width: fit-content;
-    height: 100%;
-    overflow: hidden;
+    flex-direction: column;
+    align-items: center;
+
+    float: left;
+
+    width: 15rem;
+    height: 23rem;
+    margin-right: 1rem;
+    border-radius: 1rem 1rem 0 0;
+
+    background-color: var(--main-color);
+
+    box-shadow: var(--basic-shadow);
+    text-shadow: var(--basic-text-shadow);
 }
 
-.Member
-{
-    overflow: hidden;
-    height: 100%;
-    aspect-ratio: 7/10;
-    min-width: 200px;
-    margin: 0 1% 0 1%;
-}
+div.member > img {
+    width: 15rem;
 
-.Member img
-{
-    width: 100%;
-    border-radius: 10% 10% 0 0;
     aspect-ratio: 1;
+
+    margin-bottom: 2rem;
+
     object-fit: cover;
+
+    border-radius: 1rem 1rem 0 0;
 }
 
-.Member p
-{
-    font-size: clamp(1.3rem,1.5vw,3rem);
-    text-align: center;
+div.member-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+div.member-neptun {
+    font-size: 1rem;
+    font-style: italic;
 }
