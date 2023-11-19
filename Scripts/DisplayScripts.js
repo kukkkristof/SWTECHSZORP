@@ -14,14 +14,19 @@ function Slide(dir)
 
 }
 
-function loadPage()
-{
-    slider = document.getElementById("Slider");
+slider = document.getElementById("Slider");
 
-    slideMinimum = 0;
-    slideMaximum = slider.children.length-1;
-    slider.style.width = (slideMaximum+1) * 100 + "%";
-    slideCurrent = 0;
+slideMinimum = 0;
+slideMaximum = slider.children.length-1;
+slider.style.width = (slideMaximum+1) * 100 + "%";
+slideCurrent = 0;
 
 
+const slideshow = document.querySelector(".slideshow");
+const members = document.querySelectorAll(".member");
+
+for (var i = 0; i < 3; i++) {
+    members.forEach((member) => {
+        slideshow.appendChild(member.cloneNode(true));
+    });
 }
