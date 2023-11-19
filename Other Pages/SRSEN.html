@@ -1,282 +1,231 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>SRS</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <script defer src="../Scripts/Vision.js"></script>
-
-    <link rel="stylesheet" href="../Styles/default.css" type="text/css">
-    <link rel="stylesheet" href="../Styles/H2/VisionTexts.css" type="text/css">
-
+    <link rel="stylesheet" href="../Styles/SRS/SRSdefault.css">
+    
+    <title>Software Requirement Specification - SZORP</title>
 </head>
+
 <body>
-<div id="PageContainer">
-    <div class="Header"></div>
+    <h1 class="Title">1. Introduction</h1>
+    <p>
+        Here at SZORP we are creating a survival-adventure game where any type of player can have a good time.
+        <p class="SubParagraph">
+            SZORP is a game, where the player is put in a plains surrounded by a maze, and the goal is to escape the maze.
+        <p class="SubParagraph">
+            Through the game the player will uncover secrets about the maze, and will find interesting side stories to complete,
+            all while getting stronger and levelling up as the days go by.
+    </p>
+    <h1 class="Title">2. Overview</h1>
+    <p>
+        While thinking about the game, we realized, that not many games offer this type of gameplay. The game is largely based on the movie
+        "The Maze Runner"
+        <p class="SubParagraph">
+        <info>Use-case of the game:</info>
+    </p>
+    <h1 class="Title">3. Specific requirements</h1>
 
+    <h1 class="SubTitle">3.1. Map format</h1>
+    <p>
+        The map is contained in a matrix where the elements are specific tiles with attributes, such as texture, type, position.
+    </p>
+    <table class="TileTable">
+        <tr>
+            <td class="GrassTile"></td>
+            <td class="GrassTile"></td>
+            <td class="GrassTile"></td>
+            <td class="GrassTile"></td>
+        </tr>
+        <tr>
+            <td class="GrassTile"></td>
+            <td class="GrassTile"></td>
+            <td class="SandTile"></td>
+            <td class="SandTile"></td>
+        </tr>
+        <tr>
+            <td class="GrassTile"></td>
+            <td class="SandTile"></td>
+            <td class="SandTile"></td>
+            <td class="WaterTile"></td>
+        </tr>
+        <tr>
+            <td class="GrassTile"></td>
+            <td class="SandTile"></td>
+            <td class="WaterTile"></td>
+            <td class="WaterTile"></td>
+        </tr>
+    </table>
 
-    <section class="hidden">
-        <h1 onclick="toggleElement('S1')">1. Introduction</h1>
-    </section>
+    <h1 class="SubTitle">3.2. World generator</h1>
+    <img src="../Images/PerlinNoise.png" alt="Perlin Noise" title="Perlin Noise">
+    <p>
+        The world is generated with Perlin-noise, where numbers are generated between <num>0,0</num> and
+        <num>1,0</num> for a pixel in each position, this value represents a height-map,
+        and by setting boundaries, we can set a tile type into the value we want. In the following we will refer to this value as
+        <vName>Noise</vName><vType>(float)</vType>
+        <p class="SubParagraph">
+            <vName>Noise</vName> < <num>0.05</num> = Water
+        <p class="SubParagraph">
+            <vName>Noise</vName> < <num>0.07</num> = Water and Sand
+        <p class="SubParagraph">
+            <vName>Noise</vName> < <num>0.1</num> = Sand
+        <p class="SubParagraph">
+            <vName>Noise</vName> >= <num>0.1</num> = Grass
+    </p>
 
-    <div class="wrapper">
-        <div class="invisible textContainer" id="S1">
-            <p>The SZÖRP game is a survival, story, and an adventure game in one. The player will be put in a field and will be required to survive and/or escape the maze surrounding the survival zone. It is set in an imaginary universe with a great story that will be immersive to all those who play it.</p>
-            <p>In this documentation the reader will get information about the process of making the game.</p>
-        </div>
+    <h1 class="SubTitle">3.3. Entity spawner</h1>
+    <p>
+        In the maze there will be zones where enemy entities are able to spawn. These spawn zones have the following attributes:
+    </p>
+    <p>
+        <vName>Difficulty</vName><vType>(float)</vType>
+        This variable changes the stat modifier on the entities spawned by the spawner.
+        <p class="SubParagraph">
+            These spawners are invisible to the player and are present both in the survival zone and in the maze.
+        <p class="SubParagraph">
+            The difficulty is calculated by the formula:
+            <br> <info> 1 + Player level / (Average creature type modifier + Spawn Rate - 1)</info>
+    </p>
+    <p>
+        <vName>SpawnRate</vName><vType>(float)</vType>
+        the frequency entities spawn in this zone. This value is set in spawns / second, and are randomly generated between
+        <num>0,05</num> to <num>0,2</num>.
+    </p>
+    <p>
+        <vName>MaxEntityCount</vName><vType>(int)</vType>
+            This value represents the maximum amount entities that can co-exist at the same time.
+            This value is <num>10</num>.
+    </p>
+    <p>
+        <vName>Range</vName><vType>(float)</vType>
+        Gives the range where entities can spawn away from the position of the spawner.
+    <div class="boxed">
+        <p class="SubParagraph">
+            <info>In the maze</info> this range is half the width of the maze path.
+        <p class="SubParagraph">
+            <info>In the survival zone</info> This range is determined by a random noise.
+    </p>
     </div>
+    <p>
+        <vName>Position</vName><vType>(float)</vType>
 
-    <section class="hidden">
-        <h1 onclick="toggleElement('S2')">2. Overview</h1>
-    </section>
-
-    <div class="wrapper">
-        <div class="invisible textContainer" id="S2">
-            <p>The game will be available on PC, and Android. And will have different type of game modes to accompany every type of gamer. We chose this idea since not many if any games are made to be like this, so it will be quite a unique experience.</p>
-            <p>Content summary:</p>
-            <ul>
-                <li>Environment of the game</li>
-                <li>Most important functions</li>
-                <li>Users</li>
-                <li>Limitations</li>
-                <li>Dependencies</li>
-            </ul>
-        </div>
+            The position in space where the spawner is located.
+    <div class="boxed">
+        <p class="SubParagraph">
+            <info>In the maze</info> this is a randomly selected tiles center position.
+        <p class="SubParagraph">
+            <info>In the survival zone</info> This position is determined by a random noise.
+    </p>
     </div>
-
-
-
-    <section class="hidden">
-        <h1 onclick="toggleElement('S3')">3. Specific Requirements</h1>
-    </section>
-
-    <div class="wrapper">
-        <div class="invisible textContainer" id="S3">
-            <p>For the game it is required that the player has Windows 7 (or newer) installed on their computer, or Android 10 (or newer) on their phone and it should be able to work at speeds that random generations won’t throttle the CPU to its limits for performance issues since there will not be lag spikes every ongoing in-game day.</p>
-        </div>
-    </div>
-
-    <section class="hidden">
-
-
-       <h2 onclick="toggleElement('S3C1')">3.1. PC requirements</h2>
-
-       <div class="wrapper">
-           <div class="invisible textContainer" id="S3C1">
-               <ol>
-                   <li>Windows 7 or newer</li>
-                   <li>A processor with multiple threads, and at least 2 cores</li>
-                   <li>Regarding the GPU, integrated graphics is enough to play the game, however in custom game modes it might not be enough to render the map</li>
-                   <li>~200 MB of free space and 2 GB of RAM</li>
-               </ol>
-           </div>
-       </div>
-
-
-       <h2 onclick="toggleElement('S3C2')">3.2. Mobile requirements</h2>
-
-       <div class="wrapper">
-           <div class="invisible textContainer" id="S3C2">
-               <ol>
-                    <li>Android 10 or newer</li>
-                    <li>A 4 core 1.8 GHz processor</li>
-                    <li>At least 900 MHz GPU</li>
-                    <li>~ 100 MB of free space and 2 GB of RAM</li>
-               </ol>
-           </div>
-       </div>
-
-    </section>
-
-
-    <section class="hidden">
-        <h1>4. Usability</h1>
-    </section>
-
-    <section class="hidden">
-
-
-       <h2 onclick="toggleElement('S4C1')">4.1. Learning curve</h2>
-
-       <div class="wrapper">
-           <div class="invisible textContainer" id="S4C1">
-
-               <p>The game is easy to learn, so it should not take a long time to get to know the game a little better. The game begins with an optional tutorial which explains everything, after that there will always be an option to open a guide that writes down every property in detail.</p>
-
-           </div>
-       </div>
-
-        <h2 onclick="toggleElement('S4C2')">4.2. Game time</h2>
-
-        <div class="wrapper">
-            <div class="invisible textContainer" id="S4C2">
-
-                <p>It takes approximately 3 hours to finish a campaign on the default setting, although this time differs between game modes. On a rushed difficulty, and/or an experienced player it might only be 1 hour if they don’t complete every side objective.</p>
-
-            </div>
-        </div>
-
-        <h2 onclick="toggleElement('S4C3')">4.3. Other preferences</h2>
-
-        <div class="wrapper">
-            <div class="invisible textContainer" id="S4C3">
-
-                <p>We plan on making a forum for the players where they can put out their ideas for us to consider, the supporters on the other hand have the opportunity to change anything they want in the game.</p>
-
-            </div>
-        </div>
-
-        <h2 onclick="toggleElement('S4C4')">4.4. GUI</h2>
-
-        <div class="wrapper">
-            <div class="invisible textContainer" id="S4C4">
-
-                <p>The GUI will be made according to other top/down survival games, so it should be familiar to those who played in this type of genre. Hovering the cursor above elements on the screen will relay information about almost everything on the screen, this includes enemies, animals, crops. Said hover effect can be disabled in the settings.</p>
-
-            </div>
-        </div>
-
-    </section>
-
-
-    <section class="hidden">
-        <h1>5. Reliability</h1>
-    </section>
-
-    <section class="hidden">
-
-
-        <h2 onclick="toggleElement('S5C1')">5.1. Availability</h2>
-
-        <div class="wrapper">
-            <div class="invisible textContainer" id="S5C1">
-
-                <p>The application is a single player game so there is no need for a server to run, and anyone can play anytime as long as they have it downloaded on their computer. The game will be available on Steam, and Google Play so the initial download and updates are handled by those services. Since there are no online services involved inside the game there is no maintenance time and limited access.</p>
-
-            </div>
-        </div>
-
-
-        <h2 onclick="toggleElement('S5C2')">5.2. Bugs</h2>
-
-        <div class="wrapper">
-            <div class="invisible textContainer" id="S5C2">
-
-                <p>If at any point in the development, there is a bug which we did not see while making the game we are eager to fix it as soon as possible. We aim to fix any upcoming issues in a 1 – 24 hours range, so the MTTR comes out for about ~12 hours average.</p>
-
-            </div>
-        </div>
-
-        <h2 onclick="toggleElement('S5C3')">5.3. Updates</h2>
-
-        <div class="wrapper">
-            <div class="invisible textContainer" id="S5C3">
-
-                <p>We plan on regularly bringing out new updates (this includes smaller updates, like new variety tiles, or even larger ones like new game modes) once a month. We can say that optimally new bugs (errors) can only emerge at these times, so MTBF should be 1 month on average.</p>
-
-            </div>
-        </div>
-
-    </section>
-
-
-   <section class="hidden">
-       <h1>6. Performance</h1>
-   </section>
-
-    <section class="hidden">
-
-
-        <h2 onclick="toggleElement('S6C1')">6.1. Response times</h2>
-
-        <div class="wrapper">
-            <div class="invisible textContainer" id="S6C1">
-
-                <p>Some functions in the game operate in a timed environment. We use both a tick system and simple time-based events too. In both scenarios there is a delay since in the game time only passes between frames, so the response time depends on the FPS, but let’s say we play at 60 FPS, the time between frames is 1/60 seconds, so the worst case scenario is that a timed event just ended after a frame got called, so this way the delay is 1/60 seconds or 16.67 milliseconds.</p>
-
-            </div>
-        </div>
-
-
-        <h2 onclick="toggleElement('S6C2')">6.2. Multi-threaded operations</h2>
-
-        <div class="wrapper">
-            <div class="invisible textContainer" id="S6C2">
-
-                <p>While running the game multiple things happen at the same time, these already run parallel thanks to the engine we chose, but we can speed it up even more, by using separate threads to speed up for example the map generation process.</p>
-
-            </div>
-        </div>
-
-    </section>
-
-
-    <section class="hidden">
-        <h1 onclick="toggleElement('S7')">7. Supportability</h1>
-    </section>
-
-    <div class="wrapper">
-        <div class="invisible textContainer" id="S7">
-
-            <p>Creating the game we used well-known programming standards, such as camelCase and PascalCase which are coding norms for better to read code, and tried to avoid recursion where possible, to make it easier to follow the code in real time.</p>
-
-        </div>
+    <p>
+        <vName>Creature</vName><vType>(Entity[])</vType>
+            An array of creatures that are randomly selected every time the spawner spawns in an entity.
+        <p class="SubParagraph">
+            <info>In the maze</info> these creatures are selected randomly from the hostile entity pool.
+            The number of creatures in the array is selected randomly from <num>1</num> to <num>4</num>.
+        <p class="SubParagraph">
+            <info>In the survival zone</info> these creatures are selected randomly from the friendly entity pool.
+            The number of creatures in the array is selected randomly from <num>1</num> to <num>3</num>.
+    </p>
+    <br>
+    <p>These spawn zones have 2 methods:</p>
+
+    <p>
+        <span class="MethodName">Spawn</span> creates an entity to a random position in the range
+        <div class="boxed">
+        <p class="SubParagraph"> This method is called when the time elapsed between the last spawn exceeds the limit set by <num>1</num>/<vName>SpawnRate</vName>.
+        <p class="SubParagraph"> The position of the creature is a random value calculated:
+        <p class="SubParagraph">
+            Random(<vType>min:</vType><vName>Position</vName> - <vName>Range</vName>,<vType>max:</vType> <vName>Position</vName> + <vName>Range</vName>) for both X and Y.
+        <p class="SubParagraph">
+            The creature is spawned with the attributes multiplied by the <vName></vName>
+    </p>
     </div>
 
 
-    <section class="hidden">
-        <h1>8. Design Constraints</h1>
-    </section>
+    <h1 class="SubTitle">3.4. Time controller</h1>
 
-    <section class="hidden">
+    <h1 class="SubTitle2">3.4.1. Days and nights</h1>
+    <p>
+        <info>One hour</info> in the game is <info>2 minutes</info>
+            in real time, so a day is 48 minutes, where both day and night last for <info>24 minutes</info>.
+        <p  class="SubParagraph"><info>During the night</info> the maze generates and opens,
+            and the spawners within the maze activate. Also crops won't grow, until the sun comes up.
+        <p  class="SubParagraph"><info>During the day</info> the maze is deleted to save computer resources.
+            Crops start to grow and the weather changes.
+        <p class="SubParagraph">
+            <warning>
+                If the player is inside the maze when the sun comes up, the maze still closes, but It does not get deleted,
+                instead the player is locked inside the maze, and a new maze will not be generated.
+             </warning>
+    </p>
 
+    <h1 class="SubTitle2">3.4.2. Weather</h1>
+    <p>
+        In the game there are 4 types of weather randomly chosen with the chances:
+        <info>Sunny</info> <num>60%</num>,
+        <info>Rain</info> <num>20%</num>,
+        <info>Dread</info> <num>15%</num>,
+        <info>Thunder</info> <num>5%</num>
+        <p class="SubParagraph">
+            <info>Rain</info> = It rains, crops get a <num>50%</num> growth speed boost,
+            temperatures are lower than usual, fishing is more bountiful with <num>25%</num> increased fishing speed,
+            due to the temperature being lower, the players body uses more food to generate heat with their body, food is depleted
+            <num>30%</num> faster.
+        <p class="SubParagraph">
+            <info>Sunny</info> = The temperature is splendid, crops grow at a normal rate, no de-buffs or buffs applied.
+        <p class="SubParagraph">
+            <info>Dread</info> = It's hot outside, player is sweating, consumes <num>50%</num> more water,
+            crops grow at <num>20%</num> their normal speed.
+        <p class="SubParagraph">
+            <info>Thunder</info> = It's storming, <info>same effects as rain</info>,
+            except there is a <num>0.005%</num> chance for the lightning to hit a tree and cause a fire, which destroys the tree.
+            The player can craft lightning rods, to decrease the chance drastically
+            (<num>0.005%</num> -> <num>0.0005%</num>).
+    </p>
+    <h1 class="SubTitle2">3.4.3. Ticks</h1>
+    <p>
+        Some features within the game use a system called <info>ticks</info>, these ticks happen
+        <num>6</num> times a <info>second</info>.
+        <p class="SubParagraph">
+            In context of crops, it means that every <num>1/6th</num> of a second the crop has a set
+            chance to grow <info>(explained further in the corresponding section)</info>
+    </p>
 
-        <h2 onclick="toggleElement('S8C1')">8.1. Hardware limitations</h2>
+    <h1 class="SubTitle">3.5. Resource manager</h1>
+    <h1 class="SubTitle2">3.5.1. Resource spawner</h1>
+    <h1 class="SubTitle2">3.5.2. Resource zones</h1>
+    <h1 class="SubTitle">3.6. Effect manager</h1>
+    <h1 class="SubTitle">3.7. Entity controller</h1>
+    <h1 class="SubTitle">3.8. Player</h1>
+    <h1 class="SubTitle2">3.8.1. Leveling</h1>
+    <h1 class="SubTitle2">3.8.2. Stats</h1>
+    <h1 class="SubTitle2">3.8.3. Skill tree</h1>
+    <h1 class="SubTitle">3.9. Maze generator</h1>
+    <h1 class="SubTitle">3.10. Loot generator</h1>
+    <h1 class="SubTitle">3.11. Farming system</h1>
+    <h1 class="SubTitle2">3.11.1. Crops</h1>
+    <h1 class="SubTitle2">3.11.2. Animals</h1>
+    <h1 class="SubTitle2">3.11.3. Bushes</h1>
+    <h1 class="SubTitle2">3.11.4. Trees</h1>
+    <h1 class="SubTitle">3.12. Crafting system</h1>
+    <h1 class="SubTitle2">3.12.1. Resources</h1>
+    <h1 class="SubTitle2">3.12.2. Crafting benches</h1>
+    <h1 class="SubTitle2">3.12.3. Recipes</h1>
+    <h1 class="SubTitle2">3.12.4. Unlock tree</h1>
+    <h1 class="SubTitle">3.13. Game manager</h1>
+    <h1 class="SubTitle2">3.13.1. Variables</h1>
+    <h1 class="SubTitle2">3.13.2. Timing</h1>
+    <h1 class="SubTitle2">3.13.3. Contained elements</h1>
+    <h1 class="SubTitle2">3.13.4. Life</h1>
+    <h1 class="SubTitle2">3.13.5. Menu</h1>
+    <h1 class="SubTitle2">3.13.6. In game</h1>
 
-        <div class="wrapper">
-            <div class="invisible textContainer" id="S8C1">
-
-                <p>There are some limitations that lessen our ability to create what we want, like for map generation the size, if we could make the tiles smaller while maintaining performance the game should look prettier and more detailed, so we worked hard to make a great middle ground.</p>
-
-            </div>
-        </div>
-
-
-        <h2 onclick="toggleElement('S8C2')">8.2. Language limitations</h2>
-
-        <div class="wrapper">
-            <div class="invisible textContainer" id="S8C2">
-
-                <p>In the game we used C# (With the Godot Engine C# API), which is a fast and reliable language with long term support, but it’s a heavily developed language, so the build times and execution of code snippets are slower than it’s predecessors like C++ which is one of the most regarded programming language for games. Not only this but there are certain things that C# cannot accomplish and relies on external libraries to be able to properly do a task.</p>
-
-            </div>
-        </div>
-
-        <h2 onclick="toggleElement('S8C3')">8.3. Used software</h2>
-
-        <div class="wrapper">
-            <div class="invisible textContainer" id="S8C3">
-
-                <p>We used IntelliJ Idea and Visual Studio Code for writing the code, but virtually any IDE can be used for the same purpose if there is an extension that provides the required tools to work with the project.</p>
-
-            </div>
-        </div>
-
-    </section>
-
-
-    <section class="hidden">
-        <h1 onclick="toggleElement('S9')">9. Third-party Components</h1>
-    </section>
-
-    <div class="wrapper">
-        <div class="invisible textContainer" id="S9">
-
-            <p>The game is created in Godot Engine, there are no other external-third-party components implemented yet, only those from the engine itself.</p>
-
-        </div>
-    </div>
-
-</div>
 </body>
 </html>

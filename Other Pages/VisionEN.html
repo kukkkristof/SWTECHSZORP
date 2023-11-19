@@ -12,8 +12,9 @@
 </head>
 <body>
     <div id="PageContainer">
-        <div class="Header"></div>
-
+        <div class="Header">
+            <button id="AnimButton" class="DisableBtn" onclick="DRA('en')">Disable Recurring Animations</button>
+        </div>
 
         <section class="hidden">
             <h1 onclick="toggleElement('S1')">1. Introduction</h1>
@@ -23,7 +24,7 @@
             <div class="invisible textContainer" id="S1">
                 <p>We suppose we won’t have to explain why people love computer games. It’s a simple, comfortable, yet also exciting way of spending time. We don’t always have the ability to go out when we want to have some adventure, and this is when electronic devices mean a lot of help, mainly the computer. With their help we get to live through more and more kinds of experiences, without actually having to go through them. This is the reason why games try to capture reality. A lot of people, however, miss the old pixelart games, maybe because it brings back a nice era for them, or because they like the aesthetic of it.</p>
                 <p>These games were also easy to learn and to play. Not everyone has the time to get a routine in them, so easy-to-learn games reach a larger target audience than their harder peers.</p>
-                <p>Therefore our goal is to create a game which brings a retro vibe with its outlook, is incredibly user friendly, and also demands some ingenuity.</p>
+                <p>Therefore, our goal is to create a game which brings a retro vibe with its outlook, is incredibly user friendly, and also demands some ingenuity.</p>
                 <p>It will definitely be aMAZEing!</p>
             </div>
         </div>
@@ -35,17 +36,17 @@
 
         <section class="hidden">
 
-            <!--
+
            <h2 onclick="toggleElement('S2C1')">2.1. Market opportunities</h2>
 
            <div class="wrapper">
                <div class="invisible textContainer" id="S2C1">
                    <p>
-                       Text
+                       Since on the market there are not many games like ours, so our game provides a unique experience, which gives us an edge on the video game market.
                    </p>
                </div>
            </div>
-           -->
+
 
 
             <h2 onclick="toggleElement('S2C2')">2.2. The problem</h2>
@@ -56,8 +57,8 @@
                     <p>Beside that the labyrinth is changing every night which means new crossovers opens and old ones are closes. This means the player cannot memorize only one layout of the labyrinth, he/she must look for the pattern of the changes. While the player is in the labyrinth, he/she need to watchout for the coming of the night because when the night falls the entrances of the maze are closing of and going to be a lot of monsters in there which means the player has a harder time to get out of there.</p>
                     <p>To solve the problem the player must improve his/her skill of preplanning because he/she has to plan carefully the route based on his/her previous explorations and what will be the possible challenges on that route and what equipment is needed to pass through it and how.</p>
                     <p>Besides the player improves his/her memory as he/she needs to memorize multiple versions of the maze and continuously extending the routes with new sections. This way the player can navigate through any layout of the labyrinth and always know at least one route which is leads out of it but possibly he/she needs alternative routes too so the player can adopt to any new challenge which stands in his/her way and cannot pass it.</p>
-                    <p>Furthermore, the fast reaction time and replanning the route quickly plays really big role during the escape so the player can learn how to find the solution in stressed situations and making good decisions in a short time based on his/her equipment and possibilities.</p>
-                    <p>Finally, the player improves his/her observation skill because during the playthrough he/she must enter the maze multiple times and watch out for the monsters and memorizing the routes. Besides this, either during the run or after it he/she has to analyse the changes in the labyrinth compared to the previous explorations and try to make conclusions based on that about the changing patterns so he/she can lower the amount of information what he/she need to remember.</p>
+                    <p>Furthermore, the fast reaction time and replanning the route quickly plays huge role during the escape so the player can learn how to find the solution in stressed situations and making good decisions in a short time based on his/her equipment and possibilities.</p>
+                    <p>Finally, the player improves his/her observation skill because during the play through he/she must enter the maze multiple times and watch out for the monsters and memorizing the routes. Besides this, either during the run or after it he/she has to analyse the changes in the labyrinth compared to the previous explorations and try to make conclusions based on that about the changing patterns so he/she can lower the amount of information what he/she need to remember.</p>
                     <p>In total, this game highly improves quick thinking, memory, strategy and reaction time. This way the player can improve these skills in a more relaxing way. These skills are also really useful in the real world. We have to make quick decisions based on our observations and our conclusions every day. And it makes our day so much easier when we can plan it out previously as much as possible.</p>
                     <p>Furthermore, if we can remember at least a section of a new route then we do not have to stop so often to check it on a map or ask someone. The first advantage of it is that we can find our way back and the second is that the journey will be shorter which is pretty good in today’s world.</p>
                     <p>In addition, if the known way is blocked for some reason, that is an advantage when we know alternative routes, so we do not run into the previous problem.</p>
@@ -91,13 +92,16 @@
 
         <section class="hidden">
 
-            <!--
+
            <h2 onclick="toggleElement('S3C1')">3.1. Those who are affected</h2>
 
            <div class="wrapper">
                <div class="invisible textContainer" id="S3C1">
                    <p>
-                       Text
+                       People who are bored from the textbook exampled survival games will enjoy our game to the fullest.
+                   </p>
+                   <p>
+                       They will likely find this game entertaining, so it will spice up their experience a lot, perhaps bringing them back to gaming regularly. Also bringing new players to the scene, because it's an easy to learn, hard to master game.
                    </p>
                </div>
            </div>
@@ -108,8 +112,22 @@
            <div class="wrapper">
                <div class="invisible textContainer" id="S3C2">
                    <p>
-                       Text
+                       The users are the following:
                    </p>
+                   <table>
+                       <tr>
+                           <td>User type</td>
+                           <td>Description</td>
+                       </tr>
+                       <tr>
+                           <td>New player</td>
+                           <td>New players can learn easily from the tutorial and can use their new learnt skill in other games thanks to the standards video games set, like press shift to run.</td>
+                       </tr>
+                       <tr>
+                           <td>Experienced gamer</td>
+                           <td>These gamers can play more "competitively", thanks to the possibility of speedruns, and different game modes. The player finishing the hardest difficulty first (if the player agrees to it)  will receive a feature in the end credit scenes. </td>
+                       </tr>
+                   </table>
                </div>
            </div>
 
@@ -119,11 +137,20 @@
            <div class="wrapper">
                <div class="invisible textContainer" id="S3C3">
                    <p>
-                       Text
+                       SZORP is a single player game, with no multiplayer planned in the near future, and the completion time varies depending on the player and the settings.
+                   </p>
+                   <p>
+                       The game is easy to use both on Android and on PC, the platforms of the game.
+                   </p>
+                   <p>
+                       On PC the typical WASD movement is used, tab for inventory, esc for menu.
+                   </p>
+                   <p>
+                       On Android devices, there is a joystick located on the bottom left, a settings menu on the top-right, and inventory on the bottom-right sides of the screen.
                    </p>
                </div>
            </div>
-           -->
+
 
             <h2 onclick="toggleElement('S3C4')">3.4. Contact information</h2>
 
@@ -158,17 +185,6 @@
                 </div>
             </div>
 
-            <!--
-           <h2 onclick="toggleElement('S3C5')">3.5. User information</h2>
-
-           <div class="wrapper">
-               <div class="invisible textContainer" id="S3C5">
-                   <p>
-                       Text
-                   </p>
-               </div>
-           </div>
-           -->
 
         </section>
 
@@ -179,22 +195,10 @@
 
         <section class="hidden">
 
-            <!--
-           <h2 onclick="toggleElement('S4C1')">4.1. Connections</h2>
-
-           <div class="wrapper">
-               <div class="invisible textContainer" id="S4C1">
-                   <p>
-                       Text
-                   </p>
-               </div>
-           </div>
-           -->
-
-            <h2 onclick="toggleElement('S4C2')">4.2. Advantages</h2>
+            <h2 onclick="toggleElement('S4C1')">4.1. Advantages</h2>
 
             <div class="wrapper">
-                <div class="invisible textContainer" id="S4C2">
+                <div class="invisible textContainer" id="S4C1">
                     <p>During the game, the player improves the upcoming skills:</p>
 
                     <table>
@@ -244,10 +248,10 @@
             </div>
 
 
-            <h2 onclick="toggleElement('S4C3')">4.3. Assumptions and dependencies</h2>
+            <h2 onclick="toggleElement('S4C2')">4.2. Assumptions and dependencies</h2>
 
             <div class="wrapper">
-                <div class="invisible textContainer" id="S4C3">
+                <div class="invisible textContainer" id="S4C2">
                     <p>Our aim is to make our game as widely accessible as possible, but to do this the devices running the game must meet certain technical requirements.
                         To ensure a smooth gaming experience on different platforms, we have defined some basic system requirements.</p>
                     <p><b>Mobile (Android and iOS):</b></p>
@@ -266,32 +270,70 @@
                     <p>Hosting is also an important consideration. For mobile devices, the game takes up about 1 GB of space, while for PCs, you need at least 10 GB of free space to install the full game. In addition, future updates and additions may require additional storage space.</p>
                     <p>It is important to note that the newer and more powerful the device, the better the gaming experience. For outdated or less powerful devices, it is possible to run the game, but users should not expect the highest graphics settings and fastest load times.</p>
                     <p>These system requirements and guidelines will help users to decide if the device they are using is suitable for the game and what performance they can expect on the platform.</p>
-
+                    <p>For the installation and sales, we are highly dependent on Valve (developers of Steam) and Google (Google Play) so their servers work, and distribute the game to people.</p>
                 </div>
             </div>
 
-            <!--
-            <h2 onclick="toggleElement('S4C4')">4.4. Estimated cost</h2>
+
+            <h2 onclick="toggleElement('S4C3')">4.3. Estimated cost</h2>
 
             <div class="wrapper">
-                <div class="invisible textContainer" id="S4C4">
-                    <p>
-                        Text
-                    </p>
+                <div class="invisible textContainer" id="S4C3">
+                    <table>
+                        <tr>
+                            <td>Expense</td>
+                            <td>Cost ($)</td>
+                        </tr>
+                        <tr>
+                            <td>Steam publication</td>
+                            <td>100</td>
+                        </tr>
+                        <tr>
+                            <td>Google play publication</td>
+                            <td>25</td>
+                        </tr>
+                        <tr>
+                            <td>Development cost</td>
+                            <td>3000</td>
+                        </tr>
+                        <tr>
+                            <td>Equipment cost</td>
+                            <td>1000 / Developer (5 people)</td>
+                        </tr>
+                        <tr>
+                            <td>SUM</td>
+                            <td>8125</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
-            -->
-            <!--
-           <h2 onclick="toggleElement('S4C5')">4.5. Installation</h2>
+
+
+           <h2 onclick="toggleElement('S4C4')">4.4. Installation</h2>
 
            <div class="wrapper">
-               <div class="invisible textContainer" id="S4C5">
+               <div class="invisible textContainer" id="S4C4">
                    <p>
-                       Text
+                       The game has a pretty simple installation process:
                    </p>
+                   <table>
+                       <tr>
+                           <td>PC</td>
+                           <td>
+                               Search up SZORP on the steam discovery page, buy the game, then from the library click install then play.
+                               Steam services will take care of everything about the game, so the user just have to click a button to be able to play.
+                           </td>
+                       </tr>
+                       <tr>
+                           <td>Android</td>
+                           <td>
+                               Search up SZORP in the Google Play Store, click on install, wait for the download to finish, then play the game.
+                           </td>
+                       </tr>
+                   </table>
                </div>
            </div>
-           -->
+
 
         </section>
 
@@ -315,7 +357,7 @@
             </div>
         </div>
 
-        <!--
+
        <section class="hidden">
            <h1 onclick="toggleElement('S6')">6. Limits</h1>
        </section>
@@ -323,11 +365,15 @@
        <div class="wrapper">
            <div class="invisible textContainer" id="S6">
                <p>
-                   Text
+                   A huge limitation for us is thanks to the maze generator, since it has to run on low-end hardware thanks to it running multiple times in a play-through.
+               </p>
+               <p>
+                   The game has to be efficient on the gpu too, since there are a lot of textures that need to be rendered at the same time, so the textures are not that detailed as they might be,
+                   so it's harder to create a good-looking game while keeping this in mind.
                </p>
            </div>
        </div>
-        -->
+
 
        <section class="hidden">
            <h1 onclick="toggleElement('S7')">7. Quality expectations</h1>
@@ -342,7 +388,7 @@
            </div>
        </div>
 
-       <!--
+
        <section class="hidden">
            <h1 onclick="toggleElement('S8')">8. Documentation requirements</h1>
        </section>
@@ -350,11 +396,12 @@
        <div class="wrapper">
            <div class="invisible textContainer" id="S8">
                <p>
-                   Text
+                   With the game, comes a user manual, that is recommended to read, this is the only documentation required to play, for developing the game further it is also required to have access to the System Requirement Specification,
+                   and to the developer manual provided for devs.
                </p>
            </div>
        </div>
-       -->
+
 
         <section class="hidden">
             <h1 onclick="toggleElement('S9')">9. List of risks</h1>
@@ -362,7 +409,30 @@
 
         <div class="wrapper">
             <div class="invisible textContainer" id="S9">
-                <p>The main risk factor in our case is the lack of time, because at the university we have a lot of work to do. This can be solved by the right distribution of the tasks and the exact definition of deadlines. Even if we got stuck working on some functions, there’s still the possibility to give it up or to ask for help.</p>
+                <table>
+                    <tr>
+                        <td>
+                            The main risk factor in our case is the lack of time, because at the university we have a lot of work to do.
+                            This can be solved by the right distribution of the tasks and the exact definition of deadlines.
+                            Even if we got stuck working on some functions, there’s still the possibility to give it up or to ask for help.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            After publishing the game there is the risk of depending on other distributors, such as Steam.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            There is the risk of not many people recognizing the game, and it's not paying for its development cost.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            If the players do not like an aspect of the game, that is a huge risk, since it may require us to rework an entire system in the game quick enough, to not lose many players.
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
 
