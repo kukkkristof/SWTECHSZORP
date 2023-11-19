@@ -34,6 +34,6 @@ function toggleElement(id)
 function DRA(lang)
 {
     anim = !anim;
-    if(lang=='en') document.getElementById("AnimButton").innerHTML = (anim?'Disable':'Enable') + ' Recurring Animations';
+    if(lang==='en') document.getElementById("AnimButton").innerHTML = (anim?'Disable':'Enable') + ' Recurring Animations';
     else document.getElementById("AnimButton").innerHTML = 'Visszatérő Animációk ' + (anim?'Kikapcsolása':'Bekapcsolása');
 }

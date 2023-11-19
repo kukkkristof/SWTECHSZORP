@@ -31,4 +31,18 @@ body
     height: 7.5vh;
 }
 
+.Header button
+{
+    background: none;
+    border:none;
+    width: 100%;
+    height: 100%;
+}
+.Header button:active
+{
+    background: #0000000f;
+    border:none;
+    width: 100%;
+    height: 100%;
+}
 
