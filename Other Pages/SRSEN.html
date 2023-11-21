@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <h1 class="Title">1. Introduction</h1>
+    <h1>1. Introduction</h1>
     <p>
         Here at SZORP we are creating a survival-adventure game where any type of player can have a good time.
         <p class="SubParagraph">
@@ -22,16 +22,18 @@
             Through the game the player will uncover secrets about the maze, and will find interesting side stories to complete,
             all while getting stronger and levelling up as the days go by.
     </p>
-    <h1 class="Title">2. Overview</h1>
+    <h1>2. Overview</h1>
     <p>
         While thinking about the game, we realized, that not many games offer this type of gameplay. The game is largely based on the movie
         "The Maze Runner"
         <p class="SubParagraph">
         <info>Use-case of the game:</info>
+        <br>
+        <img class="UseCase" src="../Images/Usecase.jpg" alt="Use Case Diagram" title="Use Case Diagram">
     </p>
-    <h1 class="Title">3. Specific requirements</h1>
+    <h1>3. Specific requirements</h1>
 
-    <h1 class="SubTitle">3.1. Map format</h1>
+    <h2>3.1. Map format</h2>
     <p>
         The map is contained in a matrix where the elements are specific tiles with attributes, such as texture, type, position.
     </p>
@@ -62,7 +64,7 @@
         </tr>
     </table>
 
-    <h1 class="SubTitle">3.2. World generator</h1>
+    <h2>3.2. World generator</h2>
     <img src="../Images/PerlinNoise.png" alt="Perlin Noise" title="Perlin Noise">
     <p>
         The world is generated with Perlin-noise, where numbers are generated between <num>0,0</num> and
@@ -79,7 +81,7 @@
             <vName>Noise</vName> >= <num>0.1</num> = Grass
     </p>
 
-    <h1 class="SubTitle">3.3. Entity spawner</h1>
+    <h2>3.3. Entity spawner</h2>
     <p>
         In the maze there will be zones where enemy entities are able to spawn. These spawn zones have the following attributes:
     </p>
@@ -92,6 +94,9 @@
             The difficulty is calculated by the formula:
             <br> <info> 1 + Player level / (Average creature type modifier + Spawn Rate - 1)</info>
     </p>
+    <p>
+        <vName>SpawnerID</vName><vtype>(int)</vtype>  This is unique for all spawners in the world, calculated by: (SpawnerCount+1, if any other spawners have this id,
+        then increment by one repeating until it is unique)
     <p>
         <vName>SpawnRate</vName><vType>(float)</vType>
         the frequency entities spawn in this zone. This value is set in spawns / second, and are randomly generated between
@@ -126,6 +131,7 @@
     <p>
         <vName>Creature</vName><vType>(Entity[])</vType>
             An array of creatures that are randomly selected every time the spawner spawns in an entity.
+    <div class="boxed">
         <p class="SubParagraph">
             <info>In the maze</info> these creatures are selected randomly from the hostile entity pool.
             The number of creatures in the array is selected randomly from <num>1</num> to <num>4</num>.
@@ -133,6 +139,7 @@
             <info>In the survival zone</info> these creatures are selected randomly from the friendly entity pool.
             The number of creatures in the array is selected randomly from <num>1</num> to <num>3</num>.
     </p>
+    </div>
     <br>
     <p>These spawn zones have 2 methods:</p>
 
@@ -144,20 +151,25 @@
         <p class="SubParagraph">
             Random(<vType>min:</vType><vName>Position</vName> - <vName>Range</vName>,<vType>max:</vType> <vName>Position</vName> + <vName>Range</vName>) for both X and Y.
         <p class="SubParagraph">
-            The creature is spawned with the attributes multiplied by the <vName></vName>
+            The creature is spawned with the attributes multiplied by the <vName>difficulty</vName> variable.
+        <p class="SubParagraph">
+        Also sets the entities spawnerID to the spawners id.
     </p>
     </div>
+    <p>
+        <span class="MethodName">CheckSpawnedCount</span> Checks the entities in the world, if an entity has the SpawnerID set to the spawners ID,
+        it counts as one towards a counter and returns the counters value.
+    </p>
 
+    <h2>3.4. Time controller</h2>
 
-    <h1 class="SubTitle">3.4. Time controller</h1>
-
-    <h1 class="SubTitle2">3.4.1. Days and nights</h1>
+    <h2 class="SubTitle2">3.4.1. Days and nights</h2>
     <p>
         <info>One hour</info> in the game is <info>2 minutes</info>
             in real time, so a day is 48 minutes, where both day and night last for <info>24 minutes</info>.
-        <p  class="SubParagraph"><info>During the night</info> the maze generates and opens,
+        <p class="SubParagraph"><info>During the night</info> the maze generates and opens,
             and the spawners within the maze activate. Also crops won't grow, until the sun comes up.
-        <p  class="SubParagraph"><info>During the day</info> the maze is deleted to save computer resources.
+        <p class="SubParagraph"><info>During the day</info> the maze is deleted to save computer resources.
             Crops start to grow and the weather changes.
         <p class="SubParagraph">
             <warning>
@@ -166,7 +178,7 @@
              </warning>
     </p>
 
-    <h1 class="SubTitle2">3.4.2. Weather</h1>
+    <h2 class="SubTitle2">3.4.2. Weather</h2>
     <p>
         In the game there are 4 types of weather randomly chosen with the chances:
         <info>Sunny</info> <num>60%</num>,
@@ -189,7 +201,7 @@
             The player can craft lightning rods, to decrease the chance drastically
             (<num>0.005%</num> -> <num>0.0005%</num>).
     </p>
-    <h1 class="SubTitle2">3.4.3. Ticks</h1>
+    <h2 class="SubTitle2">3.4.3. Ticks</h2>
     <p>
         Some features within the game use a system called <info>ticks</info>, these ticks happen
         <num>6</num> times a <info>second</info>.
@@ -198,34 +210,233 @@
             chance to grow <info>(explained further in the corresponding section)</info>
     </p>
 
-    <h1 class="SubTitle">3.5. Resource manager</h1>
-    <h1 class="SubTitle2">3.5.1. Resource spawner</h1>
-    <h1 class="SubTitle2">3.5.2. Resource zones</h1>
-    <h1 class="SubTitle">3.6. Effect manager</h1>
-    <h1 class="SubTitle">3.7. Entity controller</h1>
-    <h1 class="SubTitle">3.8. Player</h1>
-    <h1 class="SubTitle2">3.8.1. Leveling</h1>
-    <h1 class="SubTitle2">3.8.2. Stats</h1>
-    <h1 class="SubTitle2">3.8.3. Skill tree</h1>
-    <h1 class="SubTitle">3.9. Maze generator</h1>
-    <h1 class="SubTitle">3.10. Loot generator</h1>
-    <h1 class="SubTitle">3.11. Farming system</h1>
-    <h1 class="SubTitle2">3.11.1. Crops</h1>
-    <h1 class="SubTitle2">3.11.2. Animals</h1>
-    <h1 class="SubTitle2">3.11.3. Bushes</h1>
-    <h1 class="SubTitle2">3.11.4. Trees</h1>
-    <h1 class="SubTitle">3.12. Crafting system</h1>
-    <h1 class="SubTitle2">3.12.1. Resources</h1>
-    <h1 class="SubTitle2">3.12.2. Crafting benches</h1>
-    <h1 class="SubTitle2">3.12.3. Recipes</h1>
-    <h1 class="SubTitle2">3.12.4. Unlock tree</h1>
-    <h1 class="SubTitle">3.13. Game manager</h1>
-    <h1 class="SubTitle2">3.13.1. Variables</h1>
-    <h1 class="SubTitle2">3.13.2. Timing</h1>
-    <h1 class="SubTitle2">3.13.3. Contained elements</h1>
-    <h1 class="SubTitle2">3.13.4. Life</h1>
-    <h1 class="SubTitle2">3.13.5. Menu</h1>
-    <h1 class="SubTitle2">3.13.6. In game</h1>
+    <h2>3.5. Resource manager</h2>
+    <p>
+        The resource managers task is to spawn and manage resource spawners in the word
+        <p>
+        <info>In the maze</info>,
+        it spawns metal in random positions of the maze, with Perlin Noise
+    <p>
+        <info>In the survival field</info>,
+        it spawns trees, rocks and grass, with Perlin Noise
+    </p>
+    <h2 class="SubTitle2">3.5.1. Resource spawner</h2>
+    <p>
+    Resource Spawners are working with zones, these zones have:
+        <p class="SubParagraph">
+        <vname> Area</vname><vType>(Tile[])</vType> The tiles it can spawn the given resource
+        <vname>Resource</vname><vtype>(Resource)</vtype> The resource it places in the world (Rock(<num>1/3</num> chance), Tree(<num>1/3</num> chance), Grass(<num>1/3</num> chance), Metal(<num>100%</num>))
+    <p class="SubParagraph">
+        <vname>Richness</vname><vtype>(int)</vtype> The value of how many resources can be present at the same time (min(<vname>Area.Count</vname> / <num>5</num>, <num>1</num>))
+    <p class="SubParagraph">
+        <vname>Respawn Rate</vname><vtype>(float)</vtype> Gives the resource respawn time in seconds (Trees: <num>600</num>, Rocks: <num>2880</num>, Grass: <num>600</num>, metal: <num>0</num> <info>(disabled)</info>)
+    <p>
+    And methods:
+    <p class="SubParagraph">
+            <span class="MethodName">TrySpawn</span> This will be called any time the spawn timer ticks down, when this method is called, it checks if the resources present in the zone are less than the richness of the zone
+    If less, then spawn <num>1</num> resource on a random tile, where there is no resource present. <info>If it is equal, then don't spawn</info>.
+    Note: The resource zones are rich with resources at creation.
+    <p class="SubParagraph">
+            <span class="MethodName">CheckResourceCount</span> Checks if the resource spawners richness limit is reached, returns the resources in the area of the spawner.
+    </p>
+    <h2>3.6. Effect manager</h2>
+    <p>The effect manager controls the effects on entities (<info>Player, Passive, Aggressive</info>). It works by
+    multiplying the entities stats with the numbers contained by it
+    <p>
+    Properties:
+    <p class="SubParagraph"><vname>Multipliers</vname><vtype>(float[])</vtype> An array of floating point numbers, this gives the multiplication values for each stat,
+        <br>Indices are the following:
+        <info>
+        <br>
+        1 Health
+        <br>
+        2 Strength
+        <br>
+        3 Armor
+        <br>
+        4 Speed
+        </info>
+    <br>
+    This number has to be at least <num>1</num>, there is no maximum limit set
+    <p>
+        <vname>Length</vname><vtype>(float)</vtype> : The length of the effects duration given in seconds
+        <br>
+        <vname>Passed Time</vname><vtype>(float)</vtype> : The time the effect has been applied
+        <br>
+        <vname>Remaining Time</vname><vtype>(float)</vtype> : Gives back the remaining time in seconds. (<vname>Length</vname> - <vname>PassedTime</vname>)
+    <p>
+    Methods:
+        <p class="SubParagraph">
+        <span class="MethodName">Pass Time(<vtype>float</vtype> <vname>delta</vname>)</span> This method increases the <vname>Passed Time</vname> variable by the value given into <vname>delta</vname>,
+        if this num reaches <num>0</num> remove the effect.
+        <br>
+        <span class="MethodName">Remove Effect(<vtype>Entity</vtype> <vname>ent</vname>)</span> Removes the effect from an entity
+        <br>
+        <span class="MethodName">Apply Effect(<vtype>Entity</vtype> <vname>ent</vname>)</span> Applies the effect to a set entity
+    </p>
+    <h2>3.7. Entities</h2>
+    <h3>3.7.1. Entity</h3>
+    <p>
+    The entity class describes each creature present in the game, they have stats:
+    <p class="SubParagraph"><vname>Health</vname><vtype>(float)</vtype>
+        <br>
+    <vname>Strength</vname><vtype>(float)</vtype>
+        <br>
+    <vname>Armor</vname><vtype>(float)</vtype>
+        <br>
+    <vname>Speed</vname><vtype>(float)</vtype>
+        <br>
+    <vname>Effects</vname><vtype>(Effect[])</vtype>
 
+    <p class="SubParagraph">Generalized methods:
+    <br>
+        <span class="MethodName">PassTime(<vType>float </vType><vname>delta</vname>)</span> This method controls the effects on the entity, with <vname>delta</vname> being a time interval in seconds.
+
+
+    <h3>3.7.2. Passive</h3>
+    <p>
+    Passive entities wander around, they have no interaction with the player until the player attacks or interacts with them
+    Bulls, attack back when attacked, other animals flee from the payer.
+    Passive entities:
+
+        <br><info>1) Chicken</info>
+        <br><info>2) Cows</info>
+        <br><info>3) Bulls</info>
+        <br><info>4) Birds</info>
+        <br><info>5) Brass</info>
+        <br><info>6) Clownfish</info>
+        <br><info>7) Cod</info>
+    <p>
+
+    Properties:
+        <p class="SubParagraph">
+        <vname>Fleeing</vname><vtype>(bool)</vtype> : This variable indicates the time
+
+        <p>
+    Methods:
+        <p class="SubParagraph">
+        <span class="MethodName">Flee</span> : If this method is called the flee variable is set
+        <br>
+        <span class="MethodName">Wonder</span> : This method gets called at random intervals (10 - 30 seconds), and gets a random walkable position in an area of 20 tiles
+        The cool-down begins when the creature finishes the wonder.
+    </p>
+    <h3>3.7.3 Aggressive</h3>
+    <p>Aggressive entities target the player when the player enter their line of sight, they have an attack that reduces the players hp on impact
+    Aggressive entity list:
+    Robot spider, Robot hunter (human-like, shoots projectiles)
+
+</p>
+    <!--<h2>3.8. Player</h2>
+    <h3>3.8.1. Leveling</h3>
+    <h3>3.8.2. Stats</h3>
+    <h3>3.8.3. Skill tree</h3>
+    <h2>3.9. Maze generator</h2>
+    <h2>3.10. Loot generator</h2>
+    <h2>3.11. Farming system</h2>
+    <h3>3.11.1. Crops</h3>
+    <h3>3.11.2. Animals</h3>
+    <h3>3.11.3. Bushes</h3>
+    <h3>3.11.4. Trees</h3>
+    <h2>3.12. Crafting system</h2>
+    <h3>3.12.1. Resources</h3>
+    <h3>3.12.2. Crafting benches</h3>
+    <h3>3.12.3. Recipes</h3>
+    <h3>3.12.4. Unlock tree</h3>
+    -->
+    <h2>3.8. Game manager</h2>
+    <p>
+        The game manager component is the most important part of the game. It controls everything, from the day and night cycles all the way through to the map generation, including the spawners
+        control system. Inside this component in the frame update method, <info>Ticks</info> are managed.
+        <p class="SubParagraph">
+        This component exists both in the menu and the game itself, it runs in the background, manages saves, loads, developer console.
+        <p class="SubParagraph">
+        At every scene it is present from the beginning and all other elements are created by it, so it is important that the systems implemented into it work reliably and effectively, so the performance
+        does not decrease. As the game progresses this component will have <warning>tens</warning> or even <warning>hundreds</warning> of dependent elements. So performance will naturally decrease, make sure to
+        delete every dependent object, after <warning>they become unusable</warning>.
+        <p class="SubParagraph">
+        <extraWarning>Removing the game manager component from the game, even after 100 hours of gameplay will ruin the world, and make it unplayable, so be sure to make it safe from every object,
+        meaning check if an object for deletion (Like metal resources at removing the maze), is for sure not this component.</extraWarning>
+    </p>
+    <h3>3.13.1. Variables</h3>
+    <div class="boxed">
+        <p class="SubParagraph">
+            <vName>Survival Size</vName><vtype>(int)</vtype>
+            <br>This variable determines the width and the height of the survival zone, <info>its square shaped</info>, it is dependent on the difficulty
+            <br>Map sizes:
+            <br><info>Small <num>128</num></info>
+            <br><info>Medium <num>196</num></info>
+            <br><info>Large <num>256</num></info>
+        </p>
+        <p class="SubParagraph">
+            <vName>Maze Size</vName><vtype>(int)</vtype>
+            <br>This variable sets the size of the maze, the maze is equal length in all directions
+        </p>
+        <p class="SubParagraph">
+            <vName>Survival Map</vName><vtype>(Tile[][])</vtype>
+            <br>This matrix contains the survival map tiles generated and managed
+        </p>
+        <p class="SubParagraph">
+            <vName>Maze Map</vName><vtype>(Tile[][])</vtype>
+            <br>This matrix contains the maze map tiles generated and managed
+        </p>
+        <p class="SubParagraph">
+            <vName>Tick Speed</vName><vtype>(int)</vtype>
+            <br>This variable means how many ticks are in a second, in the update method there is a check if the elapsed time between ticks is equals to <num>1</num> / <vName>Tick Speed</vName>
+        </p>
+
+    </div>
+    <h3>3.13.2. Methods</h3>
+    <div class="boxed">
+        <p class="SubParagraph">
+            <span class="MethodName">Generate Map</span>
+            <br>This method generates both the survival zone and the maze. Starting with the survival field. It starts with creating a matrix for the survival field, then generates the tiles for it,
+            then proceeds to create a matrix for the maze, then generating random paths inside.
+        </p>
+        <p class="SubParagraph">
+            <span class="MethodName">Load Map</span>
+            <br>If this method is called, both the survival and maze map gets rendered into the scene the player currently is located.
+        </p>
+        <p class="SubParagraph">
+            <span class="MethodName">Load Save(<vtype>string </vtype><vName>Location</vName>)</span>
+            <br>If this method is called, gets all data from the save file from the location, then creates every object from it.
+            <br><extraWarning>If there is a save file, then don't generate the map, it already exists in the save file!</extraWarning>
+        </p>
+        <p class="SubParagraph">
+            <span class="MethodName">Ready</span>
+            <br>When the component is created, the ready method gets called, it calls the <span class="MethodName">Generate Map</span> method, then the <span class="MethodName">Load Map</span>
+            method, if there is no save file given, if there is a save file given, then just call the <span class="MethodName">Load Save</span> method.
+        </p>
+        <p class="SubParagraph">
+            <span class="MethodName">Process(<vtype>float </vtype><vName>delta</vName>)</span>
+            <br>This method is called every frame where <vname>delta</vname> means the time passed between the last and current frame.
+            <br>From the delta we know the passed time, so we check for <info>ticks</info> and spawner states.
+        </p>
+    </div>
+    <!--<h3>3.13.3. Timing</h3>
+    <h3>3.13.4. Life</h3>-->
+    <h3>3.13.5. Menu</h3>
+    <p>
+        The main menu will be the game’s level 0, which means this will be the first thing which is appears every time someone starts up the game. During startups and coming back to the main menu from playing the game,
+        the game will search for a save file. If it fails to find one then the continue button will be disabled. Otherwise, the continue button will be available.
+        Next to this button there will be a new game, options, how to play and quit button.
+    <p class="SubParagraph">After the press of the new game button a new window will appear where the player can select the game mode he/she would like to play.
+        This will be possible by click on the button of the game mode which will also start the game. If the game already has a save it will ask the user whether he/she want to overwrite that save or not.
+        It will appear on a new window which will contains 2 buttons too.
+    <p class="SubParagraph">The continue button will delete the previous save and start the game,
+        the cancel button will take the player back to the main menu. If the user changed his/her mind before the game mode selection, there is a possibility to go back with the back button.
+    <p class="SubParagraph">Clicking on the quit button is also going to appear a new window which will ask the user whether he/she wants to leave the game with 2 buttons under it.
+        If the player presses the yes the game will start the exit sequence otherwise the no button will go back to the main menu.
+    <p class="SubParagraph">The how to play button will bring up a new window by pressing it which describes the game and all the different game modes shortly.
+        This window will also have a back button which takes the player back to the main menu.
+
+    </p>
+
+    <h1>4. Usability</h1>
+    <h2>4.1. Learning Curve</h2>
+    <h1>5. Reliability</h1>
+    <h1>6. Performance</h1>
+    <h1>7. Supportability</h1>
+    <h1>8. Design Constrains</h1>
+    <h1>9. Applicable Standards</h1>
 </body>
 </html>
