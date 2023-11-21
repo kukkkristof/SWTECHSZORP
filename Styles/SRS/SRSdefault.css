@@ -13,27 +13,27 @@ body{
     user-select: none;
 
 }
-.Title
+h1
 {
     color: #A47551;
-    font-size: 5rem;
+    font-size: 5.61rem;
 }
 
-.SubTitle
+h2
 {
     color: #A47551;
-    font-size: 4rem;
+    font-size: 4.209rem;
 }
-.SubTitle2
+h3
 {
     color: #A47551;
-    font-size: 3rem;
+    font-size: 3.157rem;
 }
 
 p
 {
     margin: 2% 0 0 0;
-    font-size: 2.5rem;
+    font-size: 1.777rem;
 }
 
 .SubParagraph
@@ -89,11 +89,12 @@ warning
     color: palevioletred;
 }
 
-
-.WarningText
+extraWarning
 {
-    color: palevioletred;
+    color: #f13d3d;
+    text-decoration: underline;
 }
+
 
 img
 {
@@ -102,6 +103,15 @@ img
     width: 30rem;
     aspect-ratio: 1;
     max-width: 90vw;
+}
+
+.UseCase
+{
+    width: auto;
+    object-fit: contain;
+    height: fit-content;
+    margin-left: 0;
+    float:none;
 }
 
 .TileTable
