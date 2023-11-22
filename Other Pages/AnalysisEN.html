@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../Styles/H4/AnalyticsDefault.css">
+    <title>Title</title>
+</head>
+<body>
+
+<h1 title="Intro">1. Introduction</h1>
+<h1>2. Starting Class Diagram</h1>
+<img src="../Images/StartingClassDiagram.jpg" alt="Starting Class Diagram" title="Starting Class Diagram">
+<h2>2.1. Full Class Diagram</h2>
+<img src="../Images/ClassDiagramFull.jpg" alt="Full Class Diagram" title="Full Class Diagram">
+<h2>2.2. List of classes</h2>
+<ol>
+    <li>GameManager</li>
+    <li>Effect</li>
+    <li>Tile</li>
+    <li>Entity</li>
+    <li>Hostile : Entity</li>
+    <li>Passive : Entity</li>
+    <li>Player : Entity</li>
+    <li>Item</li>
+    <li>Weapon : Item</li>
+    <li>Armor : Item</li>
+    <li>Resource : Item</li>
+    <li>Consumable : Item</li>
+    <li>EntitySpawner</li>
+    <li>ResourceSpawner</li>
+</ol>
+<h2>2.3. Underlying systems</h2>
+
+<h3>2.3.1. Entity</h3>
+A base class for creatures, only exists inherited
+<br>Attributes:
+<br>Health : float : The health of the entity
+<br>Strength : float : The attack damage of the creature
+<br>Armor : float : How much damage in percentage the entity can reduce from the taken damage
+<br>MovementSpeed : float : How fast the entity moves in space
+<br>Effects : Effect[] : The applied effect to the entity
+<br>Operations:
+<br>PassTime : void : Passes time in the creature (Counts down effect timers)
+
+<h3>2.3.2. Hostile</h3>
+Attributes:
+<br>Vision : CollisionShape : A collider which is set to check for player detection, does not collide physically with objects
+<br>Operations:
+<br>See() : void : Check if player is in vision
+<br>Attack() : void : Move towards the player, if close deal damage to it.
+
+<h3>2.3.3. Passive</h3>
+Attributes:
+<br>Fleeing : bool : Is the entity fleeing from another entity?
+<br>FleeTime : float : How long does the entity flee from another entity
+<br>PassedFleeTime : float : Time passed since fleeing
+<br>Operations:
+<br>Flee(From:Entity) : void : Start fleeing from an entity, going in a different direction from it
+
+<h3>2.3.4. Player</h3>
+Attributes:
+<br>Inventory : Item[] : The items the player has with themselves, these are item objects such as resources, the player can use these items to sustain itself
+<br>Level : int : The level of the player
+<br>Hunger : int : How much food does the player has currently (max: 100)
+<br>Thirst : int : How much water does the player has currently (max: 100)
+<br>Operations:
+<br>Move : void : Move the player according to user input
+
+<h3>2.3.5. Item</h3>
+An abstract class for items in the players inventory
+<br>Attributes:
+<br>Name : String : The name of the item
+<br>Count : int : How many of this item is currently in this stack
+<br>StackCount : int : How many of this item can be in one stack
+<br>id : int : An id for the item, all items have their own id, pre-set by the developers
+<br>Operations:
+<br>AddToInventory : void : Adds the item in the players inventory, if there is space inside it
+<br>IncreaseCount(count : int) : void : Increase the count in the stack, if the stack limit is reached, create another instance of the
+<br>item with the remaining counter, if the inventory is full, delete the remaining
+<br>RemoveItem : void : Completely removes the item from the players inventory
+<br>DecreaseCount(count : int) : void : Removes the given amount of items of this type from the players inventory, not just from this stack, but from other stacks as well
+
+<h3>2.3.6. Armor</h3>
+This class represents wearable items, wearable items can be put in the inventories specific slot, where it will give the effects of the armor
+<br>Attributes:
+<br>ArmorValue : float : The number which increases the wearers armor by this amount
+<br>CustomEffect : Effect : If the armor has an effect, apply it to the wearer, if not this value is null
+<br>Operations:
+<br>Equip : void : Gives the effects, gets called when the armor is put in the corresponding slot
+<br>Unequip : void : Removes the effect, gets called when the armor gets removed the corresponding slot
+<br>ApplyEffect : void : Gets called every frame, when the armor is equipped, if called apply the effect on the player, for 5 seconds
+
+<h3>2.3.7. Consumable</h3>
+This class represents the items te player can use to decrease their hunger and thirst
+<br>Attributes:
+<br>NutritionValue : int[] : The first number is how much Food is restored, the second number is how much Thirst is restored
+<br>RotTime : float : Some foods can rot, which means they get deleted from the players inventory, this timer represents this
+<br>Operations:
+<br>Consume : void : Consumes the food, decrease the item num by one, and increase player stats, with the nutrition value
+<br>TimePass(delta : float) : void : With this function the consumables rot timer is decreased, if it hits 0, then delete
+
+<h3>2.3.8. Weapon</h3>
+The weapon class corresponds to items that can be used as a weapon against other entities
+<br>Attributes:
+<br>Damage : float : How much damage is added to the players strength, this damage is multiplied by the effects on the player
+<br>CustomEffect : Effect : If the weapon has an effect, apply it to the wearer, if not this value is null
+<br>Range : CollisionShape : This is the range of the weapon, only entities within the range can be damaged by the weapon
+<br>Operations:
+<br>ApplyEffect : void : Gets called every frame, when the weapon is in use, when called apply the effect on the player, for 5 seconds
+<br>Attack(Target : Entity) : void : Deal damage to the given entity, gets called inside the checkInRangeEntities function.
+<br>CheckInRangeEntities : void : Checks if any entities are inside the range, if yes, the call the attack method on them. This method gets called when the player uses an attack action, when using the weapon
+
+<h3>2.3.9. Resource</h3>
+The resource class is reserved for crafting materials
+<br>Attributes:
+<br>Age : float : How old is the object (counted from arriving in the inventory)
+<br>SourceID : int : The id of the resource spawner its from.
+<br>Refined : bool : True if the resource has been refined by the player, false if it has not been refined yet
+<br>Operations:
+<br>Operations:
+<br>Refine(RefiningResource : Resource) : void : Refine resource with an other resource (ex.: wood with metal)
+
+<h3>2.3.10. GameManager</h3>
+The game manager controls the game
+<br>Attributes:
+<br>SurvivalSize : int : Is the survival fields size
+<br>MazeSize : int : Is the mazes size
+<br>SurvivalMap : Tile[][] : A matrix containing all tiles of the map
+<br>TicksSpeed : int : Per second tick count
+<br>Operations:
+<br>GenerateMap : void : Generates both the survival and maze map
+<br>LoadMap : void : Loads the generated or loaded map
+<br>LoadSave(Location : string) : void : Loads a save file
+<br>Ready : void : Gets called then object is created decides if map generation is neccessary, sets everything up
+<br>Process(delta : float) : void : Gets called every frame with the passed time between frames
+
+<h3>2.3.11. Tile</h3>
+Tiles are what make up the map
+<br>Attributes:
+<br>Type : String : The type of the tile (Grass, Water, etc)
+<br>MazeTile : bool : If the tile is a maze tile, then scale it according to the survival and maze size
+<br>Sprite : Sprite2D : Essentially just the texture on the screen
+<br>Style : int : Some textures like grass, have different varieties, this number is the variety number
+<br>Operations:
+<br>GetTextureName : String : Returns the texture name in the file system
+
+<h3>2.3.12. Effect</h3>
+The effect class is used for buffing / debuffing entities
+<br>Attributes:
+<br>Multipliers : float[] : The multipliers stats are changed
+<br>Length : float : The length of the effect
+<br>PassedTime : float : The time the effect has been applied
+<br>Remaining time : float : The remaining time from the effect
+<br>Operations:
+<br>PassTime(delta : float) : void : Increase the Passed time value with the delta, if its over the length, remove he effect
+<br>RemoveEffect(ent : Entity) : void : Remove the effect from the given entity, if applicable
+<br>ApplyEffect(ent : Entity) : void : Add the effect to the given entity
+
+<h3>2.3.13. EntitySpawner</h3>
+The entity spawner component spawns entities on the world
+<br>Attributes:
+<br>Difficulty : float : The difficulty multiplier of the entities spawned by this spawner
+<br>SpawnerId : int : An unique ID for the spawner
+<br>SpawnRate : float : The rate an entity is spawned in seconds
+<br>Range : float : The range in which entities are spawned
+<br>Position : float[] : The position of the spawner, X, Y coordinates
+<br>Creature : Entity[] : An array of entities which are randomly chosen at each spawn
+<br>Operations:
+<br>Spawn : void : Spawns an entity if available
+<br>CheckSpawnedCount : int : Check the number of entities spawned
+
+<h3>2.3.14. ResourceSpawner</h3>
+The resource spawner places resource farming locations on the map
+<br>_Resource : Resource : The resource created by the spawner
+<br>Area : Tile[] : The tiles a resource can be placed on
+<br>Richness : int : The number of resources that can co-exist in the area
+<br>RespawnRate : float : The respawn rate of resources, given in seconds
+<br>Operations:
+<br>TrySpawn : void : Tries to place a farm-able object on the map
+<br>CheckResourceCount : int : Check the number of resources spawned in the area
+
+</body>
+</html>
