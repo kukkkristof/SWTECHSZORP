@@ -71,7 +71,7 @@
     height: 100%;
     display: flex;
     overflow: hidden;
-    transition: transform 2s ease-in-out;
+    transition: transform 1s ease-in-out;
 }
 
 .SliderElement
@@ -105,4 +105,29 @@
 .SliderElement a:hover
 {
     color: black;
+}
+
+#h1Navbar
+{
+    width: 100%;
+    height: 5rem;
+    background: #1d120c;
+    display: flex;
+}
+#h1Navbar > button
+{
+    height: 100%;
+    width: calc(100% / 6);
+    background: none;
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+}
+#h1Navbar > button:hover
+{
+    background: #fff2;
+}
+#h1Navbar > button:active
+{
+    background: #fff3;
 }

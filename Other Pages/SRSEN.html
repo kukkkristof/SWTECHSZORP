@@ -432,11 +432,60 @@
     </p>
 
     <h1>4. Usability</h1>
+    <p>
+        In this gripping and immersive gaming experience, players will find themselves thrust into the heart of a labyrinthine world.
+        The game's usability is designed to seamlessly blend excitement with strategic thinking, as players navigate through intricate mazes filled with suspenseful
+        twists and turns. Intuitive controls and a user-friendly interface ensure that both novice and experienced gamers can easily delve into the adrenaline-pumping action.
+        Engaging puzzles, dynamic obstacles, and a captivating storyline enhance the overall usability, creating an unforgettable gaming adventure.
+    </p>
     <h2>4.1. Learning Curve</h2>
+    <p>
+        Our game has a pretty easy learning curve, so it is easy to get started anytime for younger and older folks too. Our goal was to create a game that is enjoyable and does not provide too much difficulty, however
+        the player can decide to enter  a harder difficulty, where things are not as simple, those game modes even have their unique elements, so their curve is steeper but still on the easier side.
+    </p>
     <h1>5. Reliability</h1>
+    <p>
+        Since this is an offline game, after installation there should not be any downtime, so you can play any time you want to. If at any point the player encounters a bug where they cannot start
+        the game, we are easy to reach to fix that bug as soon as possible.
+    </p>
+    <p class="SubParagraph">
+        Our response usually takes 12 hours maximum on weekdays, and the average bugfix is about 1 hour, so the time the player cannot play  is roughly 13 hours (MTTR = 13 hours), but it should happen about once a month maximum (MTBF = 1 month).
+    </p>
     <h1>6. Performance</h1>
+    <p>FPS / CPU: We aim to achieve 60 FPS on low-end hardware to make it more accessible, currently a 2.4 GHz 4 core CPU is enough for our calculations in the current state of the game.</p>
+    <p>Memory: With our texture sizes(32*32) relatively few memory is reserved for textures, and with the maximum amount of entities allowed in our game, the maximum memory usage is 500MB.</p>
+    <p>Disk space: The game does not take up that many space on the storage devices, it is currently 120 MB at this rate the end product will approximately will be 250 MB</p>
     <h1>7. Supportability</h1>
+    <p>
+        With us documenting every development step, and our code is easy to read thanks to famous coding conventions, development in the future will be easy for those, who plan on modding and/or developing the game further.
+    </p>
+    <p>
+        Error Managing: C# has a robust exception handler, so if at any point an error occurs in the system, the user gets notified and if they decide to, they can send us the error message for diagnostic reasons, since
+        the default error manager writes in great detail about the exception.
+    </p>
+    <p>
+        Every crash report is stored in the games' directory, if the player wants to they can read back at any time what were their crashes.
+    </p>
     <h1>8. Design Constrains</h1>
+    <p>
+        Plagiarism: We don't want to full-on copy the Maze Runner movie it just gave us an idea that we really clicked with. However, it might not be our intentions some elements might be too similar, so we have to rework those
+        elements for it not to be like in the movie.
+    </p>
+    <p>
+        Hardware limitations: We would like to create a bigger and more detailed world for our game, but unfortunately it would be too resource heavy on all computers, now we use a 128*128 world which is large enough, but
+        we think if we took it up to 1024^1024 it would be a better experience. That is sadly not can not be done since it even runs slow on our computers, so we cant test with those.
+    </p>
+    <p>
+        Language limitations: C# is great for many things, but it is an object-oriented programming language so many elements are taking up more resources than they should be, so in larger scales it slows down the game,
+        this is partly the reason for the map size we said in the hardware limitations section. It is not the main reason, but it does not help. Lookups are slower, but calculations run faster than in other languages
+        (Based on our testing, with code snippets from the game), so we stick with this language.
+    </p>
+    <p>Time limitations: Due to exams coming up, our development progress in the game greatly decreased, since we have lots of classes to study for, this in itself hugely impacts the speed the game is getting developed, and
+    our attempts at rushed development just took us backwards in the project.</p>
     <h1>9. Applicable Standards</h1>
+    <p>
+        During the development we opted for PascalCase and Snake_Case to make our code more readable, we also avoided recursion for safer code.
+    </p>
+    <br/>
 </body>
 </html>
