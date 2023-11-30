@@ -14,6 +14,13 @@ function Slide(dir)
 
 }
 
+function SlideTo(slide)
+{
+    slideCurrent = slide;
+    let slideTo = slide * (-100 / (slideMaximum+1));
+    slider.style.transform = "translateX("+ slideTo + "%)";
+}
+
 slider = document.getElementById("Slider");
 
 slideMinimum = 0;

@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+:root
+{
+    --Beige : #D9CCC1;
+
+    --Brown1 : #735236;
+    --Brown2 : #3b2518;
+    --BodyBackground: #593D2D;
+}
+
+body
+{
+    font-family: Roboto, sans-serif;
+    color: var(--Beige);
+    background: var(--BodyBackground);
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    user-select: none;
+    font-size: 2rem;
+    text-align: justify;
+}
+
+#NavBar
+{
+    display: flex;
+    width: 100%;
+    height: 5rem;
+    background: var(--Brown2);
+    margin: auto;
+    line-height: 5rem;
+}
+
+#NavBar > button
+{
+    width: 10%;
+    color: var(--Beige);
+    border: none;
+    background: none;
+    font-size: 3rem;
+}
+#NavBar > Button:hover
+{
+    background: #0003;
+}
+#NavBar > Button:active
+{
+    background: #0005;
+}
+
+#NavBar > h1
+{
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    font-size: 3rem;
+    font-weight: bolder;
+    letter-spacing: 1rem;
+}
+
+#PageContainer
+{
+    width: 94%;
+    margin-left: 3%;
+    padding-right: 3%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: calc(100% - 6rem);
+    margin-bottom: 0;
+    padding-bottom: 1rem;
+}
+section
+{
+    font-size: 2rem;
+}
+section > p{
+    margin: 0.5rem;
+}
+section > h1
+{
+    font-size: 4rem;
+}
+section > h2
+{
+    font-size: 3.5rem;
+}
+section > h3
+{
+    font-size: 3rem;
+}
+section > img
+{
+    max-width: 100%;
+}
+
+section > table
+{
+    width: 100%;
+    border: 1px solid white;
+    border-spacing: 0;
+
+}
+section > table td
+{
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+section > table tr:not(:last-child) td
+{
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid white;
+}
+section >table tr:first-child{
+    line-height: 4rem;
+    background: #0002;
+
+}
+section > table td:last-child
+{
+    border-left: 1px solid white;
+}
