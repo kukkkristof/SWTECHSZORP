@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../Scripts/H5.js"></script>
+    <link rel="stylesheet" href="../Styles/newDefault.css">
+    <link rel="stylesheet" href="../Styles/H5/H5.css">
+    <title>Plans</title>
+</head>
+<body>
+    <div id="NavBar">
+        <button onclick="window.open('../index.html', '_self')"><<</button>
+        <h1>SZORP SYSTEM PLANS</h1>
+    </div>
+    <div id="PageContainer">
+
+        <section id="Introduction">
+            <h1>1. Introduction</h1>
+            <p>
+                In this document there are graphic demonstrations about our vision
+                regarding the user interface
+            </p>
+        </section>
+        <section id="Menu">
+            <h1>2. Main Menu</h1>
+            <p>
+                The main menu is the screen the player gets loaded into
+                upon starting the game.
+                To try out the menu, you can click on the options!
+            </p>
+            <div class="screen" id="MainMenu" >
+                <img src="../Images/MenuBackground.png" class="gameImage">
+                <h1>SZORP</h1>
+                <button class="menuButton" onclick="OpenPage('NewGame')">NEW GAME</button>
+                <button class="menuButton" onclick="OpenPage('LoadGame')">LOAD GAME</button>
+                <button class="menuButton" onclick="OpenPage('Options')">OPTIONS</button>
+                <button class="menuButton">EXIT</button>
+            </div>
+            <div class="screen" id="NewGame" hidden >
+                <img src="../Images/MenuBackground.png" class="gameImage">
+                <h1>NEW GAME</h1>
+                <button class="menuButton">EASY</button>
+                <button class="menuButton">HARD</button>
+                <button class="menuButton">INFINITE</button>
+                <button class="menuButton" onclick="OpenPage('MainMenu')">BACK</button>
+            </div>
+            <div class="screen" id="LoadGame" hidden >
+                <img src="../Images/MenuBackground.png" class="gameImage">
+                <h1>LOAD GAME</h1>
+                <button class="menuButton">Save 1</button>
+                <button class="menuButton">Save 2</button>
+                <button class="menuButton">Save 3</button>
+                <button class="menuButton" onclick="OpenPage('MainMenu')">BACK</button>
+            </div>
+            <div class="screen" id="Options" hidden >
+                <img src="../Images/MenuBackground.png" class="gameImage">
+                <h1>OPTIONS</h1>
+                <button class="menuButton" onclick="OpenPage('Graphics')" >Graphic settings</button>
+                <button class="menuButton" onclick="OpenPage('Volume')">Volume Settings</button>
+                <button class="menuButton" onclick="OpenPage('Access')">Accessibility Settings</button>
+                <button class="menuButton" onclick="OpenPage('MainMenu')">BACK</button>
+            </div>
+            <div class="screen" id="Graphics" hidden>
+                <img src="../Images/MenuBackground.png" class="gameImage">
+                <h1>GRAPHICS</h1>
+                <button class="menuButton">VIEW RANGE: HIGH</button>
+                <button class="menuButton">TEXTURES: HIGH</button>
+                <button class="menuButton">ANIMATIONS: HIGH</button>
+                <button class="menuButton" onclick="OpenPage('Options')">BACK</button>
+            </div>
+            <div class="screen" id="Volume" hidden >
+                <img src="../Images/MenuBackground.png" class="gameImage">
+                <h1>VOLUME</h1>
+                <button class="menuButton">MASTER: 100</button>
+                <button class="menuButton">WEATHER: 0</button>
+                <button class="menuButton" onclick="OpenPage('Options')">BACK</button>
+            </div>
+            <div class="screen" id="Access" hidden >
+                <img src="../Images/MenuBackground.png" class="gameImage">
+                <h1>ACCESSIBILITY</h1>
+                <button class="menuButton" onclick="changeColorBlind()" id="Cbtn">COLORBLIND: 0</button>
+                <button class="menuButton">SOUND TEXTS: ON</button>
+                <button class="menuButton" onclick="OpenPage('Options')">BACK</button>
+            </div>
+        </section>
+        <section id="InGame">
+            <h1>3. In Game User Interface</h1>
+            <div class="screen" id="GameScreen">
+                <img src="../Images/InGame1.png" class="gameImage">
+                <p>Health: 100</p>
+                <p>Stamina: 100</p>
+                <div class="SettingsButton" onclick="OpenPage('GamePause')">⚙</div>
+                <div class="slotBar" id="slotBar">
+                    <div class="slotContainer selected" onclick="selectSlot(0)"></div>
+                    <div class="slotContainer" onclick="selectSlot(1)"></div>
+                    <div class="slotContainer" onclick="selectSlot(2)"></div>
+                    <div class="slotContainer" onclick="selectSlot(3)"></div>
+                    <div class="slotContainer" onclick="selectSlot(4)"></div>
+                    <div class="slotContainer" onclick="selectSlot(5)"></div>
+                    <div class="slotContainer" onclick="selectSlot(6)"></div>
+                    <div class="slotContainer" onclick="selectSlot(7)"></div>
+                </div>
+            </div>
+            <div class="screen" id="GamePause" hidden>
+                <img src="../Images/InGame1.png" class="gameImage">
+                <div class="UnFocus">
+                    <h1>PAUSE</h1>
+                    <button class="menuButton">SAVE</button>
+                    <button class="menuButton">LOAD SAVE</button>
+                    <button class="menuButton" onclick="OpenPage('GameScreen')">BACK</button>
+                    <button class="menuButton" onclick="document.getElementById('Menu').scrollIntoView()">EXIT</button>
+                </div>
+            </div>
+        </section>
+        <section id="Inventory">
+            <h1>4. Inventory</h1>
+            <div class="screen" id="asd">
+                <img src="../Images/InGame1.png" class="gameImage">
+                <div class="LightUnFocus">
+                    <div class="Inventory">
+                        <div class="Row">
+                            <p>INVENTORY</p>
+                            <div class="ArmorSlot"></div>
+                        </div>
+                        <div class="Row">
+                            <div class="invSlot"></div>
+                            <div class="invSlot"></div>
+                            <div class="invSlot"></div>
+                            <div class="invSlot"></div>
+                            <div class="invSlot"></div>
+                            <div class="invSlot"></div>
+                            <div class="invSlot"></div>
+                            <div class="invSlot"></div>
+                            <div class="invSlot"></div>
+                            <div class="invSlot"></div>
+                        </div>
+                        <div class="Row">
+                            <div class="invSlot"></div>
+                            <div class="invSlot"></div>
+                            <div class="invSlot"></div>
+                            <div class="invSlot"></div>
+                            <div class="invSlot"></div>
+                            <div class="invSlot"></div>
+                            <div class="invSlot"></div>
+                            <div class="invSlot"></div>
+                            <div class="invSlot"></div>
+                            <div class="invSlot"></div>
+                        </div>                        <div class="Row">
+                        <div class="invSlot"></div>
+                        <div class="invSlot"></div>
+                        <div class="invSlot"></div>
+                        <div class="invSlot"></div>
+                        <div class="invSlot"></div>
+                        <div class="invSlot"></div>
+                        <div class="invSlot"></div>
+                        <div class="invSlot"></div>
+                        <div class="invSlot"></div>
+                        <div class="invSlot"></div>
+                    </div>                        <div class="Row">
+                        <div class="invSlot"></div>
+                        <div class="invSlot"></div>
+                        <div class="invSlot"></div>
+                        <div class="invSlot"></div>
+                        <div class="invSlot"></div>
+                        <div class="invSlot"></div>
+                        <div class="invSlot"></div>
+                        <div class="invSlot"></div>
+                        <div class="invSlot"></div>
+                        <div class="invSlot"></div>
+                    </div>                        <div class="Row">
+                        <div class="invSlot"></div>
+                        <div class="invSlot"></div>
+                        <div class="invSlot"></div>
+                        <div class="invSlot"></div>
+                        <div class="invSlot"></div>
+                        <div class="invSlot"></div>
+                        <div class="invSlot"></div>
+                        <div class="invSlot"></div>
+                        <div class="invSlot"></div>
+                        <div class="invSlot"></div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

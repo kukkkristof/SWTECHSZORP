@@ -40,7 +40,7 @@
                 <img src="../Images/StartingUML.jpg" alt="Initial UML" title="Beginning of UML creation">
 
                 <h2>2.1. Full Class Diagram</h2>
-                <img src="../Images/ClassDiagramFull.jpg" alt="Filled out UML" title="Finished UML diagram of the game">
+                <img src="../Images/ClassDiagramFull.png" alt="Filled out UML" title="Finished UML diagram of the game">
 
                 <h3>2.2.1. GameManager Class</h3>
                 <p>The Game Manager class controls every non player controlled entities, the time in the game, crop growths, spawners. It also manages save files, and map generation.
@@ -100,7 +100,7 @@
                 <h3>2.2.8/3. Consumable Class</h3>
                 <p>This type of item when used by the player, replenish food and water to the player.</p>
 
-                <h3>2.2.8/3. Resource Class</h3>
+                <h3>2.2.8/4. Resource Class</h3>
                 <p>This type of item can be used for crafting or repairing other items.</p>
 
                 <h3>2.2.9. Settings Class</h3>
@@ -658,25 +658,25 @@
                         <td>private</td>
                         <td>string</td>
                         <td>_type</td>
-                        <td>Description</td>
+                        <td>The tiles type (grass, sand, water) this affects which type of resources and entities can be present on the tile.</td>
                     </tr>
                     <tr>
                         <td>private</td>
                         <td>Sprite2D</td>
                         <td>_sprite</td>
-                        <td>Description</td>
+                        <td>The texture to be rendered for the sprite.</td>
                     </tr>
                     <tr>
                         <td>private</td>
                         <td>int</td>
                         <td>_style</td>
-                        <td>Description</td>
+                        <td>Style of the texture. some type of textures have different variations, this is the value that represents that variation.</td>
                     </tr>
                     <tr>
                         <td>private</td>
                         <td>Vector2</td>
                         <td>_position</td>
-                        <td>Description</td>
+                        <td>Where in space is the tile located.</td>
                     </tr>
 
                 </table>
@@ -691,10 +691,9 @@
                     </tr>
                     <tr>
                         <td>private</td>
-                        <td>void</td>
-                        <td>MethodName</td>
-                        <td>Parameters</td>
-                        <td>Description</td>
+                        <td>string</td>
+                        <td>GetTextureName</td>
+                        <td colspan="2">Gets the textures name in the file explorer.</td>
                     </tr>
                 </table>
 
@@ -712,19 +711,19 @@
                         <td>private</td>
                         <td>float[]</td>
                         <td>_multipliers</td>
-                        <td>Description</td>
+                        <td>An array of floating point numbers for all stats.</td>
                     </tr>
                     <tr>
                         <td>private</td>
                         <td>float</td>
                         <td>_length</td>
-                        <td>Description</td>
+                        <td>How much seconds does the effect lasts.</td>
                     </tr>
                     <tr>
                         <td>public</td>
                         <td>float</td>
                         <td>RemainingTime</td>
-                        <td>Description</td>
+                        <td>The remaining time the effect lasts for.</td>
                     </tr>
                 </table>
                 <h3>Operations:</h3>
@@ -741,14 +740,14 @@
                         <td>void</td>
                         <td>RemoveEffect</td>
                         <td>Entity ent</td>
-                        <td>Description</td>
+                        <td>The entity the effect gets removed from.</td>
                     </tr>
                     <tr>
                         <td>private</td>
                         <td>void</td>
                         <td>ApplyEffect</td>
                         <td>Entity ent</td>
-                        <td>Description</td>
+                        <td>Apply the effect to an entity.</td>
                     </tr>
                 </table>
 
@@ -766,43 +765,43 @@
                         <td>public</td>
                         <td>string</td>
                         <td>Name</td>
-                        <td>Description</td>
+                        <td>Name of the crop.</td>
                     </tr>
                     <tr>
                         <td>public</td>
                         <td>string</td>
                         <td>Description</td>
-                        <td>Description</td>
+                        <td>A short description of the crop.</td>
                     </tr>
                     <tr>
                         <td>private</td>
                         <td>float</td>
                         <td>GrowthRate</td>
-                        <td>Description</td>
+                        <td>The chance for the crop to grow each tick.</td>
                     </tr>
                     <tr>
                         <td>private</td>
                         <td>Item[]</td>
                         <td>CollectItem</td>
-                        <td>Description</td>
+                        <td>The crops harvest resource.</td>
                     </tr>
                     <tr>
                         <td>public</td>
                         <td>bool</td>
                         <td>Adult</td>
-                        <td>Description</td>
+                        <td>A bool to check if the crop is grown.</td>
                     </tr>
                     <tr>
                         <td>private</td>
                         <td>int</td>
                         <td>Stages</td>
-                        <td>Description</td>
+                        <td>How many stages the crop has.</td>
                     </tr>
                     <tr>
                         <td>private</td>
                         <td>int</td>
                         <td>CurrentStage</td>
-                        <td>Description</td>
+                        <td>In which stage the crop currently is.</td>
                     </tr>
                 </table>
                 <h3>Operations:</h3>
@@ -818,31 +817,31 @@
                         <td>private</td>
                         <td>void</td>
                         <td>Grow</td>
-                        <td colspan="2">Parameters / Description</td>
+                        <td colspan="2">Increase the currentStage by one, check if the crop is an adult.</td>
                     </tr>
                     <tr>
                         <td>private</td>
                         <td>bool</td>
                         <td>DoGrow</td>
-                        <td colspan="2">Parameters / Description</td>
+                        <td colspan="2">Gets called every tick, generates a random number, and match it to the growth rate.</td>
                     </tr>
                     <tr>
                         <td>public</td>
                         <td>Item[]</td>
                         <td>Collect</td>
-                        <td colspan="2">Parameters / Description</td>
+                        <td colspan="2">Give the player the items the crop generated.</td>
                     </tr>
                     <tr>
                         <td>public</td>
                         <td>bool</td>
                         <td>CanCollect</td>
-                        <td colspan="2">Parameters / Description</td>
+                        <td colspan="2">Check if crop is collectible.</td>
                     </tr>
                     <tr>
                         <td>public</td>
                         <td>void</td>
                         <td>DoPlant</td>
-                        <td colspan="2">Parameters / Description</td>
+                        <td colspan="2">Plant the crop to a position.</td>
                     </tr>
 
                 </table>
@@ -860,13 +859,13 @@
                         <td>private</td>
                         <td>int</td>
                         <td>_collectTimes</td>
-                        <td>Description</td>
+                        <td>How many times the crop has been collected.</td>
                     </tr>
                     <tr>
                         <td>private</td>
                         <td>int</td>
                         <td>_harvestStage</td>
-                        <td>Description</td>
+                        <td>At which stage the crop can be harvested.</td>
                     </tr>
                 </table>
 
@@ -883,13 +882,13 @@
                         <td>private</td>
                         <td>bool</td>
                         <td>_infiniteCollect</td>
-                        <td>Description</td>
+                        <td>The crop can be collected infinitely.</td>
                     </tr>
                     <tr>
                         <td>private</td>
                         <td>float</td>
                         <td>_collectInterval</td>
-                        <td>Description</td>
+                        <td>If multiple collect crop, how often can it be collected in seconds.</td>
                     </tr>
                 </table>
 
@@ -906,31 +905,31 @@
                         <td>public</td>
                         <td>string</td>
                         <td>Name</td>
-                        <td>Description</td>
+                        <td>The name of the item.</td>
                     </tr>
                     <tr>
                         <td>public</td>
                         <td>int</td>
                         <td>Count</td>
-                        <td>Description</td>
+                        <td>How much of this item is in the current stack.</td>
                     </tr>
                     <tr>
                         <td>private</td>
                         <td>int</td>
                         <td>StackCount</td>
-                        <td>Description</td>
+                        <td>How many items can be in this stack.</td>
                     </tr>
                     <tr>
                         <td>private</td>
                         <td>int</td>
                         <td>Id</td>
-                        <td>Description</td>
+                        <td>An unique id of the item.</td>
                     </tr>
                     <tr>
                         <td>public</td>
                         <td>string</td>
                         <td>Description</td>
-                        <td>Description</td>
+                        <td>A short description of the item.</td>
                     </tr>
                 </table>
                 <h3>Operations:</h3>
@@ -946,27 +945,28 @@
                         <td>public</td>
                         <td>void</td>
                         <td>AddToInventory</td>
-                        <td colspan="2">Parameters / Description</td>
+                        <td colspan="2">Add the item to the players inventory.</td>
                     </tr>
                     <tr>
                         <td>public</td>
                         <td>void</td>
                         <td>IncreaseCount</td>
                         <td>int count</td>
-                        <td>Description</td>
+                        <td>Increase the current count by the given count variable, if its more than the
+                        stack size, then create a new instance with the remaining count.</td>
                     </tr>
                     <tr>
                         <td>public</td>
                         <td>void</td>
                         <td>RemoveItem</td>
-                        <td colspan="2">Parameters / Description</td>
+                        <td colspan="2">Remove said item from the players inventory.</td>
                     </tr>
                     <tr>
                         <td>private</td>
                         <td>void</td>
                         <td>DecreaseCount</td>
                         <td>int count</td>
-                        <td>Description</td>
+                        <td>Decrease the count of the stack, if it reaches zero, then remove from another item slot containing the same item.</td>
                     </tr>
                 </table>
 
@@ -983,13 +983,14 @@
                         <td>public</td>
                         <td>float</td>
                         <td>ArmorValue</td>
-                        <td>Description</td>
+                        <td>How much armor does the armor gives to the entity equipped.</td>
                     </tr>
                     <tr>
                         <td>private</td>
                         <td>Effect</td>
                         <td>_customEffect</td>
-                        <td>Description</td>
+                        <td>If the item has a special effect it is contained here, if it does not have
+                        an effect this value is NULL.</td>
                     </tr>
                 </table>
                 <h3>Operations:</h3>
@@ -1005,19 +1006,19 @@
                         <td>public</td>
                         <td>void</td>
                         <td>Equip</td>
-                        <td colspan="2">Parameters / Description</td>
+                        <td colspan="2">Equip the armor, placing it into the correct spot in the inventory.</td>
                     </tr>
                     <tr>
                         <td>public</td>
                         <td>void</td>
                         <td>UnEquip</td>
-                        <td colspan="2">Parameters / Description</td>
+                        <td colspan="2">Remove the armor from the current spot in the inventory.</td>
                     </tr>
                     <tr>
                         <td>public</td>
                         <td>void</td>
                         <td>ApplyEffect</td>
-                        <td colspan="2">Parameters / Description</td>
+                        <td colspan="2">Apply the effect of the armor to the player.</td>
                     </tr>
                 </table>
 
@@ -1035,8 +1036,8 @@
                     <tr>
                         <td>private</td>
                         <td>int[]</td>
-                        <td>_nutririonValue</td>
-                        <td>Description</td>
+                        <td>_nutritionValue</td>
+                        <td>How much food(index: 0) and water(index: 1) does it restores to the player.</td>
                     </tr>
                 </table>
                 <h3>Operations:</h3>
@@ -1052,7 +1053,7 @@
                         <td>public</td>
                         <td>void</td>
                         <td>Consume</td>
-                        <td colspan="2">Parameters / Description</td>
+                        <td colspan="2">Give the nutrition to the player.</td>
                     </tr>
                 </table>
 
@@ -1071,19 +1072,19 @@
                         <td>private</td>
                         <td>float</td>
                         <td>_damage</td>
-                        <td>Description</td>
+                        <td>How much damage (without multipliers) the weapon deals to the enemies.</td>
                     </tr>
                     <tr>
                         <td>private</td>
                         <td>Effect</td>
                         <td>_customEffect</td>
-                        <td>Description</td>
+                        <td>An effect that applies to the entity when it uses the weapon.</td>
                     </tr>
                     <tr>
                         <td>private</td>
                         <td>CollisionShape</td>
                         <td>_range</td>
-                        <td>Description</td>
+                        <td>The range the weapon is effective in.</td>
                     </tr>
                 </table>
                 <h3>Operations:</h3>
@@ -1099,20 +1100,20 @@
                         <td>public</td>
                         <td>void</td>
                         <td>ApplyEffect</td>
-                        <td colspan="2">Parameters / Description</td>
+                        <td colspan="2">Apply the effect to the entity when used.</td>
                     </tr>
                     <tr>
                         <td>public</td>
                         <td>void</td>
                         <td>Attack</td>
                         <td>Entity target</td>
-                        <td>Description</td>
+                        <td>Deal damage to the target entity.</td>
                     </tr>
                     <tr>
                         <td>public</td>
                         <td>void</td>
                         <td>CheckInRangeEntities</td>
-                        <td colspan="2">Parameters / Description</td>
+                        <td colspan="2">Check which entities are in the range of the weapon.</td>
                     </tr>
                 </table>
 
@@ -1129,31 +1130,31 @@
                         <td>private</td>
                         <td>bool</td>
                         <td>_cookable</td>
-                        <td>Description</td>
+                        <td>A variable to check if the resource can be put in a furnace to create an other resource.</td>
                     </tr>
                     <tr>
                         <td>private</td>
                         <td>Item</td>
                         <td>_cookItem</td>
-                        <td>Description</td>
+                        <td>If cookable this is another item if not this is NULL.</td>
                     </tr>
                     <tr>
                         <td>private</td>
                         <td>bool</td>
                         <td>_refinable</td>
-                        <td>Description</td>
+                        <td>check if the resource can be refined.</td>
                     </tr>
                     <tr>
                         <td>private</td>
                         <td>Item</td>
                         <td>_refiningRequirement</td>
-                        <td>Description</td>
+                        <td>An item which the resource needs to be combined with to create a new item.</td>
                     </tr>
                     <tr>
                         <td>private</td>
                         <td>Item</td>
                         <td>_refinedItem</td>
-                        <td>Description</td>
+                        <td>The item the player gets when refining the resource.</td>
                     </tr>
                 </table>
                 <h3>Operations:</h3>
@@ -1169,14 +1170,14 @@
                         <td>public</td>
                         <td>void</td>
                         <td>Cook</td>
-                        <td colspan="2">Parameters / Description</td>
+                        <td colspan="2">If cookable cook the resource.</td>
                     </tr>
                     <tr>
                         <td>public</td>
                         <td>void</td>
                         <td>Refine</td>
                         <td>Item refiningResource</td>
-                        <td>Description</td>
+                        <td>If refinable, refine the resource.</td>
                     </tr>
                 </table>
 
@@ -1193,19 +1194,19 @@
                         <td>private</td>
                         <td>int</td>
                         <td>_volume</td>
-                        <td>Description</td>
+                        <td>The value of how loud the sounds are.</td>
                     </tr>
                     <tr>
                         <td>private</td>
                         <td>float</td>
                         <td>_textureQuality</td>
-                        <td>Description</td>
+                        <td>Texture resolution in rendering.</td>
                     </tr>
                     <tr>
                         <td>private</td>
                         <td>int</td>
                         <td>_maxEntityCount</td>
-                        <td>Description</td>
+                        <td>The maximum number of entities in the world.</td>
                     </tr>
                 </table>
                 <h3>Operations:</h3>
@@ -1222,27 +1223,136 @@
                         <td>void</td>
                         <td>ChangeVolume</td>
                         <td>int value</td>
-                        <td>Description</td>
+                        <td>Change the volume to the value.</td>
                     </tr>
                     <tr>
                         <td>public</td>
                         <td>void</td>
                         <td>ChangeTextureQuality</td>
                         <td>float value</td>
-                        <td>Description</td>
+                        <td>Change the textures quality to the given value.</td>
                     </tr>
                     <tr>
                         <td>public</td>
                         <td>void</td>
                         <td>ChangeMaxEntityCount</td>
                         <td>int value</td>
-                        <td>Description</td>
+                        <td>Changes the number of entities in the world</td>
                     </tr>
                 </table>
 
+                <h2>3.10. MenuManager</h2>
+                <h3>Attributes</h3>
+                <table>
+                    <tr>
+                        <td>Visibility</td>
+                        <td>Type</td>
+                        <td>Name</td>
+                        <td>Description</td>
+                    </tr>
+                    <tr>
+                        <td>public</td>
+                        <td>enum{button, slider, text}</td>
+                        <td>ControlType</td>
+                        <td>The type of the control, button is a clickable control, a slider is a value changer between 2 limits, text is a text input.</td>
+                    </tr>
+                    <tr>
+                        <td>private</td>
+                        <td>float</td>
+                        <td>_value</td>
+                        <td>The value of the control, for buttons its 0 or 1 meaning on or off, on a slider its between the two limit values.</td>
+                    </tr>
+                </table>
+                <h3>Operations:</h3>
 
+                <table>
+                    <tr>
+                        <td>Visibility</td>
+                        <td>Type</td>
+                        <td>Name</td>
+                        <td colspan="2">Parameters / Description</td>
+                    </tr>
+                    <tr>
+                        <td>public</td>
+                        <td>void</td>
+                        <td>ChangeValue</td>
+                        <td>float newValue</td>
+                        <td>Function that changes control value.</td>
+                    </tr>
+                </table>
 
+                <h2>3.11. Option</h2>
+                <h3>Attributes</h3>
+                <table>
+                    <tr>
+                        <td>Visibility</td>
+                        <td>Type</td>
+                        <td>Name</td>
+                        <td>Description</td>
+                    </tr>
+                    <tr>
+                        <td>private</td>
+                        <td>Control[]</td>
+                        <td>_controls</td>
+                        <td>Controls available on the option page.</td>
+                    </tr>
+                </table>
+                <h3>Operations:</h3>
 
+                <table>
+                    <tr>
+                        <td>Visibility</td>
+                        <td>Type</td>
+                        <td>Name</td>
+                        <td colspan="2">Parameters / Description</td>
+                    </tr>
+                    <tr>
+                        <td>public</td>
+                        <td>void</td>
+                        <td>Display</td>
+                        <td colspan="2">Render all control elements on the screen, disabling every other element.</td>
+                    </tr>
+                </table>
+
+                <h2>3.12. MenuManager</h2>
+                <h3>Attributes</h3>
+                <table>
+                    <tr>
+                        <td>Visibility</td>
+                        <td>Type</td>
+                        <td>Name</td>
+                        <td>Description</td>
+                    </tr>
+                    <tr>
+                        <td>private</td>
+                        <td>Option[]</td>
+                        <td>MenuOptions</td>
+                        <td>An array containing menu options such as settings/volume/saves menu.</td>
+                    </tr>
+                    <tr>
+                        <td>private</td>
+                        <td>Control[]</td>
+                        <td>Controls</td>
+                        <td>Controls available on the page, this includes buttons that open option pages.</td>
+                    </tr>
+                </table>
+                <h3>Operations:</h3>
+
+                <table>
+                    <tr>
+                        <td>Visibility</td>
+                        <td>Type</td>
+                        <td>Name</td>
+                        <td colspan="2">Parameters / Description</td>
+                    </tr>
+                    <tr>
+                        <td>public</td>
+                        <td>void</td>
+                        <td>OptionClicked</td>
+                        <td>int OptionID</td>
+                        <td>Function that controls menu option selection.</td>
+                    </tr>
+                </table>
             </section>
         </div>
     </body>
