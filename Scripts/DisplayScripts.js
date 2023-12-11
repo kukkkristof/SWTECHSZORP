@@ -32,7 +32,7 @@ slideCurrent = 0;
 const slideshow = document.querySelector(".slideshow");
 const members = document.querySelectorAll(".member");
 
-for (var i = 0; i < 3; i++) {
+for (var i = 0; i < 4; i++) {
     members.forEach((member) => {
         slideshow.appendChild(member.cloneNode(true));
     });

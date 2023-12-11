@@ -28,7 +28,7 @@ div.members h1
 
 div.slideshow {
     overflow: hidden;
-    width: calc((15rem + 1rem) * 5 * 4);
+    width: calc((15rem + 1rem) * 5 * 5);
 
     animation: slide 30s linear infinite;
 }
