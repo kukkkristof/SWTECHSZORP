@@ -7,485 +7,748 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link rel="stylesheet" href="../Styles/SRS/SRSdefault.css">
-    
+    <link rel="stylesheet" href="../Styles/newDefault.css">
+
+    <script>
+        function scroll()
+        {
+            console.log('asd');
+        }
+    </script>
+
+
     <title>Software Requirement Specification - SZORP</title>
 </head>
 
 <body>
-    <h1>1. Introduction</h1>
-    <p>
-        Here at SZORP we are creating a survival-adventure game where any type of player can have a good time.
-        <p class="SubParagraph">
+<div id="NavBar">
+    <button onclick="window.open('../index.html', '_self')"><<</button>
+    <h1>SZORP SOFTWARE REQUIREMENT SPECIFICATION</h1>
+</div>
+<div id="PageContainer">
+
+    <section id="Introduction">
+        <h1>1. Introduction</h1>
+        <p>
+            Here at SZORP we are creating a survival-adventure game where any type of player can have a good time.
+        </p>
+        <p>
             SZORP is a game, where the player is put in a plains surrounded by a maze, and the goal is to escape the maze.
-        <p class="SubParagraph">
+        </p>
+        <p>
             Through the game the player will uncover secrets about the maze, and will find interesting side stories to complete,
             all while getting stronger and levelling up as the days go by.
-    </p>
-    <h1>2. Overview</h1>
-    <p>
+        </p>
+    </section>
+
+    <section id="Overview">
+        <h1>2. Overview</h1>
+        <p>
         While thinking about the game, we realized, that not many games offer this type of gameplay. The game is largely based on the movie
         "The Maze Runner"
-        <p class="SubParagraph">
-        <info>Use-case of the game:</info>
-        <br>
+        <h3>
+            Use-case of the game:
+        </h3>
         <img class="UseCase" src="../Images/Usecase.jpg" alt="Use Case Diagram" title="Use Case Diagram">
-    </p>
-    <h1>3. Specific requirements</h1>
+        <p>Note: All visual representations(except the use-case) are made with Godot Engine!</p>
+    </section>
 
-    <h2>3.1. Map format</h2>
-    <p>
-        The map is contained in a matrix where the elements are specific tiles with attributes, such as texture, type, position.
-    </p>
-    <table class="TileTable">
-        <tr>
-            <td class="GrassTile"></td>
-            <td class="GrassTile"></td>
-            <td class="GrassTile"></td>
-            <td class="GrassTile"></td>
-        </tr>
-        <tr>
-            <td class="GrassTile"></td>
-            <td class="GrassTile"></td>
-            <td class="SandTile"></td>
-            <td class="SandTile"></td>
-        </tr>
-        <tr>
-            <td class="GrassTile"></td>
-            <td class="SandTile"></td>
-            <td class="SandTile"></td>
-            <td class="WaterTile"></td>
-        </tr>
-        <tr>
-            <td class="GrassTile"></td>
-            <td class="SandTile"></td>
-            <td class="WaterTile"></td>
-            <td class="WaterTile"></td>
-        </tr>
-    </table>
+    <section id="SpecificReq">
 
-    <h2>3.2. World generator</h2>
-    <img src="../Images/PerlinNoise.png" alt="Perlin Noise" title="Perlin Noise">
-    <p>
-        The world is generated with Perlin-noise, where numbers are generated between <num>0,0</num> and
-        <num>1,0</num> for a pixel in each position, this value represents a height-map,
-        and by setting boundaries, we can set a tile type into the value we want. In the following we will refer to this value as
-        <vName>Noise</vName><vType>(float)</vType>
-        <p class="SubParagraph">
-            <vName>Noise</vName> < <num>0.05</num> = Water
-        <p class="SubParagraph">
-            <vName>Noise</vName> < <num>0.07</num> = Water and Sand
-        <p class="SubParagraph">
-            <vName>Noise</vName> < <num>0.1</num> = Sand
-        <p class="SubParagraph">
-            <vName>Noise</vName> >= <num>0.1</num> = Grass
-    </p>
+        <h1>3. Specific requirements</h1>
 
-    <h2>3.3. Entity spawner</h2>
-    <p>
-        In the maze there will be zones where enemy entities are able to spawn. These spawn zones have the following attributes:
-    </p>
-    <p>
-        <vName>Difficulty</vName><vType>(float)</vType>
-        This variable changes the stat modifier on the entities spawned by the spawner.
-        <p class="SubParagraph">
-            These spawners are invisible to the player and are present both in the survival zone and in the maze.
-        <p class="SubParagraph">
-            The difficulty is calculated by the formula:
-            <br> <info> 1 + Player level / (Average creature type modifier + Spawn Rate - 1)</info>
-    </p>
-    <p>
-        <vName>SpawnerID</vName><vtype>(int)</vtype>  This is unique for all spawners in the world, calculated by: (SpawnerCount+1, if any other spawners have this id,
-        then increment by one repeating until it is unique)
-    <p>
-        <vName>SpawnRate</vName><vType>(float)</vType>
-        the frequency entities spawn in this zone. This value is set in spawns / second, and are randomly generated between
-        <num>0,05</num> to <num>0,2</num>.
-    </p>
-    <p>
-        <vName>MaxEntityCount</vName><vType>(int)</vType>
-            This value represents the maximum amount entities that can co-exist at the same time.
-            This value is <num>10</num>.
-    </p>
-    <p>
-        <vName>Range</vName><vType>(float)</vType>
-        Gives the range where entities can spawn away from the position of the spawner.
-    <div class="boxed">
-        <p class="SubParagraph">
-            <info>In the maze</info> this range is half the width of the maze path.
-        <p class="SubParagraph">
-            <info>In the survival zone</info> This range is determined by a random noise.
-    </p>
-    </div>
-    <p>
-        <vName>Position</vName><vType>(float)</vType>
-
-            The position in space where the spawner is located.
-    <div class="boxed">
-        <p class="SubParagraph">
-            <info>In the maze</info> this is a randomly selected tiles center position.
-        <p class="SubParagraph">
-            <info>In the survival zone</info> This position is determined by a random noise.
-    </p>
-    </div>
-    <p>
-        <vName>Creature</vName><vType>(Entity[])</vType>
-            An array of creatures that are randomly selected every time the spawner spawns in an entity.
-    <div class="boxed">
-        <p class="SubParagraph">
-            <info>In the maze</info> these creatures are selected randomly from the hostile entity pool.
-            The number of creatures in the array is selected randomly from <num>1</num> to <num>4</num>.
-        <p class="SubParagraph">
-            <info>In the survival zone</info> these creatures are selected randomly from the friendly entity pool.
-            The number of creatures in the array is selected randomly from <num>1</num> to <num>3</num>.
-    </p>
-    </div>
-    <br>
-    <p>These spawn zones have 2 methods:</p>
-
-    <p>
-        <span class="MethodName">Spawn</span> creates an entity to a random position in the range
-        <div class="boxed">
-        <p class="SubParagraph"> This method is called when the time elapsed between the last spawn exceeds the limit set by <num>1</num>/<vName>SpawnRate</vName>.
-        <p class="SubParagraph"> The position of the creature is a random value calculated:
-        <p class="SubParagraph">
-            Random(<vType>min:</vType><vName>Position</vName> - <vName>Range</vName>,<vType>max:</vType> <vName>Position</vName> + <vName>Range</vName>) for both X and Y.
-        <p class="SubParagraph">
-            The creature is spawned with the attributes multiplied by the <vName>difficulty</vName> variable.
-        <p class="SubParagraph">
-        Also sets the entities spawnerID to the spawners id.
-    </p>
-    </div>
-    <p>
-        <span class="MethodName">CheckSpawnedCount</span> Checks the entities in the world, if an entity has the SpawnerID set to the spawners ID,
-        it counts as one towards a counter and returns the counters value.
-    </p>
-
-    <h2>3.4. Time controller</h2>
-
-    <h2 class="SubTitle2">3.4.1. Days and nights</h2>
-    <p>
-        <info>One hour</info> in the game is <info>2 minutes</info>
-            in real time, so a day is 48 minutes, where both day and night last for <info>24 minutes</info>.
-        <p class="SubParagraph"><info>During the night</info> the maze generates and opens,
-            and the spawners within the maze activate. Also crops won't grow, until the sun comes up.
-        <p class="SubParagraph"><info>During the day</info> the maze is deleted to save computer resources.
-            Crops start to grow and the weather changes.
-        <p class="SubParagraph">
-            <warning>
-                If the player is inside the maze when the sun comes up, the maze still closes, but It does not get deleted,
-                instead the player is locked inside the maze, and a new maze will not be generated.
-             </warning>
-    </p>
-
-    <h2 class="SubTitle2">3.4.2. Weather</h2>
-    <p>
-        In the game there are 4 types of weather randomly chosen with the chances:
-        <info>Sunny</info> <num>60%</num>,
-        <info>Rain</info> <num>20%</num>,
-        <info>Dread</info> <num>15%</num>,
-        <info>Thunder</info> <num>5%</num>
-        <p class="SubParagraph">
-            <info>Rain</info> = It rains, crops get a <num>50%</num> growth speed boost,
-            temperatures are lower than usual, fishing is more bountiful with <num>25%</num> increased fishing speed,
-            due to the temperature being lower, the players body uses more food to generate heat with their body, food is depleted
-            <num>30%</num> faster.
-        <p class="SubParagraph">
-            <info>Sunny</info> = The temperature is splendid, crops grow at a normal rate, no de-buffs or buffs applied.
-        <p class="SubParagraph">
-            <info>Dread</info> = It's hot outside, player is sweating, consumes <num>50%</num> more water,
-            crops grow at <num>20%</num> their normal speed.
-        <p class="SubParagraph">
-            <info>Thunder</info> = It's storming, <info>same effects as rain</info>,
-            except there is a <num>0.005%</num> chance for the lightning to hit a tree and cause a fire, which destroys the tree.
-            The player can craft lightning rods, to decrease the chance drastically
-            (<num>0.005%</num> -> <num>0.0005%</num>).
-    </p>
-    <h2 class="SubTitle2">3.4.3. Ticks</h2>
-    <p>
-        Some features within the game use a system called <info>ticks</info>, these ticks happen
-        <num>6</num> times a <info>second</info>.
-        <p class="SubParagraph">
-            In context of crops, it means that every <num>1/6th</num> of a second the crop has a set
-            chance to grow <info>(explained further in the corresponding section)</info>
-    </p>
-
-    <h2>3.5. Resource manager</h2>
-    <p>
-        The resource managers task is to spawn and manage resource spawners in the word
+        <h2>3.1. Game Manager</h2>
         <p>
-        <info>In the maze</info>,
-        it spawns metal in random positions of the maze, with Perlin Noise
-    <p>
-        <info>In the survival field</info>,
-        it spawns trees, rocks and grass, with Perlin Noise
-    </p>
-    <h2 class="SubTitle2">3.5.1. Resource spawner</h2>
-    <p>
-    Resource Spawners are working with zones, these zones have:
-        <p class="SubParagraph">
-        <vname> Area</vname><vType>(Tile[])</vType> The tiles it can spawn the given resource
-        <p class="SubParagraph"><vname>Resource</vname><vtype>(Resource)</vtype> The resource it places in the world (Rock(<num>1/3</num> chance), Tree(<num>1/3</num> chance), Grass(<num>1/3</num> chance), Metal(<num>100%</num>))
-    <p class="SubParagraph">
-        <vname>Richness</vname><vtype>(int)</vtype> The value of how many resources can be present at the same time (min(<vname>Area.Count</vname> / <num>5</num>, <num>1</num>))
-    <p class="SubParagraph">
-        <vname>Respawn Rate</vname><vtype>(float)</vtype> Gives the resource respawn time in seconds (Trees: <num>600</num>, Rocks: <num>2880</num>, Grass: <num>600</num>, metal: <num>0</num> <info>(disabled)</info>)
-    <p>
-    And methods:
-    <p class="SubParagraph">
-            <span class="MethodName">TrySpawn</span> This will be called any time the spawn timer ticks down, when this method is called, it checks if the resources present in the zone are less than the richness of the zone
-    If less, then spawn <num>1</num> resource on a random tile, where there is no resource present. <info>If it is equal, then don't spawn</info>.
-    Note: The resource zones are rich with resources at creation.
-    <p class="SubParagraph">
-            <span class="MethodName">CheckResourceCount</span> Checks if the resource spawners richness limit is reached, returns the resources in the area of the spawner.
-    </p>
-    <h2>3.6. Effect manager</h2>
-    <p>The effect manager controls the effects on entities (<info>Player, Passive, Aggressive</info>). It works by
-    multiplying the entities stats with the numbers contained by it
-    <p>
-    Properties:
-    <p class="SubParagraph"><vname>Multipliers</vname><vtype>(float[])</vtype> An array of floating point numbers, this gives the multiplication values for each stat,
-        <br>Indices are the following:
-        <info>
-        <br>
-        1 Health
-        <br>
-        2 Strength
-        <br>
-        3 Armor
-        <br>
-        4 Speed
-        </info>
-    <br>
-    This number has to be at least <num>1</num>, there is no maximum limit set
-    <p>
-        <vname>Length</vname><vtype>(float)</vtype> : The length of the effects duration given in seconds
-        <br>
-        <vname>Passed Time</vname><vtype>(float)</vtype> : The time the effect has been applied
-        <br>
-        <vname>Remaining Time</vname><vtype>(float)</vtype> : Gives back the remaining time in seconds. (<vname>Length</vname> - <vname>PassedTime</vname>)
-    <p>
-    Methods:
-        <p class="SubParagraph">
-        <span class="MethodName">Pass Time(<vtype>float</vtype> <vname>delta</vname>)</span> This method increases the <vname>Passed Time</vname> variable by the value given into <vname>delta</vname>,
-        if this num reaches <num>0</num> remove the effect.
-        <br>
-        <span class="MethodName">Remove Effect(<vtype>Entity</vtype> <vname>ent</vname>)</span> Removes the effect from an entity
-        <br>
-        <span class="MethodName">Apply Effect(<vtype>Entity</vtype> <vname>ent</vname>)</span> Applies the effect to a set entity
-    </p>
-    <h2>3.7. Entities</h2>
-    <h3>3.7.1. Entity</h3>
-    <p>
-    The entity class describes each creature present in the game, they have stats:
-    <p class="SubParagraph"><vname>Health</vname><vtype>(float)</vtype>
-        <br>
-    <vname>Strength</vname><vtype>(float)</vtype>
-        <br>
-    <vname>Armor</vname><vtype>(float)</vtype>
-        <br>
-    <vname>Speed</vname><vtype>(float)</vtype>
-        <br>
-    <vname>Effects</vname><vtype>(Effect[])</vtype>
+            The game manager component manages the map generation, objects that work with time(Effects, Entities, Crops, Spawners), save files and settings.
+            This is an essential part of the game, since there are many parts that are needed to be connected.
+        </p>
+        <h3>MAP GENERATION:</h3>
+        <p>The survival map is generated with Perlin Noise, where at every x and y position is a number between 0.0 and 1.0, which can be used as a heightmap, and different tiles can be associated.</p>
+        <img src="../Images/PerlinNoise.png" alt="Image of Perlin noise">
+        <p>
+            The maze map has a unique generation where we select two points, 'END' and 'START' and generates random checkpoints where the generator needs to create a path to.
+            It can be called 'k' times, and with a perfect combination it generates a great random maze.
+            This number is yet to be determined by testing multiple scenarios, for each maze sizes!
+        </p>
+        <img src="../Images/MazeGeneration.png" alt="Image of Maze Generation steps">
+        <h3>TIME MANAGEMENT:</h3>
+        <p>
+            In the Game Manager there should be a function that is called at every frame and knows the passed time, this method is the Godot Engines built in Update method which has an argument
+            named delta, which is the time between the current and the previous frame in seconds. With this variable we can check for "ticks" which are updates called every 't' seconds.
+            At every tick, we check if any crops should grow.
+        </p>
+        <p>
+            We also loop around every timed object at every frame, for each we call a method that passes time in said object, for every type of object that is timed, this function is different. Explained
+            further on the affected object definitions.
+        </p>
 
-    <p class="SubParagraph">Generalized methods:
-    <br>
-        <span class="MethodName">PassTime(<vType>float </vType><vname>delta</vname>)</span> This method controls the effects on the entity, with <vname>delta</vname> being a time interval in seconds.
+        <h3>SETTINGS:</h3>
+        <p>The settings are saved in the games directory, in a directory named 'UserData', with the filename 'settings.json' . This files structure is the following:</p>
+        <p>"Graphics": float (0.0 - 1.0),</p>
+        <p>"Sound": float (0.0 - 1.0),</p>
+        <p>"MaxEntityCount": int (100 - 300),</p>
+        <p>"Colorblind": int (0 - 3),</p>
+        <p>"SoundText": boolean (true, false)</p>
 
-
-    <h3>3.7.2. Passive</h3>
-    <p>
-    Passive entities wander around, they have no interaction with the player until the player attacks or interacts with them
-    Bulls, attack back when attacked, other animals flee from the payer.
-    Passive entities:
-
-        <br><info>1) Chicken</info>
-        <br><info>2) Cows</info>
-        <br><info>3) Bulls</info>
-        <br><info>4) Birds</info>
-        <br><info>5) Brass</info>
-        <br><info>6) Clownfish</info>
-        <br><info>7) Cod</info>
-    <p>
-
-    Properties:
-        <p class="SubParagraph">
-        <vname>Fleeing</vname><vtype>(bool)</vtype> : This variable indicates the time
+        <h2>Timed Objects</h2>
 
         <p>
-    Methods:
-        <p class="SubParagraph">
-        <span class="MethodName">Flee</span> : If this method is called the flee variable is set
-        <br>
-        <span class="MethodName">Wonder</span> : This method gets called at random intervals (10 - 30 seconds), and gets a random walkable position in an area of 20 tiles
-        The cool-down begins when the creature finishes the wonder.
-    </p>
-    <h3>3.7.3 Aggressive</h3>
-    <p>Aggressive entities target the player when the player enter their line of sight, they have an attack that reduces the players hp on impact
-    Aggressive entity list:
-    Robot spider, Robot hunter (human-like, shoots projectiles)
+            In the expansive landscape of game development, the incorporation of Timed Objects stands as a hallmark approach, introducing a layer of sophistication that seamlessly adapts to the nuances of diverse hardware configurations. This architectural choice, centered around real-time intervals, not only ensures reliability but also guarantees a consistent and engaging player experience, irrespective of the underlying device's frame rate variations.
+        </p>
+        <h3>Attributes and Methodology:</h3>
+        <p>
+            Each Timed Object, a cornerstone of this dynamic framework, boasts a distinct attribute denoting the precise moment of its creation. Augmented by a method crafted with precision, this design philosophy transcends the conventional reliance on frame-dependent mechanisms, fortifying the game's foundation and fostering an immersive, reliable, and universally accessible environment.
+        </p>
+        <h3>Categories of Timed Objects:</h3>
+        <p>The hierarchical arrangement of Timed Objects unfolds with four pivotal classes: Entities, Crops, Spawners, and Effects.</p>
 
-</p>
-    <!--<h2>3.8. Player</h2>
-    <h3>3.8.1. Leveling</h3>
-    <h3>3.8.2. Stats</h3>
-    <h3>3.8.3. Skill tree</h3>
-    <h2>3.9. Maze generator</h2>
-    <h2>3.10. Loot generator</h2>
-    <h2>3.11. Farming system</h2>
-    <h3>3.11.1. Crops</h3>
-    <h3>3.11.2. Animals</h3>
-    <h3>3.11.3. Bushes</h3>
-    <h3>3.11.4. Trees</h3>
-    <h2>3.12. Crafting system</h2>
-    <h3>3.12.1. Resources</h3>
-    <h3>3.12.2. Crafting benches</h3>
-    <h3>3.12.3. Recipes</h3>
-    <h3>3.12.4. Unlock tree</h3>
-    -->
-    <h2>3.8. Game manager</h2>
-    <p>
-        The game manager component is the most important part of the game. It controls everything, from the day and night cycles all the way through to the map generation, including the spawners
-        control system. Inside this component in the frame update method, <info>Ticks</info> are managed.
-        <p class="SubParagraph">
-        This component exists both in the menu and the game itself, it runs in the background, manages saves, loads, developer console.
-        <p class="SubParagraph">
-        At every scene it is present from the beginning and all other elements are created by it, so it is important that the systems implemented into it work reliably and effectively, so the performance
-        does not decrease. As the game progresses this component will have <warning>tens</warning> or even <warning>hundreds</warning> of dependent elements. So performance will naturally decrease, make sure to
-        delete every dependent object, after <warning>they become unusable</warning>.
-        <p class="SubParagraph">
-        <extraWarning>Removing the game manager component from the game, even after 100 hours of gameplay will ruin the world, and make it unplayable, so be sure to make it safe from every object,
-        meaning check if an object for deletion (Like metal resources at removing the maze), is for sure not this component.</extraWarning>
-    </p>
-    <h3>3.13.1. Variables</h3>
-    <div class="boxed">
-        <p class="SubParagraph">
-            <vName>Survival Size</vName><vtype>(int)</vtype>
-            <br>This variable determines the width and the height of the survival zone, <info>its square shaped</info>, it is dependent on the difficulty
-            <br>Map sizes:
-            <br><info>Small <num>128</num></info>
-            <br><info>Medium <num>196</num></info>
-            <br><info>Large <num>256</num></info>
+        <h3>Entities:</h3>
+        Entities, the pulse of the game's narrative, are further diversified into various types, each encapsulating unique behaviors tied intricately to the passage of time.
+
+        <h4>Player:</h4>
+        <p>
+            The Player entity, the central protagonist, anchors the player's journey. Beginning in a tranquil plains setting, the Player embarks on a quest through a challenging maze. This dynamic entity is at the heart of the player's interaction with the game world, evolving as time passes.
         </p>
-        <p class="SubParagraph">
-            <vName>Maze Size</vName><vtype>(int)</vtype>
-            <br>This variable sets the size of the maze, the maze is equal length in all directions
+        <p><strong>Attributes:</strong></p>
+        <ul>
+            <li>Health: 100</li>
+            <li>Armor: 20%</li>
+            <li>Movement Speed: 120</li>
+            <li>XP: 0</li>
+            <li>Level: 1</li>
+        </ul>
+
+
+
+        <p><strong>Specifics:</strong>
+        The Player navigates the game world, responding to player input and environmental triggers.
         </p>
-        <p class="SubParagraph">
-            <vName>Survival Map</vName><vtype>(Tile[][])</vtype>
-            <br>This matrix contains the survival map tiles generated and managed
+        <p><strong>Levelling:</strong></p>
+        <p>Through the game the player gains xp, for slaying hostile entities, with level ups the player gains a slight stat boost
+            <br><strong>Levelling table:</strong></p>
+        <table>
+            <tr>
+                <td>Level</td>
+                <td>XP Needed</td>
+                <td>Stat boost multiplier</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>0</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>225</td>
+                <td>1.2</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>338</td>
+                <td>1.5</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>506</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>760</td>
+                <td>2.5</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>1140</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>1708</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>2562</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>3844</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>5766</td>
+                <td>5</td>
+            </tr>
+
+        </table>
+        <h4>Hostile:</h4>
+        <p>
+            Hostile entities, vigilant guardians of the maze territories, employ sophisticated vision algorithms to detect the player's presence. Triggering complex decision trees, Hostile entities enact dynamic behaviors that challenge the player's strategic prowess. The hostile entity list includes:
         </p>
-        <p class="SubParagraph">
-            <vName>Maze Map</vName><vtype>(Tile[][])</vtype>
-            <br>This matrix contains the maze map tiles generated and managed
-        </p>
-        <p class="SubParagraph">
-            <vName>Tick Speed</vName><vtype>(int)</vtype>
-            <br>This variable means how many ticks are in a second, in the update method there is a check if the elapsed time between ticks is equals to <num>1</num> / <vName>Tick Speed</vName>
+        <h4>Grievers</h4>
+        <p><strong>Attributes:</strong></p>
+        <ul>
+            <li>Health: 200</li>
+            <li>Armor: 50%</li>
+            <li>Movement Speed: 80</li>
+            <li>Vision Range: 500</li>
+        </ul>
+        <p><strong>Specifics:</strong></p>
+        <p>Grievers exhibit aggressive behavior, patrolling the maze and attacking the player upon detection.</p>
+        <p>Vision range enables Grievers to detect player presence from a considerable distance.</p>
+        <p><strong>Generic Movement Method:</strong></p>
+        <p>Grievers navigate the terrain using an agile roaming pattern, responding to player proximity.</p>
+
+        <p><strong>Drops:</strong> Griever Claw(1)</p>
+
+        <h4>Mechanical Spiders</h4>
+        <p><strong>Attributes:</strong></p>
+        <ul>
+            <li>Health: 150</li>
+            <li>Armor: 30%</li>
+            <li>Movement Speed: 120</li>
+            <li>Vision Range: 250</li>
+        </ul>
+        <p><strong>Specifics:</strong></p>
+        <p>Mechanical Spiders utilize quick movements and web-based attacks to challenge the player.</p>
+        <p>Limited vision range requires closer proximity to detect the player.</p>
+        <p><strong>Generic Movement Method:</strong></p>
+        <p>Mechanical Spiders patrol specific areas with rapid, unpredictable movements, adapting to player actions.</p>
+        <p><strong>Drops:</strong> Metal Scrap(0 to 5), Electronic Components(0 to 2), Spider Leg Gear(0 to 8 | 50% for 0, 43% for 1, 1% for 2 to 8)</p>
+        <h4>Zombies</h4>
+        <p><strong>Attributes:</strong></p>
+        <ul>
+            <li>Health: 100</li>
+            <li>Armor: 20%</li>
+            <li>Movement Speed: 50</li>
+            <li>Vision Range: 100</li>
+        </ul>
+        <p><strong>Specifics:</strong></p>
+        <p>Zombies exhibit slow but relentless pursuit, utilizing melee attacks upon player detection.</p>
+        <p>Extremely limited vision range necessitates close-proximity for detection.</p>
+        <p><strong>Generic Movement Method:</strong></p>
+        <p>Zombies wander aimlessly, responding sluggishly to player presence within their limited vision range.</p>
+
+        <p><strong>Drops:</strong> Tattered cloth(1 to 3), Brain(.01 % chance for 1)</p>
+
+        <h4>Passive:</h4>
+        <p>
+            Passive entities, harmoniously integrated into the plains, contribute to the environment. These entities offer resources, information, or simply create an atmospheric backdrop. The passive entity list includes:
         </p>
 
+
+
+        <h4>Cow</h4>
+        <p><strong>Attributes:</strong></p>
+        <ul>
+            <li>Health: 100</li>
+            <li>Armor: 10%</li>
+            <li>Movement Speed: 80</li>
+        </ul>
+        <p><strong>Specifics:</strong></p>
+        <p>Cows graze and provide resources, reacting positively to player interactions.</p>
+        <p>Limited vision range reflects a more relaxed awareness of the surroundings.</p>
+        <p><strong>Generic Movement Method:</strong></p>
+        <p>Cows graze in designated areas, occasionally moving to new patches of grass in a calm manner.</p>
+
+        <p><strong>Drops:</strong>Hide(2 to 4), Milk(0 to 1)</p>
+
+        <h4>Chicken</h4>
+        <p><strong>Attributes:</strong></p>
+        <ul>
+            <li>Health: 50</li>
+            <li>Armor: 5%</li>
+            <li>Movement Speed: 120</li>
+        </ul>
+        <p><strong>Specifics:</strong></p>
+        <p>Chickens peck at the ground, providing feathers and eggs.</p>
+        <p><strong>Generic Movement Method:</strong></p>
+        <p>Chickens peck at the ground, moving around in a jittery, cautious manner.</p>
+
+        <p><strong>Drops:</strong>Feathers(3 to 5), Egg(0 to 2)</p>
+
+        <h4>Bulls:</h4>
+        <p><strong>Attributes:</strong></p>
+        <ul>
+            <li>Health: 120</li>
+            <li>Armor: 15%</li>
+            <li>Movement Speed: 70</li>
+        </ul>
+
+        <p><strong>Specifics:</strong></p>
+        <p>Bulls roam the plains, reacting defensively to threats. Moderate vision range reflects a balanced awareness of the surroundings.</p>
+
+        <p><strong>Generic Movement Method:</strong></p>
+        <p>Bulls move in a deliberate manner, showcasing territorial behavior.</p>
+
+        <p><strong>Drops:</strong>Hide (5 to 6), Bull Horn(2)</p>
+
+        <h4>Sheep:</h4>
+        <p><strong>Attributes:</strong></p>
+        <ul>
+            <li>Health: 80</li>
+            <li>Armor: 8%</li>
+            <li>Movement Speed: 100</li>
+            <li>Vision Range: 120</li>
+        </ul>
+
+        <p><strong>Specifics:</strong></p>
+        <p>Sheep graze and provide wool, responding passively to player presence. Limited vision range suggests a cautious but approachable demeanor.</p>
+
+        <p><strong>Generic Movement Method:</strong></p>
+        <p>Sheep graze and move leisurely, showing occasional signs of curiosity towards players.</p>
+
+        <p><strong>Drops:</strong>Wool(0 to 1), Mutton (1 to 4)</p>
+
+
+        <h4>Horse:</h4>
+        <p><strong>Attributes:</strong></p>
+        <ul>
+            <li>Health: 140</li>
+            <li>Armor: 12%</li>
+            <li>Movement Speed: 70</li>
+            <li>Vision Range: 200</li>
+        </ul>
+
+        <p><strong>Specifics:</strong></p>
+        <p>Horses roam with a majestic presence, offering transportation options. Wide vision range signifies heightened awareness of the surroundings.</p>
+
+        <p><strong>Generic Movement Method:</strong></p>
+        <p>Horses move gracefully, showcasing their regal demeanor.</p>
+
+        <p><strong>Drops:</strong> Horse Mane(1 to 3)</p>
+
+        <h4>Fish:</h4>
+        <p>Inhabiting aquatic environments, Fish entities introduce life to water bodies. The fish entity list includes:</p>
+
+        <h4>Cod:</h4>
+        <p><strong>Attributes:</strong></p>
+        <ul>
+            <li>Difficulty: 2</li>
+            <li>Movement Speed: 100</li>
+        </ul>
+
+        <p><strong>Specifics:</strong></p>
+        <p>Cod swim through water bodies, adding dynamism to aquatic environments. Difficulty level affects their behavior, introducing variability for the player.</p>
+
+        <p><strong>Generic Movement Method:</strong></p>
+        <p>Cod swim with fluid movements, responding to underwater currents and player actions.</p>
+
+        <h4>Clownfish:</h4>
+        <p><strong>Attributes:</strong></p>
+        <ul>
+            <li>Difficulty: 1</li>
+            <li>Movement Speed: 120</li>
+        </ul>
+
+        <p><strong>Specifics:</strong></p>
+        <p>Clownfish dart playfully, showcasing agile movements. Difficulty level influences their behavior, enhancing overall game diversity.</p>
+
+        <p><strong>Generic Movement Method:</strong></p>
+        <p>Clownfish exhibit quick, darting movements, creating an animated underwater presence.</p>
+
+        <h4>Strout:</h4>
+        <p><strong>Attributes:</strong></p>
+        <ul>
+            <li>Difficulty: 3</li>
+            <li>Movement Speed: 80</li>
+        </ul>
+
+        <p><strong>Specifics:</strong></p>
+        <p>Strout glide gracefully through underwater landscapes, creating immersive aquatic scenes. Difficulty level contributes to strategic considerations for the player.</p>
+
+        <p><strong>Generic Movement Method:</strong></p>
+        <p>Strout move with deliberate, sweeping motions, evoking a sense of underwater elegance.</p>
+
+        <h4>Squid:</h4>
+        <p><strong>Attributes:</strong></p>
+        <ul>
+            <li>Difficulty: 2</li>
+            <li>Movement Speed: 100</li>
+        </ul>
+
+        <p><strong>Specifics:</strong></p>
+        <p>Squid exhibit dynamic jet movements, adding intrigue to underwater exploration. Difficulty level introduces variability in player interactions.</p>
+
+        <p><strong>Generic Movement Method:</strong></p>
+        <p>Squid propel themselves with jet-like movements, responding to player presence and environmental factors.</p>
+
+        <h4>DROPS:</h4>
+
+        <p>All fishes have the same loot table: Fish Scales (from 0 to 2 randomly), Underwater Flora(.5% chance to have 1)</p>
+        <p><strong>Squid specific:</strong> The squid drops 1 - 3 ink sacs</p>
+
+
+        <h2>Crops:</h2>
+
+        <h3>2.1. Bushes:</h3>
+        <p>Strategically scattered across the plains, Bushes represent a potential source of resources for players. Interacting with bushes could yield items or enhance the player's chances of survival. The growth and interaction of bushes unfold over time, aligning with the player's journey.</p>
+
+        <h4>Bush Varieties:</h4>
+
+        <h4>Thornbrush:</h4>
+        <p><strong>Attributes:</strong></p>
+        <ul>
+
+            <li>Prickly and resilient, Thornbrushes offer a defensive advantage when strategically placed. </li>
+            <li>May yield thorns that can be used for crafting.</li>
+        </ul>
+
+        <h4>Fruitbush:</h4>
+        <p><strong>Attributes:</strong></p>
+        <ul>
+            <li>Home to small, edible fruits, Fruitbushes provide a quick snack for players on the go.</li>
+            <li>Food: 15</li>
+            <li>Water: 5</li>
+        </ul>
+        <h4>Glowfern Thicket:</h4>
+        <p><strong>Attributes:</strong></p>
+        <ul>
+            <li>Illuminating the night with a soft glow, Glowfern Thickets contribute to ambient lighting in the surroundings.</li>
+            <li>Collectible glowfern particles can be used for crafting.</li>
+        </ul>
+
+        <h4>Bristlebrush:</h4>
+        <p><strong>Attributes:</strong></p>
+
+        <ul>
+
+            <li>Sturdy and bristly, Bristlebrushes may yield fibers suitable for crafting materials.</li>
+            <li>Can be used for creating basic tools or clothing.</li>
+        </ul>
+
+        <h4>Spiceleaf Cluster:</h4>
+        <p><strong>Attributes:</strong></p>
+
+        <ul>
+            <li>Fragrant and flavorful, Spiceleaf Clusters add a hint of spice to player-crafted dishes.</li>
+            <li>Food: 12</li>
+            <li>Water: 8</li>
+        </ul>
+
+        <h4>Dustleaf Pile:</h4>
+        <p><strong>Attributes:</strong></p>
+        <ul>
+            <li>Dustleaf Piles release clouds of dust when disturbed, providing temporary cover and confusing nearby entities.</li>
+            <li>Can be used strategically in combat situations.</li>
+        </ul>
+        <h4>Mysticroot Grove:</h4>
+        <p><strong>Attributes:</strong></p>
+        <ul>
+            <li>Enigmatic and mystical, Mysticroot Groves have a chance to yield rare mystical components.
+            <li>These components may be used for advanced crafting or enhancing player abilities.</li>
+        </ul>
+
+        <h3>2.2. Plants:</h3>
+        <p>Representing various forms of flora, Plants contribute to the visual tapestry of the plains. Their growth and development are time-dependent, adding depth and complexity to the overall ambiance of the game world.</p>
+
+        <h4>Crop Varieties:</h4>
+
+        <h4>Corn:</h4>
+        <p><strong>Attributes:</strong></p>
+        <ul>
+            <li>Versatile and nutritious, Corn becomes consumable when cooked, providing sustenance.</li>
+            <li>Food: 20</li>
+            <li>Water: 5</li>
+        </ul>
+
+        <h4>Watermelon:</h4>
+        <p><strong>Attributes:</strong></p>
+        <ul>
+            <li>Refreshing and easily accessible, Watermelon instantly boosts hydration and satiety.</li>
+            <li>Food: 15</li>
+            <li>Water: 20</li>
+        </ul>
+
+        <h4>Strawberry:</h4>
+        <p><strong>Attributes:</strong></p>
+        <ul>
+            <li>Exceptionally filling and happiness-inducing, Strawberries nourish and delight.</li>
+            <li>Food: 18</li>
+            <li>Water: 12</li>
+        </ul>
+
+        <h4>Banana:</h4>
+        <p><strong>Attributes:</strong></p>
+        <ul>
+            <li>Renowned for its filling nature, a Banana offers enduring sustenance.</li>
+            <li>Food: 25</li>
+            <li>Water: 10</li>
+        </ul>
+
+        <h4>Mushroom:</h4>
+        <p><strong>Attributes:</strong></p>
+        <ul>
+            <li>Carefully inspect before consumption; Mushrooms, when prepared, provide a culinary delight.</li>
+            <li>Food: 30</li>
+            <li>Water: 15</li>
+        </ul>
+
+        <h4>Apple:</h4>
+        <p><strong>Attributes:</strong></p>
+        <ul>
+            <li>Healing and nutritious, the Apple is a reliable source of well-being.</li>
+            <li>Food: 22</li>
+            <li>Water: 8</li>
+        </ul>
+
+        <h4>Spinach:</h4>
+        <p><strong>Attributes:</strong></p>
+        <ul>
+            <li>Bestowed with strength-boosting properties, Spinach enhances battle capabilities.</li>
+            <li>Food: 15</li>
+            <li>Water: 5</li>
+        </ul>
+        <p><strong>Strength Effect:</strong> 10% damage improvement</p>
+
+
+        <h2>Spawners:</h2>
+        <p>Spawners are crucial elements shaping the game world, orchestrating the arrival of life, resources, and challenges. Operating at precise intervals, spawners ensure a fair and consistent gaming experience, reflecting a commitment to reliability and inclusivity across diverse hardware.</p>
+
+        <ul>
+            <li>
+                <h3>Resource Spawners:</h3>
+                <ul>
+                    <li>Spawn rocks and trees on the plains.</li>
+                    <li>Utilize random Perlin noise.</li>
+                    <li>Wood resource spots: Noise value from 0.4 to 0.6.</li>
+                    <li>Rock resource spots: Noise value from 0.7 to 0.9.</li>
+                    <li>Generate 1 to 10 resources based on the spawner size.</li>
+                    <li>Resources also count as entities, whose drops are rocks or wood, these entities don't move!</li>
+                </ul>
+            </li>
+
+            <li>
+                <h3>Entity Spawners (Outside Maze):</h3>
+                <ul>
+                    <li>Generated by noise with a radius of 5 to 20.</li>
+                    <li>Maximum entity cap: 10.</li>
+                    <li>Spawn every 30 seconds.</li>
+                    <li>Spawn Passive entities.</li>
+                    <li>Difficulty multiplier: Fixed at 1.</li>
+                </ul>
+            </li>
+
+            <li>
+                <h3>Entity Spawners (Inside Maze):</h3>
+                <ul>
+                    <li>Generated randomly.</li>
+                    <li>Radius is half of the maze's width.</li>
+                    <li>Maximum of 2 entities.</li>
+                    <li>Number of spawners: (Maze length in tiles) / 25.</li>
+                    <li>Spawn Hostile entities.</li>
+                    <li>Difficulty multiplier: 1 + (Player level - 1)/2.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>Effects:</h3>
+        <p>
+            Effects in the game serve as catalysts for dynamic changes in the player's stats, enhancing the overall gaming experience. A diverse range of dynamic alterations is introduced to the game environment, with attributes such as multipliers dictating the extent of the stat increase and length determining the duration of the effect.
+        </p>
+        <p>
+            This introduces a strategic dimension, requiring players to adapt and innovate as they navigate through the game world. Time-based management of these effects ensures a dynamic narrative that responds to the player's actions and decisions. Whether it's enhancements to health, speed, or other attributes, the effects contribute to an ever-evolving and immersive gaming environment.
+        </p>
+        <p>
+            Each effect is thoughtfully crafted to elevate the player's capabilities, ensuring a unique and compelling journey with each playthrough. Feel free to provide any specific details or further preferences for this description!
+        </p>
+
+
+        <h3>Conclusion:</h3>
+        <p>
+            In conclusion, the meticulous integration of Timed Objects, coupled with the nuanced behaviors of the specific Entity and Crop types, paints a vivid tapestry in the canvas of game development. The reliance on real-time intervals stands as a testament to a commitment to inclusivity, reliability, and the crafting of an immersive gaming experience. The journey through plains, mazes, and aquatic realms becomes a dynamic narrative, shaped not only by the player's choices but also by the intricate dance of time within the meticulously designed game world. This framework represents a symbiotic relationship between technology and creativity, where the passage of time becomes not just a mechanic but an integral part of the player's journey.
+        </p>
+
+        <h2>Item:</h2>
+        <p>Items are fundamental entities within the game, encompassing a wide range of objects, from consumables to weapons and armor. Each item has a unique name, count, stack count, ID, and a description. Items can be added to the player's inventory, removed, and their count can be adjusted.</p>
+
+        <strong>Attributes:</strong>
+        <ul>
+            <li>Name (string): The name of the item.</li>
+            <li>Count (int): The current count of the item.</li>
+            <li>StackCount (int): The maximum stack count of the item.</li>
+            <li>Id (int): The unique identifier for the item.</li>
+            <li>Description (string): A brief description of the item.</li>
+        </ul>
+
+        <strong>Methods:</strong>
+        <ul>
+            <li>AddToInventory(): Adds the item to the player's inventory.</li>
+            <li>RemoveItem(): Removes the item from the player's inventory.</li>
+            <li>DecreaseCount(int count): Decreases the count of the item by the specified amount.</li>
+            <li>IncreaseCount(int count): Increases the count of the item by the specified amount.</li>
+        </ul>
+
+        <h3>Armor:</h3>
+        <p>Armor is a type of protective equipment that characters can equip. It provides defense against attacks and damage. Each armor piece has an ArmorValue, indicating its protective strength. Armor can be equipped or unequipped by characters. Additionally, it may have custom effects that influence gameplay.</p>
+
+        <strong>Attributes:</strong>
+        <ul>
+            <li>ArmorValue (float): The defensive strength of the armor.</li>
+            <li>_customEffect (Effect): A custom effect associated with the armor.</li>
+        </ul>
+
+        <strong>Methods:</strong>
+        <ul>
+            <li>Equip(): Allows a character to equip the armor.</li>
+            <li>UnEquip(): Allows a character to unequip the armor.</li>
+            <li>ApplyEffect(): Applies the custom effect associated with the armor.</li>
+        </ul>
+
+        <h3>Consumable:</h3>
+        <p>Consumables are items that can be consumed by the player, providing various benefits such as healing or buff effects. Each consumable has nutritional values and can be consumed by characters.</p>
+
+        <strong>Attributes:</strong>
+        <ul>
+            <li>_nutritionValue (int[]): An array representing the nutritional values of the consumable.</li>
+        </ul>
+
+        <strong>Methods:</strong>
+        <ul>
+            <li>Consume(): Allows the player to consume the consumable.</li>
+        </ul>
+
+        <h3>Resource:</h3>
+        <p>Resources are items that can be gathered or processed. They may have properties like cookability and refinability. Each resource can be cooked or refined, resulting in different items.</p>
+
+        <strong>Attributes:</strong>
+        <ul>
+            <li>_cookable (bool): Indicates whether the resource can be cooked.</li>
+            <li>_cookItem (Item): The item produced when cooking the resource.</li>
+            <li>_refinable (bool): Indicates whether the resource can be refined.</li>
+            <li>_refiningRequirements (Item): The requirements for refining the resource.</li>
+            <li>_refinedItem (Item): The item produced when refining the resource.</li>
+        </ul>
+
+        <strong>Methods:</strong>
+        <ul>
+            <li>Cook(): Allows the player to cook the resource.</li>
+            <li>Refine(Item RefiningResource): Allows the player to refine the resource.</li>
+        </ul>
+
+        <h3>Weapon:</h3>
+        <p>Weapons are items that characters can use to deal damage to entities. Each weapon has attributes such as damage, a custom effect, and a range. Weapons can apply their custom effects and perform attacks on entities.</p>
+
+        <strong>Attributes:</strong>
+        <ul>
+            <li>_damage (float): The damage dealt by the weapon.</li>
+            <li>_customEffect (Effect): A custom effect associated with the weapon.</li>
+            <li>_range (CollisionShape): The range of the weapon.</li>
+        </ul>
+
+        <strong>Methods:</strong>
+        <ul>
+            <li>ApplyEffect(): Applies the custom effect associated with the weapon.</li>
+            <li>Attack(Entity target): Performs an attack on the specified entity.</li>
+            <li>CheckInRangeEntitites(): Checks for entities within the weapon's range.</li>
+        </ul>
+
+        <h2>Settings:</h2>
+        <p><strong>
+            Settings play a pivotal role in tailoring the gaming experience to individual preferences and system capabilities. In the intricate tapestry of a game's design, the Settings class stands as a gateway to customization, offering players the ability to fine-tune various aspects according to their liking.
+        </strong></p>
+        <p>
+            Volume adjustments within the Settings class allow players to control the auditory landscape, ensuring the perfect balance between game sound effects and background music. Whether players seek an immersive, thunderous experience or a subtle, ambient backdrop, the volume setting caters to their auditory desires.
+        </p>
+        <p>
+            Texture quality, another facet of the Settings class, provides a spectrum of visual fidelity. From crisp, high-resolution textures that unveil intricate details to optimized performance with lower-quality textures, this setting accommodates diverse hardware capabilities and personal preferences.
+        </p>
+
+        <p>
+            Max entity count, a numerical configuration nestled within the Settings class, empowers players with control over the density of in-game entities. This setting becomes especially crucial in games where managing computational load is vital, allowing players to strike an optimal balance between a bustling virtual world and smooth gameplay.
+        </p>
+
+        <p>
+            In essence, the Settings class acts as the guardian of player agency, granting the power to adapt the game's sensory and computational aspects. It transforms the gaming experience from a standardized encounter into a personalized journey, where players can shape their adventure according to their unique preferences and technological constraints.
+        </p>
+
+        <h2>Menu</h2>
+        <p>
+            Embark on your gaming journey through the Main Menu, a nexus of possibilities that sets the stage for your digital adventures. Within this virtual realm, discover key features that shape and enhance your gaming experience. The Settings Page empowers you with control, allowing customization of audio, visual, and configuration settings. Fine-tune the game environment to align with your preferences and harness the full potential of your gaming hardware. Navigate through the Save Loader Page to revisit past conquests and continue epic quests. This digital sanctuary preserves your gaming legacy, ensuring no heroic feat is lost to the passage of time. Relive your favorite moments with a seamless and intuitive save-loading experience. The New Game Button beckons you to fresh beginnings, serving as a gateway to unexplored territories and untold adventures. Click to embark on a new quest, unveiling mysteries, encountering mythical creatures, and shaping your narrative within the expansive canvas of the game world. In this symphony of choices, the Main Menu becomes more than a gateway—it is a prelude to a digital odyssey. It invites you to become the architect of your virtual destiny, where every click opens a portal to new realms and endless possibilities.
+        </p>
+
+    </section>
+
+    <section id="Usability">
+        <h1>4. Usability</h1>
+        <p>
+            In this gripping and immersive gaming experience, players will find themselves thrust into the heart of a labyrinthine world.
+            The game's usability is designed to seamlessly blend excitement with strategic thinking, as players navigate through intricate mazes filled with suspenseful
+            twists and turns. Intuitive controls and a user-friendly interface ensure that both novice and experienced gamers can easily delve into the adrenaline-pumping action.
+            Engaging puzzles, dynamic obstacles, and a captivating storyline enhance the overall usability, creating an unforgettable gaming adventure.
+        </p>
+        <h2>4.1. Learning Curve</h2>
+        <p>
+            Our game has a pretty easy learning curve, so it is easy to get started anytime for younger and older folks too. Our goal was to create a game that is enjoyable and does not provide too much difficulty, however
+            the player can decide to enter  a harder difficulty, where things are not as simple, those game modes even have their unique elements, so their curve is steeper but still on the easier side.
+        </p>
+    </section>
+
+    <section id="Reliability">
+        <h1>5. Reliability</h1>
+        <p>
+            Since this is an offline game, after installation there should not be any downtime, so you can play any time you want to. If at any point the player encounters a bug where they cannot start
+            the game, we are easy to reach to fix that bug as soon as possible.
+        </p>
+        <p>
+            Our response usually takes 12 hours maximum on weekdays, and the average bugfix is about 1 hour, so the time the player cannot play  is roughly 13 hours (MTTR = 13 hours), but it should happen about once a month maximum (MTBF = 1 month).
+        </p>
+    </section>
+
+    <section id="Performance">
+        <h1>6. Performance</h1>
+        <p>FPS / CPU: We aim to achieve 60 FPS on low-end hardware to make it more accessible, currently a 2.4 GHz 4 core CPU is enough for our calculations in the current state of the game.</p>
+        <p>Memory: With our texture sizes(32*32) relatively few memory is reserved for textures, and with the maximum amount of entities allowed in our game, the maximum memory usage is 500MB.</p>
+        <p>Disk space: The game does not take up that many space on the storage devices, it is currently 120 MB at this rate the end product will approximately will be 250 MB</p>
+    </section>
+
+    <section id="Supportability">
+        <h1>7. Supportability</h1>
+        <p>
+            With us documenting every development step, and our code is easy to read thanks to famous coding conventions, development in the future will be easy for those, who plan on modding and/or developing the game further.
+        </p>
+        <p>
+            Error Managing: C# has a robust exception handler, so if at any point an error occurs in the system, the user gets notified and if they decide to, they can send us the error message for diagnostic reasons, since
+            the default error manager writes in great detail about the exception.
+        </p>
+        <p>
+            Every crash report is stored in the games' directory, if the player wants to they can read back at any time what were their crashes.
+        </p>
+    </section>
+
+    <section id="DesignConstrains">
+        <h1>8. Design Constrains</h1>
+        <p>
+            Plagiarism: We don't want to full-on copy the Maze Runner movie it just gave us an idea that we really clicked with. However, it might not be our intentions some elements might be too similar, so we have to rework those
+            elements for it not to be like in the movie.
+        </p>
+        <p>
+            Hardware limitations: We would like to create a bigger and more detailed world for our game, but unfortunately it would be too resource heavy on all computers, now we use a 128*128 world which is large enough, but
+            we think if we took it up to 1024^1024 it would be a better experience. That is sadly not can not be done since it even runs slow on our computers, so we cant test with those.
+        </p>
+        <p>
+            Language limitations: C# is great for many things, but it is an object-oriented programming language so many elements are taking up more resources than they should be, so in larger scales it slows down the game,
+            this is partly the reason for the map size we said in the hardware limitations section. It is not the main reason, but it does not help. Lookups are slower, but calculations run faster than in other languages
+            (Based on our testing, with code snippets from the game), so we stick with this language.
+        </p>
+        <p>
+            Time limitations: Due to exams coming up, our development progress in the game greatly decreased, since we have lots of classes to study for, this in itself hugely impacts the speed the game is getting developed, and
+            our attempts at rushed development just took us backwards in the project.
+        </p>
+    </section>
+
+    <section id="Standards">
+        <h1>9. Applicable Standards</h1>
+        <p>
+            During the development we opted for PascalCase and Snake_Case to make our code more readable, we also avoided recursion for safer code.
+        </p>
+    </section>
     </div>
-    <h3>3.13.2. Methods</h3>
-    <div class="boxed">
-        <p class="SubParagraph">
-            <span class="MethodName">Generate Map</span>
-            <br>This method generates both the survival zone and the maze. Starting with the survival field. It starts with creating a matrix for the survival field, then generates the tiles for it,
-            then proceeds to create a matrix for the maze, then generating random paths inside.
-        </p>
-        <p class="SubParagraph">
-            <span class="MethodName">Load Map</span>
-            <br>If this method is called, both the survival and maze map gets rendered into the scene the player currently is located.
-        </p>
-        <p class="SubParagraph">
-            <span class="MethodName">Load Save(<vtype>string </vtype><vName>Location</vName>)</span>
-            <br>If this method is called, gets all data from the save file from the location, then creates every object from it.
-            <br><extraWarning>If there is a save file, then don't generate the map, it already exists in the save file!</extraWarning>
-        </p>
-        <p class="SubParagraph">
-            <span class="MethodName">Ready</span>
-            <br>When the component is created, the ready method gets called, it calls the <span class="MethodName">Generate Map</span> method, then the <span class="MethodName">Load Map</span>
-            method, if there is no save file given, if there is a save file given, then just call the <span class="MethodName">Load Save</span> method.
-        </p>
-        <p class="SubParagraph">
-            <span class="MethodName">Process(<vtype>float </vtype><vName>delta</vName>)</span>
-            <br>This method is called every frame where <vname>delta</vname> means the time passed between the last and current frame.
-            <br>From the delta we know the passed time, so we check for <info>ticks</info> and spawner states.
-        </p>
-    </div>
-    <!--<h3>3.13.3. Timing</h3>
-    <h3>3.13.4. Life</h3>-->
-    <h3>3.13.5. Menu</h3>
-    <p>
-        The main menu will be the game’s level 0, which means this will be the first thing which is appears every time someone starts up the game. During startups and coming back to the main menu from playing the game,
-        the game will search for a save file. If it fails to find one then the continue button will be disabled. Otherwise, the continue button will be available.
-        Next to this button there will be a new game, options, how to play and quit button.
-    <p class="SubParagraph">After the press of the new game button a new window will appear where the player can select the game mode he/she would like to play.
-        This will be possible by click on the button of the game mode which will also start the game. If the game already has a save it will ask the user whether he/she want to overwrite that save or not.
-        It will appear on a new window which will contains 2 buttons too.
-    <p class="SubParagraph">The continue button will delete the previous save and start the game,
-        the cancel button will take the player back to the main menu. If the user changed his/her mind before the game mode selection, there is a possibility to go back with the back button.
-    <p class="SubParagraph">Clicking on the quit button is also going to appear a new window which will ask the user whether he/she wants to leave the game with 2 buttons under it.
-        If the player presses the yes the game will start the exit sequence otherwise the no button will go back to the main menu.
-    <p class="SubParagraph">The how to play button will bring up a new window by pressing it which describes the game and all the different game modes shortly.
-        This window will also have a back button which takes the player back to the main menu.
 
-    </p>
 
-    <h1>4. Usability</h1>
-    <p>
-        In this gripping and immersive gaming experience, players will find themselves thrust into the heart of a labyrinthine world.
-        The game's usability is designed to seamlessly blend excitement with strategic thinking, as players navigate through intricate mazes filled with suspenseful
-        twists and turns. Intuitive controls and a user-friendly interface ensure that both novice and experienced gamers can easily delve into the adrenaline-pumping action.
-        Engaging puzzles, dynamic obstacles, and a captivating storyline enhance the overall usability, creating an unforgettable gaming adventure.
-    </p>
-    <h2>4.1. Learning Curve</h2>
-    <p>
-        Our game has a pretty easy learning curve, so it is easy to get started anytime for younger and older folks too. Our goal was to create a game that is enjoyable and does not provide too much difficulty, however
-        the player can decide to enter  a harder difficulty, where things are not as simple, those game modes even have their unique elements, so their curve is steeper but still on the easier side.
-    </p>
-    <h1>5. Reliability</h1>
-    <p>
-        Since this is an offline game, after installation there should not be any downtime, so you can play any time you want to. If at any point the player encounters a bug where they cannot start
-        the game, we are easy to reach to fix that bug as soon as possible.
-    </p>
-    <p class="SubParagraph">
-        Our response usually takes 12 hours maximum on weekdays, and the average bugfix is about 1 hour, so the time the player cannot play  is roughly 13 hours (MTTR = 13 hours), but it should happen about once a month maximum (MTBF = 1 month).
-    </p>
-    <h1>6. Performance</h1>
-    <p>FPS / CPU: We aim to achieve 60 FPS on low-end hardware to make it more accessible, currently a 2.4 GHz 4 core CPU is enough for our calculations in the current state of the game.</p>
-    <p>Memory: With our texture sizes(32*32) relatively few memory is reserved for textures, and with the maximum amount of entities allowed in our game, the maximum memory usage is 500MB.</p>
-    <p>Disk space: The game does not take up that many space on the storage devices, it is currently 120 MB at this rate the end product will approximately will be 250 MB</p>
-    <h1>7. Supportability</h1>
-    <p>
-        With us documenting every development step, and our code is easy to read thanks to famous coding conventions, development in the future will be easy for those, who plan on modding and/or developing the game further.
-    </p>
-    <p>
-        Error Managing: C# has a robust exception handler, so if at any point an error occurs in the system, the user gets notified and if they decide to, they can send us the error message for diagnostic reasons, since
-        the default error manager writes in great detail about the exception.
-    </p>
-    <p>
-        Every crash report is stored in the games' directory, if the player wants to they can read back at any time what were their crashes.
-    </p>
-    <h1>8. Design Constrains</h1>
-    <p>
-        Plagiarism: We don't want to full-on copy the Maze Runner movie it just gave us an idea that we really clicked with. However, it might not be our intentions some elements might be too similar, so we have to rework those
-        elements for it not to be like in the movie.
-    </p>
-    <p>
-        Hardware limitations: We would like to create a bigger and more detailed world for our game, but unfortunately it would be too resource heavy on all computers, now we use a 128*128 world which is large enough, but
-        we think if we took it up to 1024^1024 it would be a better experience. That is sadly not can not be done since it even runs slow on our computers, so we cant test with those.
-    </p>
-    <p>
-        Language limitations: C# is great for many things, but it is an object-oriented programming language so many elements are taking up more resources than they should be, so in larger scales it slows down the game,
-        this is partly the reason for the map size we said in the hardware limitations section. It is not the main reason, but it does not help. Lookups are slower, but calculations run faster than in other languages
-        (Based on our testing, with code snippets from the game), so we stick with this language.
-    </p>
-    <p>Time limitations: Due to exams coming up, our development progress in the game greatly decreased, since we have lots of classes to study for, this in itself hugely impacts the speed the game is getting developed, and
-    our attempts at rushed development just took us backwards in the project.</p>
-    <h1>9. Applicable Standards</h1>
-    <p>
-        During the development we opted for PascalCase and Snake_Case to make our code more readable, we also avoided recursion for safer code.
-    </p>
-    <br/>
+
 </body>
 </html>

@@ -1,4 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+
+html{
+    scroll-behavior: smooth;
+}
+
 :root
 {
     --Beige : #D9CCC1;
@@ -17,7 +23,7 @@ body
     width: 100vw;
     height: 100vh;
     user-select: none;
-    font-size: 2rem;
+    font-size: 1rem;
     text-align: justify;
 }
 
@@ -71,7 +77,7 @@ body
 }
 section
 {
-    font-size: 2rem;
+    font-size: 1rem;
 }
 section > p{
     margin: 0.5rem;
@@ -82,11 +88,15 @@ section > h1
 }
 section > h2
 {
-    font-size: 3.5rem;
+    font-size: 3rem;
 }
 section > h3
 {
-    font-size: 3rem;
+    font-size: 2rem;
+}
+section > h4
+{
+    font-size: 1.5rem;
 }
 section > img
 {
@@ -119,4 +129,24 @@ section >table tr:first-child{
 section > table td:last-child
 {
     border-left: 1px solid white;
+}
+
+section > .CharacterImage
+{
+    width: 128px;
+    image-rendering: high-quality;
+}
+section a
+{
+    color: var(--Beige);
+    text-decoration: none;
+}
+section a:visited
+{
+    color: var(--Beige);
+    text-decoration: none;
+}
+section a:hover
+{
+    text-decoration: underline;
 }
