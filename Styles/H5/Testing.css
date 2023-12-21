@@ -1,0 +1,73 @@
+.TestContainer
+{
+    overflow-x: hidden;
+    margin-top: 2rem;
+    border-radius: 1rem 1rem 1rem 1rem;
+}
+
+.TestHeader
+{
+    text-align: center;
+    font-size: 1rem;
+    background: #1d120c88;
+    float: left;
+    width: 100%;
+    margin: 0;
+}
+
+.TestHeader:hover
+{
+    background: #1d120ca0;
+}
+.TestHeader:active
+{
+    background: #1d120cb0;
+}
+
+.TestBody
+{
+    background: #0003;
+    overflow-y: hidden;
+    float: left;
+    width: 100%;
+    max-height: 0;
+    margin: 0;
+    transition: ease .5s;
+    padding: 0;
+}
+@media (device-width > 1200px) {
+    .TestBody > h1, p
+    {
+        width: 50%;
+    }
+
+    .flex video {
+        float: right;
+        width: calc(50%);
+        margin-right: 2rem;
+    }
+    .flex > h1, p {
+        float: left;
+        width: calc(50% - 2rem);
+    }
+}
+@media (device-width <= 1200px) {
+    .flex video {
+        width: calc(100% - 2rem);
+        margin-right: 2rem;
+    }
+    .flex > h1, p {
+        width: calc(50% - 2rem);
+    }
+}
+
+
+.closed
+{
+    padding: 0;
+}
+
+.open
+{
+    padding: 1rem;
+}
