@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../Scripts/H5Testing.js"></script>
+    <link rel="stylesheet" href="../Styles/newDefault.css">
+    <link rel="stylesheet" href="../Styles/H5/Testing.css">
+    <title>SZORP Analysis</title>
+</head>
+<body>
+
+    <div id="NavBar">
+        <button onclick="window.open('../index.html', '_self')"><<</button>
+        <h1>SZORP TESTING PAGE</h1>
+    </div>
+
+    <div id="PageContainer">
+
+        <div class="TestContainer">
+            <div class="TestHeader" onclick="openMenu('1')">
+                <h1>BASIC ENEMY MOVEMENT</h1>
+            </div>
+            <div class="TestBody closed flex" id="1">
+
+                <video controls>
+                    <source src="../Videos/EnemyMove.mkv">
+                </video>
+
+                <h1>Requirement: </h1>
+
+                <p>The enemy object should move towards the player.</p>
+                <h1>Result: </h1>
+                <p>The enemy did move towards the player! Test passed!</p>
+                <h1>Tester: </h1>
+                <p>P2MZHY</p>
+
+            </div>
+        </div>
+
+        <div class="TestContainer">
+            <div class="TestHeader" onclick="openMenu('2')">
+                <h1>CROP GROWTH 1</h1>
+            </div>
+            <div class="TestBody closed" id="2">
+                <h1>Requirement: </h1>
+                <p>Make a crop that grows with 10% chance every tick</p>
+                <h1>Result: </h1>
+                <p>The crop grew at every frame! Test failed!</p>
+                <h1>Conclusion: </h1>
+                <p>Every frame is counted as a tick! Problem in the game manager component!</p>
+                <h1>Tester: </h1>
+                <p>GDVK5H</p>
+
+            </div>
+        </div>
+
+        <div class="TestContainer">
+            <div class="TestHeader" onclick="openMenu('3')">
+                <h1>CROP GROWTH 2</h1>
+            </div>
+            <div class="TestBody closed" id="3">
+                <h1>Requirement: </h1>
+                <p>Make a crop that grows with 10% chance every tick</p>
+                <h1>Result: </h1>
+                <p>The crop grew at every tick! Test failed!</p>
+                <h1>Conclusion: </h1>
+                <p>The growth percent calculation always returns growth! Problem in the crops script!</p>
+                <h1>Tester: </h1>
+                <p>GDVK5H</p>
+
+            </div>
+        </div>
+
+        <div class="TestContainer">
+            <div class="TestHeader" onclick="openMenu('4')">
+                <h1>CROP GROWTH 3</h1>
+            </div>
+            <div class="TestBody closed" id="4">
+                <h1>Requirement: </h1>
+                <p>Make a crop that grows with 10% chance every tick</p>
+                <h1>Result: </h1>
+                <p>The crop grew at ticks with a 10% chance! Test passed!</p>
+                <h1>Tester: </h1>
+                <p>GDVK5H</p>
+
+            </div>
+        </div>
+
+        <div class="TestContainer">
+            <div class="TestHeader" onclick="openMenu('5')">
+                <h1>PASSIVE ENTITY SPAWNER 1/2</h1>
+            </div>
+            <div class="TestBody closed flex" id="5">
+
+                <video controls>
+                    <source src="../Videos/PassiveSpawn.mkv">
+                </video>
+
+                <h1>Requirement: </h1>
+
+                <p>Every 5 seconds spawn a passive entity.</p>
+                <h1>Result: </h1>
+                <p>A new entity has been spawned every five seconds! Test passed!</p>
+                <h1>Tester: </h1>
+                <p>P2MZHY</p>
+
+            </div>
+        </div>
+
+        <div class="TestContainer">
+            <div class="TestHeader" onclick="openMenu('6')">
+                <h1>PASSIVE ENTITY SPAWNER 2/2</h1>
+            </div>
+            <div class="TestBody closed flex" id="6">
+
+                <video controls>
+                    <source src="../Videos/PassiveSpawn.mkv">
+                </video>
+
+                <h1>Requirement: </h1>
+
+                <p>Passive entites wander to random positions every few seconds</p>
+                <h1>Result: </h1>
+                <p>Entities did wander every few seconds! Test passed!</p>
+                <h1>Tester: </h1>
+                <p>P2MZHY</p>
+
+            </div>
+        </div>
+
+        <div class="TestContainer">
+            <div class="TestHeader" onclick="openMenu('7')">
+                <h1>EFFECT TEST 1</h1>
+            </div>
+            <div class="TestBody closed flex" id="7">
+
+                <video controls>
+                    <source src="../Videos/EffectFailed.mkv">
+                </video>
+
+                <h1>Requirement: </h1>
+
+                <p>By pressing '.' on the keyboard apply a slight speed effect for 5 seconds to the player, to test effects!</p>
+                <h1>Result: </h1>
+                <p>The effect kept being applied multiple times to the player! Test failed!</p>
+                <h1>Conclusion: </h1>
+                <p>The effect is applied every frame, there is not a check if the effect has been applied before.</p>
+                <h1>Tester: </h1>
+                <p>JW8DEC</p>
+
+            </div>
+        </div>
+
+        <div class="TestContainer">
+            <div class="TestHeader" onclick="openMenu('8')">
+                <h1>EFFECT TEST 2</h1>
+            </div>
+            <div class="TestBody closed flex" id="8">
+
+                <video controls>
+                    <source src="../Videos/EffectPassed.mkv">
+                </video>
+
+                <h1>Requirement: </h1>
+
+                <p>By pressing '.' on the keyboard apply a slight speed effect for 5 seconds to the player, to test effects!</p>
+                <h1>Result: </h1>
+                <p>The effect was only applied once, it works great! Test passed!</p>
+                <h1>Tester: </h1>
+                <p>JW8DEC</p>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

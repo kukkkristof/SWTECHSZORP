@@ -31,7 +31,7 @@
                 upon starting the game.
                 To try out the menu, you can click on the options!
             </p>
-            <div class="screen" id="MainMenu" >
+            <div class="screen" id="MainMenu">
                 <img src="../Images/MenuBackground.png" class="gameImage">
                 <h1>SZORP</h1>
                 <button class="menuButton" onclick="OpenPage('NewGame')">NEW GAME</button>
@@ -58,9 +58,9 @@
             <div class="screen" id="Options" hidden >
                 <img src="../Images/MenuBackground.png" class="gameImage">
                 <h1>OPTIONS</h1>
-                <button class="menuButton" onclick="OpenPage('Graphics')" >Graphic settings</button>
-                <button class="menuButton" onclick="OpenPage('Volume')">Volume Settings</button>
-                <button class="menuButton" onclick="OpenPage('Access')">Accessibility Settings</button>
+                <button class="menuButton" onclick="OpenPage('Graphics')" >Graphics</button>
+                <button class="menuButton" onclick="OpenPage('Volume')">Volume</button>
+                <button class="menuButton" onclick="OpenPage('Access')">Accessibility </button>
                 <button class="menuButton" onclick="OpenPage('MainMenu')">BACK</button>
             </div>
             <div class="screen" id="Graphics" hidden>
@@ -185,6 +185,17 @@
                     </div>
                 </div>
             </div>
+        </section>
+        <section id="Saving">
+            <h1>5. Saving</h1>
+            <p>
+                In Godot Engine, saving the state of nodes involves utilizing the engine's serialization capabilities to capture and preserve the state of game elements. Here's a technical paragraph about the saving process in SZORP using Godot Engine:
+            </p>
+            <p>
+                SZORP implements a sophisticated saving mechanism leveraging the node-based structure within the Godot Engine. Through the integration of Godot's serialization functionalities, critical nodes representing game elements, such as characters, items, and environmental states, are meticulously serialized. This process involves capturing the properties, variables, and configurations of pertinent nodes to create a snapshot of the game's current state. Utilizing Godot's resource system, these serialized data sets are efficiently stored in a structured format in binary files with the extension '.save'. The saved data encapsulates the necessary information required for accurate reconstruction of the game's scene, ensuring a seamless restoration of player progression upon reloading. SZORP optimizes this process by selectively saving specific node states, allowing for an efficient use of storage while maintaining comprehensive player progress. This approach not only facilitates quick and reliable saving and loading but also ensures the preservation of intricate game interactions and world states, contributing to a consistent and immersive gaming experience for the players.
+            </p>
+                Since we have not invented any new mechanics for saving, here is the documentation of the method we used: <a href="https://docs.godotengine.org/en/stable/tutorials/io/saving_games.html">Link to the documentation</a>
+            </p>
         </section>
     </div>
 </body>

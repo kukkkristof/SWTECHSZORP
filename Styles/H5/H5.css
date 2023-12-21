@@ -1,25 +1,26 @@
 .screen
 {
-    width: 100%;
+    width: 80vw;
+    margin: auto;
     aspect-ratio: 16/9;
     background: #0003;
-    border: 1rem solid black;
+    border: 0.2vw solid black;
     position: relative;
 }
+
 .screen h1
 {
     width: 100%;
     color: black;
     text-align: center;
-    font-size: 15rem;
-    margin: 5rem 0 0 0;
-    line-height: 15rem;
+    font-size: 10vw;
+    margin: 1vw 0 0 0;
+    line-height: 10vw;
 }
 
 .screen > img
 {
     position: absolute;
-
     left: 0;
     top: 0;
     z-index: -1;
@@ -29,13 +30,12 @@
 
 .screen .menuButton
 {
-    margin: 0 0 1rem 25%;
-    font-size: 6rem;
+    margin: 0 0 1vw 25%;
+    font-size: 5vw;
     background: #0002;
     border: none;
-    width: fit-content;
     min-width: 50%;
-    height: 10%;
+    height: 7vw;
 }
 
 .screen .menuButton:hover
